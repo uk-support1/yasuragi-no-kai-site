@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新座市精神障害者家族会 やすらぎの会</title>
+<meta name="description" content="新座市精神障害者家族会「やすらぎの会」は、精神障害のある方の家族が集い、情報交換や支え合いを行う家族会です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =============================
+   CSS変数・カラーパレット
+============================= */
+:root {
+  --green-dark:    #3a7d5a;
+  --green-main:    #5aab7a;
+  --green-light:   #d4eedc;
+  --green-pale:    #eef7f1;
+  --yellow-light:  #fdf8e1;
+  --yellow-accent: #f5e87a;
+  --beige-main:    #f9f4ec;
+  --beige-dark:    #e8dfc8;
+  --brown-text:    #4a3f35;
+  --gray-text:     #555;
+  --white:         #ffffff;
+  --shadow:        0 2px 16px rgba(58,125,90,0.10);
+  --radius:        12px;
+  --radius-sm:     8px;
+  --font-serif:    'Noto Serif JP', serif;
+  --font-sans:     'Noto Sans JP', sans-serif;
+}
+
+/* =============================
+   リセット・ベース
+============================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body {
+  font-family: var(--font-sans);
+  color: var(--brown-text);
+  background: var(--beige-main);
+  line-height: 1.8;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--green-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { list-style: none; }
+
+/* =============================
+   ヘッダー・ナビゲーション
+============================= */
+#site-header {
+  background: var(--white);
+  border-bottom: 3px solid var(--green-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(90,171,122,0.12);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--green-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-icon svg { width: 28px; height: 28px; }
+.logo-text { line-height: 1.3; }
+.logo-text .org { font-size: 0.7rem; color: var(--gray-text); font-family: var(--font-sans); }
+.logo-text .name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  font-family: var(--font-serif);
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* グローバルナビ */
+#global-nav ul {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+#global-nav a {
+  display: block;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--brown-text);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+#global-nav a:hover,
+#global-nav a.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+  text-decoration: none;
+}
+
+/* =============================
+   メインコンテンツ
+============================= */
+main { min-height: 60vh; }
+
+/* ページセクション（シングルページ用） */
+.page-section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.page-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* セクション共通 */
+.section-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 1.5em;
+  background: var(--green-main);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--gray-text);
+  margin-bottom: 36px;
+  padding-left: 16px;
+}
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.card h3 {
+  font-family: var(--font-serif);
+  color: var(--green-dark);
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--green-light);
+}
+.card p, .card li { font-size: 1rem; line-height: 1.9; color: var(--gray-text); }
+.card ul { padding-left: 0; }
+.card ul li { padding: 4px 0 4px 20px; position: relative; }
+.card ul li::before { content: '●'; color: var(--green-main); font-size: 0.6rem; position: absolute; left: 0; top: 10px; }
+
+/* =============================
+   トップページ
+============================= */
+/* ヒーロー */
+.hero {
+  background: linear-gradient(135deg, var(--green-pale) 0%, var(--yellow-light) 60%, var(--beige-main) 100%);
+  padding: 60px 20px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(90,171,122,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(245,232,122,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.hero-illust { margin: 0 auto 24px; }
+.hero-illust svg { width: 120px; height: 120px; margin: 0 auto; }
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--green-dark);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.hero h1 span { display: block; font-size: 1.1rem; color: var(--gray-text); font-weight: 400; margin-bottom: 4px; }
+.hero-tagline {
+  font-size: 1.1rem;
+  color: var(--gray-text);
+  margin-bottom: 32px;
+  line-height: 1.9;
+}
+.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ボタン */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,125,90,0.20); text-decoration: none; }
+.btn-primary { background: var(--green-main); color: var(--white); }
+.btn-secondary { background: var(--white); color: var(--green-dark); border: 2px solid var(--green-main); }
+.btn-yellow { background: var(--yellow-accent); color: var(--brown-text); }
+
+/* はじめての方へバナー */
+.first-visit-banner {
+  background: linear-gradient(90deg, var(--green-pale) 0%, var(--yellow-light) 100%);
+  border: 2px solid var(--green-light);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.first-visit-banner .banner-icon { font-size: 2.5rem; flex-shrink: 0; }
+.first-visit-banner h2 {
+  font-family: var(--font-serif);
+  color: var(--green-dark);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+.first-visit-banner p { font-size: 0.97rem; color: var(--gray-text); }
+
+/* お知らせエリア */
+.news-list { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.news-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--green-light);
+  transition: background 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.news-item:last-child { border-bottom: none; }
+.news-item:hover { background: var(--green-pale); }
+.news-date { font-size: 0.85rem; color: var(--gray-text); white-space: nowrap; padding-top: 2px; }
+.news-badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-info { background: var(--green-light); color: var(--green-dark); }
+.badge-event { background: #fff3cd; color: #856404; }
+.badge-news { background: #d1ecf1; color: #0c5460; }
+.news-title { font-size: 0.97rem; line-height: 1.7; }
+
+/* 3カラムアピール */
+.appeal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.appeal-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--green-main);
+}
+.appeal-card .appeal-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.appeal-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+.appeal-card p { font-size: 0.88rem; color: var(--gray-text); line-height: 1.8; }
+
+/* =============================
+   会の紹介ページ
+============================= */
+.about-lead {
+  background: var(--green-pale);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 28px;
+  border-left: 5px solid var(--green-main);
+}
+.about-lead p { font-size: 1.05rem; line-height: 2; color: var(--brown-text); }
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+.info-table th, .info-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--green-light);
+  font-size: 0.95rem;
+}
+.info-table th {
+  width: 160px;
+  background: var(--green-pale);
+  color: var(--green-dark);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.info-table tr:last-child th,
+.info-table tr:last-child td { border-bottom: none; }
+
+/* =============================
+   活動内容ページ
+============================= */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.activity-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.activity-card .act-icon { font-size: 2rem; flex-shrink: 0; }
+.activity-card h3 { font-family: var(--font-serif); color: var(--green-dark); font-size: 1.05rem; margin-bottom: 6px; }
+.activity-card p { font-size: 0.9rem; color: var(--gray-text); line-height: 1.8; }
+
+/* =============================
+   年間予定ページ
+============================= */
+.schedule-table-wrap { overflow-x: auto; }
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+.schedule-table th {
+  background: var(--green-main);
+  color: var(--white);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.schedule-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--green-light);
+  font-size: 0.92rem;
+  vertical-align: top;
+}
+.schedule-table tr:nth-child(even) td { background: var(--green-pale); }
+.schedule-table .month { font-weight: 700; color: var(--green-dark); text-align: center; }
+
+/* =============================
+   お知らせページ
+============================= */
+.news-page-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green-main);
+}
+.news-page-item .meta { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.news-page-item .date { font-size: 0.85rem; color: var(--gray-text); }
+.news-page-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--brown-text); }
+.news-page-item p { font-size: 0.92rem; color: var(--gray-text); line-height: 1.8; }
+
+/* =============================
+   入会案内ページ
+============================= */
+.join-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 32px;
+}
+.flow-step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+.flow-step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 60px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background: var(--green-light);
+}
+.flow-num {
+  width: 56px;
+  height: 56px;
+  background: var(--green-main);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.flow-body { padding: 12px 0 32px; }
+.flow-body h3 { font-family: var(--font-serif); color: var(--green-dark); font-size: 1.05rem; margin-bottom: 6px; }
+.flow-body p { font-size: 0.92rem; color: var(--gray-text); line-height: 1.8; }
+
+/* =============================
+   問い合わせページ
+============================= */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.contact-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.contact-card .c-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.contact-card h3 { font-family: var(--font-serif); color: var(--green-dark); margin-bottom: 8px; }
+.contact-card .c-info { font-size: 1.2rem; font-weight: 700; color: var(--brown-text); margin: 8px 0; }
+.contact-card p { font-size: 0.85rem; color: var(--gray-text); }
+.privacy-note {
+  background: var(--yellow-light);
+  border: 1px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-size: 0.88rem;
+  color: var(--gray-text);
+  line-height: 1.8;
+}
+
+/* =============================
+   会報ページ
+============================= */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.pdf-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.pdf-card:hover { transform: translateY(-3px); }
+.pdf-card .pdf-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.pdf-card .pdf-title { font-weight: 700; font-size: 0.95rem; color: var(--brown-text); margin-bottom: 4px; }
+.pdf-card .pdf-date { font-size: 0.8rem; color: var(--gray-text); margin-bottom: 12px; }
+.pdf-card a {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green-dark);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.pdf-card a:hover { background: var(--green-main); color: var(--white); }
+
+/* =============================
+   アクセスページ
+============================= */
+.access-map {
+  background: var(--beige-dark);
+  border-radius: var(--radius);
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.access-map iframe { width: 100%; height: 100%; border: none; border-radius: var(--radius); }
+.access-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.transport-card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.transport-card h3 { color: var(--green-dark); font-size: 1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.transport-card p { font-size: 0.9rem; color: var(--gray-text); line-height: 1.8; }
+
+/* =============================
+   Q&Aページ
+============================= */
+.qa-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.qa-question {
+  padding: 20px 24px;
+  background: var(--green-pale);
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  align-items: flex-start;
+}
+.qa-question:hover { background: var(--green-light); }
+.q-label {
+  background: var(--green-main);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.qa-question h3 { font-size: 1rem; font-weight: 700; color: var(--brown-text); line-height: 1.7; padding-top: 2px; flex: 1; }
+.qa-toggle { color: var(--green-dark); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s; padding-top: 2px; }
+.qa-item.open .qa-toggle { transform: rotate(180deg); }
+.qa-answer { display: none; padding: 20px 24px 20px 68px; border-top: 1px solid var(--green-light); }
+.qa-item.open .qa-answer { display: block; }
+.a-label { color: var(--green-dark); font-weight: 700; margin-bottom: 6px; }
+.qa-answer p { font-size: 0.95rem; color: var(--gray-text); line-height: 1.9; }
+
+/* =============================
+   フッター
+============================= */
+#site-footer {
+  background: var(--green-dark);
+  color: rgba(255,255,255,0.9);
+  padding: 48px 20px 24px;
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 36px;
+  margin-bottom: 36px;
+}
+.footer-col h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--yellow-accent);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.footer-col p { font-size: 0.88rem; line-height: 1.9; opacity: 0.88; }
+.footer-col ul { }
+.footer-col ul li { padding: 4px 0; }
+.footer-col ul li a { color: rgba(255,255,255,0.85); font-size: 0.88rem; }
+.footer-col ul li a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* =============================
+   パンくずリスト
+============================= */
+.breadcrumb {
+  background: var(--beige-main);
+  padding: 12px 20px;
+  font-size: 0.82rem;
+  color: var(--gray-text);
+}
+.breadcrumb-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.breadcrumb a { color: var(--green-dark); }
+.breadcrumb span { color: var(--gray-text); }
+/* =============================
+   レスポンシブ
+============================= */
+@media (max-width: 860px) {
+  html { font-size: 17px; }
+  .menu-toggle { display: flex; }
+  #global-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 2px solid var(--green-light);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    padding: 12px 0;
+  }
+  #global-nav.open { display: block; }
+  #global-nav ul { flex-direction: column; gap: 0; }
+  #global-nav a { padding: 14px 24px; font-size: 1rem; border-radius: 0; }
+  .appeal-grid { grid-template-columns: 1fr; }
+  .activity-grid { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .pdf-grid { grid-template-columns: repeat(2, 1fr); }
+  .access-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .first-visit-banner { flex-direction: column; gap: 12px; }
+  .hero h1 { font-size: 1.5rem; }
+}
+@media (max-width: 520px) {
+  html { font-size: 16px; }
+  .hero { padding: 40px 16px 36px; }
+  .section-wrap { padding: 32px 16px; }
+  .pdf-grid { grid-template-columns: 1fr; }
+  .info-table th { width: 100px; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+}
+
+/* =============================
+   ユーティリティ
+============================= */
+.text-center { text-align: center; }
+.mb-24 { margin-bottom: 24px; }
+.mb-36 { margin-bottom: 36px; }
+.mt-24 { margin-top: 24px; }
+.highlight-box {
+  background: var(--yellow-light);
+  border: 1px solid var(--beige-dark);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+.green-box {
+  background: var(--green-pale);
+  border: 1px solid var(--green-light);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+</style>
+</head>
+<body>
+
+<p style="text-align:center; font-size:1.5rem; padding:1rem; background:#fff3cd;">テスト編集</p>
+
+<!-- ========== ヘッダー ========== -->
+<header id="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="#" onclick="showPage('home'); return false;">
+      <div class="logo-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- ハートと人のシルエット -->
+          <circle cx="24" cy="14" r="7" fill="white" opacity="0.9"/>
+          <path d="M10 36c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M18 28 Q24 20 30 28" stroke="#f9f4ec" stroke-width="1.5" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="org">新座市精神障害者家族会</div>
+        <div class="name">やすらぎの会</div>
+      </div>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="global-nav">
+      <ul>
+        <li><a href="#" onclick="showPage('home'); return false;" data-page="home">ホーム</a></li>
+        <li><a href="#" onclick="showPage('about'); return false;" data-page="about">会の紹介</a></li>
+        <li><a href="#" onclick="showPage('activities'); return false;" data-page="activities">活動内容</a></li>
+        <li><a href="#" onclick="showPage('schedule'); return false;" data-page="schedule">年間予定</a></li>
+        <li><a href="#" onclick="showPage('news'); return false;" data-page="news">お知らせ</a></li>
+        <li><a href="#" onclick="showPage('join'); return false;" data-page="join">入会案内</a></li>
+        <li><a href="#" onclick="showPage('kaiho'); return false;" data-page="kaiho">会報</a></li>
+        <li><a href="#" onclick="showPage('access'); return false;" data-page="access">アクセス</a></li>
+        <li><a href="#" onclick="showPage('qa'); return false;" data-page="qa">Q&amp;A</a></li>
+        <li><a href="#" onclick="showPage('contact'); return false;" data-page="contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===========================
+     1. トップページ
+=========================== -->
+<div id="page-home" class="page-section active">
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-illust">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- 背景の円 -->
+          <circle cx="60" cy="60" r="58" fill="#eef7f1" stroke="#5aab7a" stroke-width="2"/>
+          <!-- 4人の家族のシルエット（シンプルなイラスト） -->
+          <!-- 左の人 -->
+          <circle cx="34" cy="48" r="8" fill="#5aab7a"/>
+          <path d="M22 72 Q34 60 46 72" stroke="#5aab7a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- 右の人 -->
+          <circle cx="86" cy="48" r="8" fill="#3a7d5a"/>
+          <path d="M74 72 Q86 60 98 72" stroke="#3a7d5a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- 中央の人 -->
+          <circle cx="60" cy="42" r="10" fill="#f5e87a" stroke="#e0cc50" stroke-width="1.5"/>
+          <path d="M46 70 Q60 56 74 70" stroke="#d4b800" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- ハートマーク -->
+          <path d="M54 90 Q60 96 66 90 Q70 86 66 82 Q62 78 60 82 Q58 78 54 82 Q50 86 54 90Z" fill="#f87c7c" opacity="0.7"/>
+          <!-- やさしい葉っぱ -->
+          <path d="M16 90 Q20 80 30 84 Q26 94 16 90Z" fill="#5aab7a" opacity="0.5"/>
+          <path d="M104 90 Q100 80 90 84 Q94 94 104 90Z" fill="#5aab7a" opacity="0.5"/>
+        </svg>
+      </div>
+      <h1>
+        <span>新座市精神障害者家族会</span>
+        やすらぎの会
+      </h1>
+      <p class="hero-tagline">
+        精神障害のある家族を持つ方が、<br>
+        安心して集い、話し合える場所です。<br>
+        一人で抱えないでください。ここに仲間がいます。
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary" onclick="showPage('join'); return false;">📋 入会のご案内</a>
+        <a href="#" class="btn btn-secondary" onclick="showPage('about'); return false;">🌿 会の紹介を見る</a>
+        <a href="#" class="btn btn-yellow" onclick="showPage('contact'); return false;">✉ お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-wrap">
+
+    <!-- はじめての方へ -->
+    <div class="first-visit-banner mb-36">
+      <div class="banner-icon">🍀</div>
+      <div>
+        <h2>はじめての方へ</h2>
+        <p>
+          「やすらぎの会」は、精神障害のある方の家族が集まる家族会です。<br>
+          入会前の見学・お問い合わせも歓迎しています。参加することへの不安は、誰でも最初は持つものです。<br>
+          まずは気軽にご連絡ください。強制や義務はありません。ご自分のペースで関わっていただけます。
+        </p>
+        <div style="margin-top:12px;">
+          <a href="#" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;" onclick="showPage('join'); return false;">入会案内・見学について</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3つのアピール -->
+    <div class="appeal-grid mb-36">
+      <div class="appeal-card">
+        <div class="appeal-icon">💬</div>
+        <h3>話せる場所がある</h3>
+        <p>同じ立場の家族と言葉を交わすことで、心が楽になります。毎月定例会を開催しています。</p>
+      </div>
+      <div class="appeal-card">
+        <div class="appeal-icon">📚</div>
+        <h3>正しい情報を得られる</h3>
+        <p>福祉制度・医療・支援機関に関する情報を共有しています。学習会も定期的に開催。</p>
+      </div>
+      <div class="appeal-card">
+        <div class="appeal-icon">🤝</div>
+        <h3>一人じゃないと感じられる</h3>
+        <p>長年活動している家族会です。新座市内外の支援機関とも連携しています。</p>
+      </div>
+    </div>
+
+    <!-- 最新のお知らせ -->
+    <div class="mb-36">
+      <div class="section-title">最新のお知らせ</div>
+      <p class="section-subtitle">新着情報・定例会のご案内</p>
+      <div class="news-list mb-24">
+        <a class="news-item" href="#" onclick="showPage('news'); return false;">
+          <span class="news-date">2025.06.01</span>
+          <span class="news-badge badge-event">定例会</span>
+          <span class="news-title">6月の定例会のご案内（6月14日・土曜日 午後1時30分〜）</span>
+        </a>
+        <a class="news-item" href="#" onclick="showPage('news'); return false;">
+          <span class="news-date">2025.05.20</span>
+          <span class="news-badge badge-info">お知らせ</span>
+          <span class="news-title">会報「やすらぎの会だより」第42号を発行しました</span>
+        </a>
+        <a class="news-item" href="#" onclick="showPage('news'); return false;">
+          <span class="news-date">2025.05.01</span>
+          <span class="news-badge badge-news">情報</span>
+          <span class="news-title">新座市障害福祉課より「障害者手帳に関する相談窓口」のご案内</span>
+        </a>
+        <a class="news-item" href="#" onclick="showPage('news'); return false;">
+          <span class="news-date">2025.04.15</span>
+          <span class="news-badge badge-event">イベント</span>
+          <span class="news-title">家族のための講演会「精神障害について知る・学ぶ」開催報告</span>
+        </a>
+      </div>
+      <div class="text-center">
+        <a href="#" class="btn btn-secondary" style="font-size:0.9rem; padding:10px 24px;" onclick="showPage('news'); return false;">お知らせ一覧を見る →</a>
+      </div>
+    </div>
+
+    <!-- 活動について簡単な紹介 -->
+    <div class="card">
+      <h3>🌱 やすらぎの会について</h3>
+      <p>
+        「やすらぎの会」は、新座市内に在住・在勤する精神障害のある方の家族が中心となって運営している家族会です。<br>
+        定例会・学習会・交流会などを通じて、家族同士が情報を共有し、支え合っています。<br>
+        新座市の障害福祉施策とも連携し、地域の精神保健福祉の向上に取り組んでいます。
+      </p>
+      <div style="margin-top:16px;">
+        <a href="#" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;" onclick="showPage('about'); return false;">くわしく見る →</a>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /page-home -->
+
+
+<!-- ===========================
+     2. 会の紹介ページ
+=========================== -->
+<div id="page-about" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>会の紹介</div></div>
+  <div class="section-wrap">
+    <div class="section-title">会の紹介</div>
+    <p class="section-subtitle">やすらぎの会についてご紹介します</p>
+
+    <div class="about-lead mb-36">
+      <p>
+        「やすらぎの会」は、精神障害のある方の家族が集まる家族会です。<br>
+        毎月の定例会や学習会・交流会を通じて、お互いの経験を分かち合い、地域での支え合いを大切にしています。<br>
+        「一人で悩まないでほしい」——その思いが、この会の出発点です。
+      </p>
+    </div>
+
+    <div class="card mb-36">
+      <h3>📋 基本情報</h3>
+      <table class="info-table">
+        <tr><th>会の名称</th><td>新座市精神障害者家族会 やすらぎの会</td></tr>
+        <tr><th>設　　立</th><td>（設立年をご記入ください）</td></tr>
+        <tr><th>活動地域</th><td>新座市およびその周辺</td></tr>
+        <tr><th>会　　費</th><td>年間 ○○○円（詳しくは入会案内をご覧ください）</td></tr>
+        <tr><th>定例会</th><td>毎月第2土曜日 午後1時30分〜3時30分</td></tr>
+        <tr><th>活動場所</th><td>新座市内の福祉施設（詳しくはお知らせをご確認ください）</td></tr>
+        <tr><th>連絡先</th><td>メール：yasuragi-niiza@example.com　電話：000-0000-0000</td></tr>
+      </table>
+    </div>
+
+    <div class="card mb-36">
+      <h3>🌿 会の目的・理念</h3>
+      <ul>
+        <li>精神障害のある方の家族が、安心して集い、情報・経験を共有できる場を提供します。</li>
+        <li>家族同士の支え合いと、精神的な負担の軽減を目指します。</li>
+        <li>精神障害に関する正しい理解を広め、偏見のない地域社会の実現に貢献します。</li>
+        <li>行政・医療・福祉機関との連携を図り、支援の充実に向けて活動します。</li>
+      </ul>
+    </div>
+
+    <div class="card mb-36">
+      <h3>🏛 関係機関・連携先</h3>
+      <ul>
+        <li>新座市障害福祉課</li>
+        <li>新座市社会福祉協議会</li>
+        <li>埼玉県精神障害者家族会連合会</li>
+        <li>地域の医療機関・相談支援事業所　など</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      ⚠ やすらぎの会は、医療機関や行政機関ではありません。会として診断・治療・法的手続きに関する具体的なアドバイスは行っておりません。専門的な相談は、医師・相談支援専門員などの専門家にご相談ください。
+    </div>
+  </div>
+</div><!-- /page-about -->
+
+
+<!-- ===========================
+     3. 活動内容ページ
+=========================== -->
+<div id="page-activities" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>活動内容</div></div>
+  <div class="section-wrap">
+    <div class="section-title">活動内容</div>
+    <p class="section-subtitle">やすらぎの会では、以下のような活動を行っています</p>
+
+    <div class="activity-grid mb-36">
+      <div class="activity-card">
+        <div class="act-icon">💬</div>
+        <div>
+          <h3>定例会（月1回）</h3>
+          <p>毎月第2土曜日の午後に開催。家族同士が近況を話し合い、情報交換をする場です。はじめての方も安心してご参加いただけます。</p>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="act-icon">📖</div>
+        <div>
+          <h3>学習会・講演会</h3>
+          <p>精神障害の理解を深めるための学習会や、福祉・医療の専門家を招いた講演会を年数回開催しています。</p>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="act-icon">🎉</div>
+        <div>
+          <h3>交流会・レクリエーション</h3>
+          <p>年に1〜2回、会員同士の親睦を深める交流会を開催。日常から離れてリフレッシュする機会を作っています。</p>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="act-icon">📰</div>
+        <div>
+          <h3>会報「やすらぎの会だより」の発行</h3>
+          <p>年3〜4回、会報を発行。定例会の内容・福祉情報・会員からの声などを掲載しています。</p>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="act-icon">🤝</div>
+        <div>
+          <h3>行政・支援機関との連携</h3>
+          <p>新座市障害福祉課・社会福祉協議会などと連携し、地域の精神保健福祉の充実に向けて意見交換を行っています。</p>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="act-icon">📡</div>
+        <div>
+          <h3>情報発信・啓発活動</h3>
+          <p>このホームページや会報を通じて、精神障害への正しい理解を広める情報発信を行っています。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="green-box">
+      🌱 活動はすべて、会員によって自主的に運営されています。参加できる範囲・タイミングは、それぞれのペースで構いません。気軽に関わっていただける環境を大切にしています。
+    </div>
+  </div>
+</div><!-- /page-activities -->
+
+
+<!-- ===========================
+     4. 年間予定ページ
+=========================== -->
+<div id="page-schedule" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>年間予定</div></div>
+  <div class="section-wrap">
+    <div class="section-title">年間予定</div>
+    <p class="section-subtitle">2025年度（2025年4月〜2026年3月）の予定です。変更になる場合はお知らせします。</p>
+
+    <div class="schedule-table-wrap card" style="padding:0; overflow:hidden;">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>月</th>
+            <th>主な活動</th>
+            <th>備　考</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="month">4月</td><td>定例会・総会</td><td>年度はじめの総会を開催。役員改選など</td></tr>
+          <tr><td class="month">5月</td><td>定例会</td><td></td></tr>
+          <tr><td class="month">6月</td><td>定例会・学習会</td><td>テーマ：精神障害の基礎知識</td></tr>
+          <tr><td class="month">7月</td><td>定例会</td><td></td></tr>
+          <tr><td class="month">8月</td><td>定例会（納涼交流会）</td><td>会員交流会（軽食あり）</td></tr>
+          <tr><td class="month">9月</td><td>定例会</td><td></td></tr>
+          <tr><td class="month">10月</td><td>定例会・講演会</td><td>外部講師を招いた講演会を予定</td></tr>
+          <tr><td class="month">11月</td><td>定例会</td><td>精神保健福祉の日（11月）関連情報共有</td></tr>
+          <tr><td class="month">12月</td><td>定例会・忘年会</td><td>年末の交流会</td></tr>
+          <tr><td class="month">1月</td><td>定例会（新年会）</td><td></td></tr>
+          <tr><td class="month">2月</td><td>定例会</td><td></td></tr>
+          <tr><td class="month">3月</td><td>定例会・年度まとめ</td><td>活動報告・次年度の方針確認</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box mt-24">
+      📅 定例会は毎月第2土曜日（午後1時30分〜3時30分）に開催しています。<br>
+      開催場所は毎回お知らせでご確認ください。急な変更がある場合は事前にご連絡いたします。
+    </div>
+  </div>
+</div><!-- /page-schedule -->
+
+
+<!-- ===========================
+     5. お知らせページ
+=========================== -->
+<div id="page-news" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>お知らせ</div></div>
+  <div class="section-wrap">
+    <div class="section-title">お知らせ</div>
+    <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
+
+    <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <div class="news-page-item">
+      <div class="meta">
+        <span class="news-date">2025年6月1日</span>
+        <span class="news-badge badge-event">定例会</span>
+      </div>
+      <h3>6月の定例会のご案内</h3>
+      <p>6月の定例会を下記のとおり開催します。はじめての方もお気軽にご参加ください。<br>
+      【日時】2025年6月14日（土）午後1時30分〜3時30分<br>
+      【場所】新座市内（詳細はご入会後にお伝えします）<br>
+      【内容】近況報告・情報交換・フリートーク</p>
+    </div>
+
+    <div class="news-page-item">
+      <div class="meta">
+        <span class="news-date">2025年5月20日</span>
+        <span class="news-badge badge-info">お知らせ</span>
+      </div>
+      <h3>会報「やすらぎの会だより」第42号を発行しました</h3>
+      <p>会報第42号を発行しました。会報ページよりPDFをご覧いただけます。<br>
+      今号の主な内容：4月定例会の様子、精神障害に関する制度情報、会員からのメッセージ</p>
+    </div>
+
+    <div class="news-page-item">
+      <div class="meta">
+        <span class="news-date">2025年5月1日</span>
+        <span class="news-badge badge-news">情報</span>
+      </div>
+      <h3>新座市障害福祉課より「障害者手帳に関する相談窓口」のご案内</h3>
+      <p>新座市障害福祉課より、障害者手帳（精神障害者保健福祉手帳）に関する相談窓口の案内が届きましたのでお知らせします。<br>
+      詳しくは新座市公式ウェブサイトをご確認いただくか、直接障害福祉課（048-xxx-xxxx）にお問い合わせください。</p>
+    </div>
+
+    <div class="news-page-item">
+      <div class="meta">
+        <span class="news-date">2025年4月15日</span>
+        <span class="news-badge badge-event">イベント</span>
+      </div>
+      <h3>家族のための講演会「精神障害について知る・学ぶ」開催報告</h3>
+      <p>4月の学習会として、地域の精神科医師をお招きした講演会を開催しました。参加者からは「分かりやすく、安心できた」「もっと早く知りたかった」などのご感想をいただきました。</p>
+    </div>
+
+    <!-- お知らせ追加ここまで -->
+
+    <div class="green-box mt-24">
+      📬 最新情報は随時更新します。重要なお知らせはメールにてもご連絡します（会員の方）。
+    </div>
+  </div>
+</div><!-- /page-news -->
+
+
+<!-- ===========================
+     6. 入会案内ページ
+=========================== -->
+<div id="page-join" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>入会案内</div></div>
+  <div class="section-wrap">
+    <div class="section-title">入会案内</div>
+    <p class="section-subtitle">入会を迷っている方も、まずはお気軽にご連絡ください</p>
+
+    <div class="card mb-36">
+      <h3>🍀 入会できる方</h3>
+      <ul>
+        <li>精神障害のある方のご家族（新座市内外を問いません）</li>
+        <li>精神障害のある方ご本人（ご希望の方はご相談ください）</li>
+        <li>精神保健福祉に関心のある方</li>
+      </ul>
+      <p style="margin-top:12px; font-size:0.9rem; color:var(--gray-text);">※ 障害の種類・診断名は問いません。ご家族の状況が「精神的な病気かもしれない」という段階でも、どうぞ遠慮なくご相談ください。</p>
+    </div>
+
+    <div class="section-title" style="font-size:1.3rem; margin-bottom:20px;">入会の流れ</div>
+    <div class="join-flow mb-36">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h3>まずはご連絡ください</h3>
+          <p>メールまたはお電話にて、お気軽にご連絡ください。「見学したい」「話を聞くだけでもいい？」という問い合わせも大歓迎です。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h3>定例会に見学参加</h3>
+          <p>定例会に見学として参加できます。無理に話す必要はありません。雰囲気だけ確かめるだけでも大丈夫です。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h3>入会申込み</h3>
+          <p>入会を希望される方は、入会申込書（当日配布）にご記入ください。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <h3>年会費のお支払い</h3>
+          <p>年会費（○○○円）をお支払いいただきます。詳細は担当者よりご案内します。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-36">
+      <h3>🎁 会員になると</h3>
+      <ul>
+        <li>毎月の定例会に参加できます</li>
+        <li>会報「やすらぎの会だより」が届きます</li>
+        <li>各種学習会・交流会のご案内を受け取れます</li>
+        <li>緊急時・相談時に会員同士でサポートし合える繋がりができます</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      💡 会への参加に不安がある方、「自分だけ特別に大変なのでは」と思っている方、どうか遠慮せずにご連絡ください。この会はそういった気持ちを持つ方々が集まっています。
+    </div>
+
+    <div class="text-center mt-24">
+      <a href="#" class="btn btn-primary" onclick="showPage('contact'); return false;">✉ お問い合わせ・見学申込みはこちら</a>
+    </div>
+  </div>
+</div><!-- /page-join -->
+
+
+<!-- ===========================
+     7. お問い合わせページ
+=========================== -->
+<div id="page-contact" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>お問い合わせ</div></div>
+  <div class="section-wrap">
+    <div class="section-title">お問い合わせ</div>
+    <p class="section-subtitle">入会に関すること、見学のご希望など、お気軽にご連絡ください</p>
+
+    <div class="contact-cards mb-36">
+      <div class="contact-card">
+        <div class="c-icon">✉️</div>
+        <h3>メールで問い合わせる</h3>
+        <div class="c-info">yasuragi-niiza@example.com</div>
+        <p>件名に「問い合わせ」とご記入ください。<br>3営業日以内に返信いたします。</p>
+        <div style="margin-top:14px;">
+          <a href="mailto:yasuragi-niiza@example.com" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;">メールを送る</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">📞</div>
+        <h3>電話で問い合わせる</h3>
+        <div class="c-info">000-0000-0000</div>
+        <p>受付時間：火・木・土<br>午前10時〜午後4時<br>担当：（お名前をご記入ください）</p>
+      </div>
+    </div>
+
+    <div class="card mb-24">
+      <h3>💬 お問い合わせの例</h3>
+      <ul>
+        <li>入会したいのですが、どのような会ですか？</li>
+        <li>定例会を見学したいのですが、参加できますか？</li>
+        <li>まだ確定ではないのですが、相談だけでもできますか？</li>
+        <li>精神障害のある家族のことで困っています</li>
+        <li>支援機関（医療・福祉）を紹介してもらえますか？</li>
+      </ul>
+    </div>
+
+    <div class="privacy-note">
+      🔒 <strong>個人情報の取り扱いについて</strong><br>
+      お問い合わせでいただいた個人情報（お名前・連絡先など）は、やすらぎの会の活動に必要な連絡のみに使用します。
+      第三者への提供・販売は一切行いません。ご安心ください。
+    </div>
+  </div>
+</div><!-- /page-contact -->
+
+
+<!-- ===========================
+     8. 会報ページ
+=========================== -->
+<div id="page-kaiho" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>会報「やすらぎの会だより」</div></div>
+  <div class="section-wrap">
+    <div class="section-title">会報「やすらぎの会だより」</div>
+    <p class="section-subtitle">年3〜4回発行しています。バックナンバーはPDFでご覧いただけます。</p>
+
+    <!-- ★ 会報PDFを追加するときはここにコピーして貼り付けます ★ -->
+    <div class="pdf-grid mb-36">
+
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">やすらぎの会だより 第42号</div>
+        <div class="pdf-date">2025年5月発行</div>
+        <a href="pdf/kaiho_42.pdf" target="_blank">PDFを見る</a>
+      </div>
+
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">やすらぎの会だより 第41号</div>
+        <div class="pdf-date">2025年2月発行</div>
+        <a href="pdf/kaiho_41.pdf" target="_blank">PDFを見る</a>
+      </div>
+
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">やすらぎの会だより 第40号</div>
+        <div class="pdf-date">2024年11月発行</div>
+        <a href="pdf/kaiho_40.pdf" target="_blank">PDFを見る</a>
+      </div>
+
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">やすらぎの会だより 第39号</div>
+        <div class="pdf-date">2024年8月発行</div>
+        <a href="pdf/kaiho_39.pdf" target="_blank">PDFを見る</a>
+      </div>
+
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">やすらぎの会だより 第38号</div>
+        <div class="pdf-date">2024年5月発行</div>
+        <a href="pdf/kaiho_38.pdf" target="_blank">PDFを見る</a>
+      </div>
+
+    </div>
+    <!-- PDF追加ここまで -->
+
+    <div class="highlight-box">
+      📬 最新号は会員の方に郵送しています。このページではPDFをご覧いただけます。<br>
+      ご覧になるにはPDFビューア（Adobe Acrobat Readerなど）が必要です。
+    </div>
+  </div>
+</div><!-- /page-kaiho -->
+
+
+<!-- ===========================
+     9. アクセスページ
+=========================== -->
+<div id="page-access" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>アクセス</div></div>
+  <div class="section-wrap">
+    <div class="section-title">アクセス</div>
+    <p class="section-subtitle">定例会の主な開催場所へのアクセスです</p>
+
+    <div class="card mb-24">
+      <h3>🏛 主な開催場所</h3>
+      <p><strong>新座市総合福祉センター（仮）</strong><br>
+      〒352-0000　埼玉県新座市○○○丁目○番○号<br>
+      ※ 定例会の開催場所は毎回「お知らせ」でご確認ください。変更になる場合があります。</p>
+    </div>
+
+    <div class="access-map mb-24">
+      <!-- 実際の住所が決まったら下記のsrcのaddressを変更してください -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25929.47!2d139.5252!3d35.7935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601889fef61b42e1%3A0xd7f1c6ab4e1dc14b!2z5paw5bqr5biC!5e0!3m2!1sja!2sjp!4v1234567890"
+        allowfullscreen
+        loading="lazy"
+        title="アクセスマップ">
+      </iframe>
+    </div>
+
+    <div class="access-grid mb-24">
+      <div class="transport-card">
+        <h3>🚃 電車をご利用の場合</h3>
+        <p>
+          東武東上線「志木駅」より徒歩約○分<br>
+          または西武池袋線「ひばりヶ丘駅」よりバス利用
+        </p>
+      </div>
+      <div class="transport-card">
+        <h3>🚌 バスをご利用の場合</h3>
+        <p>
+          志木駅南口より「○○行き」バスに乗車<br>
+          「○○バス停」下車すぐ
+        </p>
+      </div>
+      <div class="transport-card">
+        <h3>🚗 お車をご利用の場合</h3>
+        <p>
+          駐車場：○台（無料）<br>
+          ※ 駐車場には限りがあります。なるべく公共交通機関をご利用ください。
+        </p>
+      </div>
+      <div class="transport-card">
+        <h3>♿ バリアフリー情報</h3>
+        <p>
+          車椅子でのご来場可能です。<br>
+          ご不明な点は事前にお問い合わせください。
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      📍 定例会の開催場所は毎月変わる場合があります。必ず「お知らせ」ページで最新情報をご確認ください。
+    </div>
+  </div>
+</div><!-- /page-access -->
+
+
+<!-- ===========================
+     10. Q&Aページ
+=========================== -->
+<div id="page-qa" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>Q&amp;A</div></div>
+  <div class="section-wrap">
+    <div class="section-title">よくあるご質問（Q&amp;A）</div>
+    <p class="section-subtitle">質問をクリックすると答えが表示されます</p>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>家族会に参加したことがありません。どんな雰囲気ですか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>初めての方でも、安心してご参加いただけます。無理に話す必要はなく、最初は聞いているだけでも大丈夫です。同じ立場の家族が話す言葉に、ほっとする方も多くいます。まずは見学だけでも歓迎しています。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>家族が精神科に通院していません。参加できますか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>はい、もちろんご参加いただけます。「まだ病院に行っていないが、家族の様子が気になる」「診断はないが、明らかに様子がおかしい」という方も多く参加されています。診断や通院の有無は問いません。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>個人情報は守られますか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>定例会での会話や個人情報は、会員間での守秘を大切にしています。会として外部への情報共有は行いません。安心してお話しください。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>新座市外に住んでいますが、参加できますか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>はい、市外の方もご参加いただけます。同じ悩みを抱える家族であれば、地域を問わず歓迎しています。ただし、行政関連の手続きや制度情報は新座市内向けが中心になる場合があります。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>家族の病気について、専門的なアドバイスをもらえますか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>やすらぎの会は家族会であり、医療機関・専門機関ではありません。診断や治療方針に関する専門的なアドバイスは行っておりません。医療や支援制度についての情報共有・体験談を分かち合う場です。専門的なご相談は、医師・相談支援専門員などへお願いしています。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>会費を支払っても、毎回参加しなければいけませんか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>いいえ、毎回の参加は必須ではありません。ご自身の状況に合わせて、無理のない範囲でご参加ください。体調や家族の状況で参加できない時期があるのは、みんな同じです。</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-question" onclick="toggleQA(this)">
+        <div class="q-label">Q</div>
+        <h3>家族の当事者本人も参加できますか？</h3>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-answer">
+        <div class="a-label">A.</div>
+        <p>基本的には家族が主体の会です。当事者本人のご参加については、事前にお問い合わせください。状況に応じて柔軟に対応いたします。</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-24">
+      <p style="margin-bottom:12px; color:var(--gray-text); font-size:0.95rem;">他にご不明な点がございましたら、お気軽にお問い合わせください。</p>
+      <a href="#" class="btn btn-primary" onclick="showPage('contact'); return false;">✉ お問い合わせはこちら</a>
+    </div>
+  </div>
+</div><!-- /page-qa -->
+
+</main>
+
+<!-- ========== フッター ========== -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>やすらぎの会について</h3>
+        <p>新座市精神障害者家族会「やすらぎの会」は、精神障害のある方の家族が集い、支え合う家族会です。毎月定例会を開催しています。</p>
+      </div>
+      <div class="footer-col">
+        <h3>ページ一覧</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('home');return false;">ホーム</a></li>
+          <li><a href="#" onclick="showPage('about');return false;">会の紹介</a></li>
+          <li><a href="#" onclick="showPage('activities');return false;">活動内容</a></li>
+          <li><a href="#" onclick="showPage('schedule');return false;">年間予定</a></li>
+          <li><a href="#" onclick="showPage('news');return false;">お知らせ</a></li>
+          <li><a href="#" onclick="showPage('join');return false;">入会案内</a></li>
+          <li><a href="#" onclick="showPage('kaiho');return false;">会報</a></li>
+          <li><a href="#" onclick="showPage('access');return false;">アクセス</a></li>
+          <li><a href="#" onclick="showPage('qa');return false;">Q&amp;A</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>お問い合わせ</h3>
+        <p>
+          📧 yasuragi-niiza@example.com<br><br>
+          📞 000-0000-0000<br>
+          受付：火・木・土 10:00〜16:00<br><br>
+          〒000-0000<br>
+          埼玉県新座市○○○○
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 新座市精神障害者家族会 やすらぎの会　All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== JavaScript ========== -->
+<script>
+// ページ切り替え
+function showPage(pageId) {
+  // 全ページ非表示
+  document.querySelectorAll('.page-section').forEach(function(el) {
+    el.classList.remove('active');
+  });
+  // 対象ページを表示
+  var target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+
+  // ナビのアクティブ状態
+  document.querySelectorAll('#global-nav a').forEach(function(a) {
+    a.classList.remove('active');
+    if (a.dataset.page === pageId) a.classList.add('active');
+  });
+
+  // スクロールトップ
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // メニューを閉じる（スマホ）
+  var nav = document.getElementById('global-nav');
+  var toggle = document.getElementById('menuToggle');
+  nav.classList.remove('open');
+  toggle.classList.remove('open');
+}
+
+// ハンバーガーメニュー
+function toggleMenu() {
+  var nav = document.getElementById('global-nav');
+  var toggle = document.getElementById('menuToggle');
+  nav.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+// Q&Aアコーディオン
+function toggleQA(questionEl) {
+  var item = questionEl.closest('.qa-item');
+  item.classList.toggle('open');
+}
+
+// 初期表示
+showPage('home');
+</script>
+</body>
+</html>
