@@ -392,27 +392,137 @@ main { min-height: 60vh; }
 /* =============================
    年間予定ページ
 ============================= */
-.schedule-table-wrap { overflow-x: auto; }
+.schedule-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 500px;
+  min-width: 600px;
+  background: var(--white);
 }
 .schedule-table th {
-  background: var(--green-main);
+  background: var(--green-dark);
   color: var(--white);
-  padding: 12px 16px;
-  font-size: 0.9rem;
+  padding: 14px 16px;
+  font-size: 0.92rem;
   text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
 }
 .schedule-table td {
-  padding: 12px 16px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--green-light);
-  font-size: 0.92rem;
-  vertical-align: top;
+  font-size: 0.95rem;
+  vertical-align: middle;
+  line-height: 1.6;
 }
-.schedule-table tr:nth-child(even) td { background: var(--green-pale); }
-.schedule-table .month { font-weight: 700; color: var(--green-dark); text-align: center; }
+.schedule-table tr:last-child td { border-bottom: none; }
+
+/* 日付・曜日 */
+.s-date { font-weight: 700; color: var(--green-dark); text-align: center; white-space: nowrap; }
+.s-day  { text-align: center; font-weight: 600; white-space: nowrap; }
+.s-time { text-align: center; white-space: nowrap; font-size: 0.88rem; color: var(--gray-text); }
+.s-venue { font-size: 0.92rem; }
+.s-org  { text-align: center; font-size: 0.85rem; color: var(--gray-text); white-space: nowrap; }
+
+/* 行タイプ別背景 */
+.row-teireikai { background: #f4fbf6; }
+.row-sokai     { background: #eaf6ef; }
+.row-event     { background: #fffaf0; border-left: 4px solid #f0a830 !important; }
+.row-saikaren  { background: #f0f6fc; }
+.row-minnannetto { background: #f7f2fc; }
+
+/* 地域交流イベント行を左ボーダーで強調 */
+.row-event td:first-child { border-left: 4px solid #f0a830; }
+
+/* イベントバッジ */
+.ev-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-right: 6px;
+  line-height: 1.6;
+}
+.ev-teireikai   { background: #d4eedc; color: #2d6647; }
+.ev-sokai       { background: #b8e0c8; color: #1e5235; }
+.ev-event       { background: #ffe0a0; color: #8a4800; border: 1px solid #f5c060; }
+.ev-saikaren    { background: #cce0f0; color: #1a4f6e; }
+.ev-minnannetto { background: #e0ccf0; color: #4a237a; }
+
+/* （仮）会場は淡いグレーで */
+.venue-kari { color: #b0b0b0; font-size: 0.85rem; }
+
+/* 凡例 */
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  align-items: center;
+  color: var(--gray-text);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+
+/* スマホ：カード形式に切り替え */
+@media (max-width: 620px) {
+  .schedule-table-wrap { border-radius: 0; box-shadow: none; }
+  .schedule-table,
+  .schedule-table thead,
+  .schedule-table tbody,
+  .schedule-table tr,
+  .schedule-table th,
+  .schedule-table td { display: block; min-width: 0; }
+  .schedule-table thead { display: none; }
+  .schedule-table tbody tr {
+    margin-bottom: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(58,125,90,0.10);
+    border: 1px solid var(--green-light);
+  }
+  .row-event { border-left: none !important; }
+  .row-event td:first-child { border-left: none; }
+  .row-event { border-top: 4px solid #f0a830 !important; }
+  .schedule-table td {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--green-light);
+    font-size: 1rem;
+    text-align: left !important;
+    color: var(--brown-text);
+  }
+  .schedule-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--green-dark);
+    min-width: 3.8em;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    padding-top: 2px;
+  }
+  .schedule-table td:last-child { border-bottom: none; }
+  .s-time { color: var(--brown-text) !important; font-size: 1rem !important; }
+  .ev-badge { margin-bottom: 4px; }
+}
+
+/* 印刷対応 */
+@media print {
+  .schedule-table th { background: var(--green-dark) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .row-teireikai { background: #f4fbf6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .row-event { background: #fffaf0 !important; border-left: 4px solid #f0a830 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .venue-kari { color: #999 !important; }
+}
 
 /* =============================
    お知らせページ
@@ -823,29 +933,9 @@ main { min-height: 60vh; }
       <div class="section-title">最新のお知らせ</div>
       <p class="section-subtitle">新着情報・定例会のご案内</p>
       <div class="news-list mb-24">
-        <a class="news-item" href="#" onclick="showPage('news'); return false;">
-          <span class="news-date">2025.06.01</span>
-          <span class="news-badge badge-event">定例会</span>
-          <span class="news-title">6月の定例会のご案内（6月14日・土曜日 午後1時30分〜）</span>
-        </a>
-        <a class="news-item" href="#" onclick="showPage('news'); return false;">
-          <span class="news-date">2025.05.20</span>
-          <span class="news-badge badge-info">お知らせ</span>
-          <span class="news-title">会報「やすらぎの会だより」第42号を発行しました</span>
-        </a>
-        <a class="news-item" href="#" onclick="showPage('news'); return false;">
-          <span class="news-date">2025.05.01</span>
-          <span class="news-badge badge-news">情報</span>
-          <span class="news-title">新座市障害福祉課より「障害者手帳に関する相談窓口」のご案内</span>
-        </a>
-        <a class="news-item" href="#" onclick="showPage('news'); return false;">
-          <span class="news-date">2025.04.15</span>
-          <span class="news-badge badge-event">イベント</span>
-          <span class="news-title">家族のための講演会「精神障害について知る・学ぶ」開催報告</span>
-        </a>
-      </div>
-      <div class="text-center">
-        <a href="#" class="btn btn-secondary" style="font-size:0.9rem; padding:10px 24px;" onclick="showPage('news'); return false;">お知らせ一覧を見る →</a>
+        <div class="news-item" style="justify-content:center; color:var(--gray-text); font-size:0.95rem; cursor:default;">
+          現在、お知らせはありません。
+        </div>
       </div>
     </div>
 
@@ -936,7 +1026,7 @@ main { min-height: 60vh; }
         <div class="act-icon">💬</div>
         <div>
           <h3>定例会（月1回）</h3>
-          <p>毎月第2土曜日の午後に開催。家族同士が近況を話し合い、情報交換をする場です。はじめての方も安心してご参加いただけます。</p>
+          <p>原則として、偶数月の第2日曜日と奇数月の第2金曜日の午後1時から3時まで開催しています。家族同士が近況を話し合い、情報交換をする場です。はじめての方も安心してご参加いただけます。</p>
         </div>
       </div>
       <div class="activity-card">
@@ -979,6 +1069,32 @@ main { min-height: 60vh; }
     <div class="green-box">
       🌱 活動はすべて、会員によって自主的に運営されています。参加できる範囲・タイミングは、それぞれのペースで構いません。気軽に関わっていただける環境を大切にしています。
     </div>
+
+    <!-- 家族相談会 -->
+    <div class="card mt-24">
+      <h3>📞 家族電話相談のご案内</h3>
+      <p style="font-size:0.9rem; color:var(--gray-text); margin-bottom:20px;">
+        ※ やすらぎの会・家族相談は都合により、しばらくの間、休ませていただきますのでご了承ください。<br>
+        　埼家連の「心をつなぐ家族電話相談」をご利用ください。
+      </p>
+      <div class="green-box" style="text-align:left;">
+        <p style="font-weight:700; color:var(--green-dark); margin-bottom:12px;">【心をつなぐ家族電話相談】</p>
+        <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+          <tr>
+            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">電　話</th>
+            <td style="padding:6px 0;">080-6685-2128（携帯）</td>
+          </tr>
+          <tr>
+            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">相談日</th>
+            <td style="padding:6px 0;">毎週 月〜木<br><span style="font-size:0.85rem; color:var(--gray-text);">※ 金・土・日・祝日はお休みです</span></td>
+          </tr>
+          <tr>
+            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">時　間</th>
+            <td style="padding:6px 0;">10:00〜12:00　／　13:00〜15:00</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div><!-- /page-activities -->
 
@@ -990,37 +1106,177 @@ main { min-height: 60vh; }
   <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>年間予定</div></div>
   <div class="section-wrap">
     <div class="section-title">年間予定</div>
-    <p class="section-subtitle">2025年度（2025年4月〜2026年3月）の予定です。変更になる場合はお知らせします。</p>
+    <p class="section-subtitle">2026年度（2026年4月〜2027年3月）の予定です。変更になる場合はお知らせします。</p>
 
-    <div class="schedule-table-wrap card" style="padding:0; overflow:hidden;">
+    <!-- 凡例 -->
+    <div class="schedule-legend">
+      <span class="legend-item"><span class="ev-badge ev-teireikai">定例会</span> やすらぎの会 定例会</span>
+      <span class="legend-item"><span class="ev-badge ev-sokai">総会</span> 総会・大会</span>
+      <span class="legend-item"><span class="ev-badge ev-event">地域交流</span> 地域イベント</span>
+      <span class="legend-item"><span class="ev-badge ev-saikaren">埼家連</span> 埼家連行事</span>
+      <span class="legend-item"><span class="ev-badge ev-minnannetto">みんなねっと</span> みんなねっと行事</span>
+    </div>
+
+    <div class="schedule-table-wrap">
       <table class="schedule-table">
         <thead>
           <tr>
-            <th>月</th>
-            <th>主な活動</th>
-            <th>備　考</th>
+            <th>開催日</th>
+            <th>曜日</th>
+            <th>内容</th>
+            <th>会場</th>
+            <th>時間</th>
+            <th>主催</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="month">4月</td><td>定例会・総会</td><td>年度はじめの総会を開催。役員改選など</td></tr>
-          <tr><td class="month">5月</td><td>定例会</td><td></td></tr>
-          <tr><td class="month">6月</td><td>定例会・学習会</td><td>テーマ：精神障害の基礎知識</td></tr>
-          <tr><td class="month">7月</td><td>定例会</td><td></td></tr>
-          <tr><td class="month">8月</td><td>定例会（納涼交流会）</td><td>会員交流会（軽食あり）</td></tr>
-          <tr><td class="month">9月</td><td>定例会</td><td></td></tr>
-          <tr><td class="month">10月</td><td>定例会・講演会</td><td>外部講師を招いた講演会を予定</td></tr>
-          <tr><td class="month">11月</td><td>定例会</td><td>精神保健福祉の日（11月）関連情報共有</td></tr>
-          <tr><td class="month">12月</td><td>定例会・忘年会</td><td>年末の交流会</td></tr>
-          <tr><td class="month">1月</td><td>定例会（新年会）</td><td></td></tr>
-          <tr><td class="month">2月</td><td>定例会</td><td></td></tr>
-          <tr><td class="month">3月</td><td>定例会・年度まとめ</td><td>活動報告・次年度の方針確認</td></tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">4月12日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>4月定例会</td>
+            <td class="s-venue" data-label="会場">中央公民館 青年室</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-sokai">
+            <td class="s-date" data-label="日付">5月9日</td>
+            <td class="s-day" data-label="曜日">土</td>
+            <td data-label="内容"><span class="ev-badge ev-sokai">総会</span>定期総会（やすらぎの会）</td>
+            <td class="s-venue" data-label="会場">新座市民会館</td>
+            <td class="s-time" data-label="時間">10:30〜11:30</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-saikaren">
+            <td class="s-date" data-label="日付">5月22日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-saikaren">埼家連</span>埼家連定期総会</td>
+            <td class="s-venue" data-label="会場">埼玉県障害者交流センター</td>
+            <td class="s-time" data-label="時間">9:30〜15:15</td>
+            <td class="s-org" data-label="主催">埼家連</td>
+          </tr>
+          <tr class="row-event">
+            <td class="s-date" data-label="日付">5月31日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-event">地域交流</span>新座市福祉フェスティバル</td>
+            <td class="s-venue" data-label="会場">新座市役所</td>
+            <td class="s-time" data-label="時間">9:00〜15:00</td>
+            <td class="s-org" data-label="主催">新座市</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">6月14日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>6月定例会</td>
+            <td class="s-venue" data-label="会場">中央公民館 視聴覚室</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">7月17日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>7月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">8月9日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>8月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">9月10日</td>
+            <td class="s-day" data-label="曜日">木</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>9月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">10月9日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>10月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-minnannetto">
+            <td class="s-date" data-label="日付">11月5日</td>
+            <td class="s-day" data-label="曜日">木</td>
+            <td data-label="内容"><span class="ev-badge ev-minnannetto">みんなねっと</span>関東ブロック大会</td>
+            <td class="s-venue" data-label="会場">栃木県開催</td>
+            <td class="s-time" data-label="時間">終日</td>
+            <td class="s-org" data-label="主催">みんなねっと</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">11月6日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>11月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-event">
+            <td class="s-date" data-label="日付">11月8日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-event">地域交流</span>新座市ボランティアまつり</td>
+            <td class="s-venue" data-label="会場">新座市役所</td>
+            <td class="s-time" data-label="時間">9:00〜15:00</td>
+            <td class="s-org" data-label="主催">新座市</td>
+          </tr>
+          <tr class="row-minnannetto">
+            <td class="s-date" data-label="日付">11月20日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-minnannetto">みんなねっと</span>全国大会</td>
+            <td class="s-venue" data-label="会場">長崎県開催</td>
+            <td class="s-time" data-label="時間">終日</td>
+            <td class="s-org" data-label="主催">みんなねっと</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">12月13日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>12月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">1月15日</td>
+            <td class="s-day" data-label="曜日">金</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>1月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">2月14日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>2月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
+          <tr class="row-teireikai">
+            <td class="s-date" data-label="日付">3月14日</td>
+            <td class="s-day" data-label="曜日">日</td>
+            <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>3月定例会</td>
+            <td class="s-venue" data-label="会場"><span class="venue-kari">（仮）</span>中央公民館</td>
+            <td class="s-time" data-label="時間">13:00〜15:00</td>
+            <td class="s-org" data-label="主催">やすらぎの会</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
+    <p style="font-size:0.85rem; color:var(--gray-text); margin-top:14px; padding-left:4px; line-height:1.8;">
+      ※ 定例会は原則として、偶数月の第2日曜日・奇数月の第2金曜日の午後1時から3時に開催しています。<br>
+      ※ <span class="venue-kari">（仮）</span>の会場は確定後に更新します。
+    </p>
+
     <div class="highlight-box mt-24">
-      📅 定例会は毎月第2土曜日（午後1時30分〜3時30分）に開催しています。<br>
-      開催場所は毎回お知らせでご確認ください。急な変更がある場合は事前にご連絡いたします。
+      📍 開催場所や日程は変更になる場合があります。最新情報は「お知らせ」ページまたはお問い合わせにてご確認ください。
     </div>
   </div>
 </div><!-- /page-schedule -->
@@ -1037,46 +1293,7 @@ main { min-height: 60vh; }
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
 
-    <div class="news-page-item">
-      <div class="meta">
-        <span class="news-date">2025年6月1日</span>
-        <span class="news-badge badge-event">定例会</span>
-      </div>
-      <h3>6月の定例会のご案内</h3>
-      <p>6月の定例会を下記のとおり開催します。はじめての方もお気軽にご参加ください。<br>
-      【日時】2025年6月14日（土）午後1時30分〜3時30分<br>
-      【場所】新座市内（詳細はご入会後にお伝えします）<br>
-      【内容】近況報告・情報交換・フリートーク</p>
-    </div>
-
-    <div class="news-page-item">
-      <div class="meta">
-        <span class="news-date">2025年5月20日</span>
-        <span class="news-badge badge-info">お知らせ</span>
-      </div>
-      <h3>会報「やすらぎの会だより」第42号を発行しました</h3>
-      <p>会報第42号を発行しました。会報ページよりPDFをご覧いただけます。<br>
-      今号の主な内容：4月定例会の様子、精神障害に関する制度情報、会員からのメッセージ</p>
-    </div>
-
-    <div class="news-page-item">
-      <div class="meta">
-        <span class="news-date">2025年5月1日</span>
-        <span class="news-badge badge-news">情報</span>
-      </div>
-      <h3>新座市障害福祉課より「障害者手帳に関する相談窓口」のご案内</h3>
-      <p>新座市障害福祉課より、障害者手帳（精神障害者保健福祉手帳）に関する相談窓口の案内が届きましたのでお知らせします。<br>
-      詳しくは新座市公式ウェブサイトをご確認いただくか、直接障害福祉課へお問い合わせください。</p>
-    </div>
-
-    <div class="news-page-item">
-      <div class="meta">
-        <span class="news-date">2025年4月15日</span>
-        <span class="news-badge badge-event">イベント</span>
-      </div>
-      <h3>家族のための講演会「精神障害について知る・学ぶ」開催報告</h3>
-      <p>4月の学習会として、地域の精神科医師をお招きした講演会を開催しました。参加者からは「分かりやすく、安心できた」「もっと早く知りたかった」などのご感想をいただきました。</p>
-    </div>
+    <p style="color:var(--gray-text); font-size:0.97rem; padding:24px 0;">現在、お知らせはありません。</p>
 
     <!-- お知らせ追加ここまで -->
 
@@ -1113,6 +1330,10 @@ main { min-height: 60vh; }
         <div class="flow-body">
           <h3>まずはご連絡ください</h3>
           <p>メールまたはお電話にて、お気軽にご連絡ください。「見学したい」「話を聞くだけでもいい？」という問い合わせも大歓迎です。</p>
+          <div style="margin-top:10px; padding:12px 16px; background:var(--green-pale); border-radius:var(--radius-sm); font-size:0.92rem; line-height:2;">
+            📞 <strong>080-6067-0600</strong>（やすらぎの会　上原）<br>
+            📧 <strong>yasuragi.niiza@gmail.com</strong>
+          </div>
         </div>
       </div>
       <div class="flow-step">
@@ -1132,8 +1353,9 @@ main { min-height: 60vh; }
       <div class="flow-step">
         <div class="flow-num">4</div>
         <div class="flow-body">
-          <h3>会費について</h3>
-          <p>会費の詳細はお問い合わせください。担当者よりご案内します。</p>
+          <h3>年会費のお支払い</h3>
+          <p>年会費：<strong>3,000円</strong><br>
+          <span style="font-size:0.85rem; color:var(--gray-text);">※ 期の途中での入会の場合は月割りとなります。</span></p>
         </div>
       </div>
     </div>

@@ -25,26 +25,39 @@ $mimeTypes = @{
 }
 
 while ($listener.IsListening) {
-    $ctx  = $listener.GetContext()
-    $req  = $ctx.Request
-    $resp = $ctx.Response
+    try {
+        $ctx  = $listener.GetContext()
+        $req  = $ctx.Request
+        $resp = $ctx.Response
 
-    $urlPath = $req.Url.LocalPath
-    if ($urlPath -eq "/") { $urlPath = "/index.html" }
+        $urlPath = $req.Url.LocalPath
+        if ($urlPath -eq "/") { $urlPath = "/index.html" }
 
-    $filePath = Join-Path $root $urlPath.TrimStart("/").Replace("/", [System.IO.Path]::DirectorySeparatorChar)
+        # Strip query string from path (cache-busting params)
+        $urlPath = $urlPath -replace '\?.*', ''
 
-    if (Test-Path $filePath -PathType Leaf) {
-        $ext  = [System.IO.Path]::GetExtension($filePath)
-        $mime = if ($mimeTypes.ContainsKey($ext)) { $mimeTypes[$ext] } else { "application/octet-stream" }
-        $bytes = [System.IO.File]::ReadAllBytes($filePath)
-        $resp.ContentType     = $mime
-        $resp.ContentLength64 = [long]$bytes.LongLength
-        $resp.OutputStream.Write($bytes, 0, $bytes.Length)
-    } else {
-        $resp.StatusCode = 404
-        $msg  = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found: $urlPath")
-        $resp.OutputStream.Write($msg, 0, $msg.Length)
+        $filePath = Join-Path $root $urlPath.TrimStart("/").Replace("/", [System.IO.Path]::DirectorySeparatorChar)
+
+        try {
+            if (Test-Path $filePath -PathType Leaf) {
+                $ext   = [System.IO.Path]::GetExtension($filePath)
+                $mime  = if ($mimeTypes.ContainsKey($ext)) { $mimeTypes[$ext] } else { "application/octet-stream" }
+                $bytes = [System.IO.File]::ReadAllBytes($filePath)
+                $resp.ContentType     = $mime
+                $resp.ContentLength64 = $bytes.LongLength
+                $resp.OutputStream.Write($bytes, 0, $bytes.Length)
+            } else {
+                $resp.StatusCode = 404
+                $msg = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found: $urlPath")
+                $resp.ContentLength64 = $msg.LongLength
+                $resp.OutputStream.Write($msg, 0, $msg.Length)
+            }
+        } catch {
+            # Ignore write errors (client disconnected, etc.)
+        } finally {
+            try { $resp.OutputStream.Close() } catch {}
+        }
+    } catch {
+        # Ignore listener errors and keep serving
     }
-    $resp.OutputStream.Close()
 }
