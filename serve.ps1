@@ -22,6 +22,7 @@ $mimeTypes = @{
     ".woff" = "font/woff"
     ".woff2"= "font/woff2"
     ".ttf"  = "font/ttf"
+    ".pdf"  = "application/pdf"
 }
 
 while ($listener.IsListening) {
