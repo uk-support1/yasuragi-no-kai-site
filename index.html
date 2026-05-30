@@ -70,25 +70,31 @@ ul { list-style: none; }
 .site-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
+  flex-shrink: 0; /* ロゴが圧縮されないよう固定 */
 }
 .logo-icon-img {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
   flex-shrink: 0;
 }
-.logo-text { line-height: 1.3; }
-.logo-text .org { font-size: 0.72rem; color: var(--gray-text); font-family: var(--font-sans); }
+.logo-text {
+  line-height: 1.3;
+  white-space: nowrap; /* テキストの折り返しを禁止 */
+}
+.logo-text .org { font-size: 0.68rem; color: var(--gray-text); font-family: var(--font-sans); }
 .logo-text .name {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--green-dark);
   font-family: var(--font-serif);
 }
 @media (max-width: 480px) {
-  .logo-icon-img { width: 38px; height: 38px; }
+  .logo-icon-img { width: 36px; height: 36px; }
+  .logo-text .org { font-size: 0.62rem; }
+  .logo-text .name { font-size: 1rem; }
 }
 
 /* ハンバーガーメニュー */
@@ -116,13 +122,13 @@ ul { list-style: none; }
 /* グローバルナビ */
 #global-nav ul {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   align-items: center;
 }
 #global-nav a {
   display: block;
-  padding: 6px 10px;
-  font-size: 0.85rem;
+  padding: 6px 8px;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--brown-text);
   border-radius: var(--radius-sm);
