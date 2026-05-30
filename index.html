@@ -613,6 +613,79 @@ main { min-height: 60vh; }
 }
 
 /* =============================
+   活動報告ページ
+============================= */
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.report-article {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.report-article-header {
+  background: linear-gradient(135deg, var(--green-light) 0%, #e8f5ec 100%);
+  padding: 20px 24px 16px;
+  border-bottom: 2px solid var(--green-main);
+}
+.report-article-header .report-date {
+  font-size: 0.85rem;
+  color: var(--green-dark);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.report-article-header h2 {
+  font-size: 1.2rem;
+  color: var(--brown-text);
+  margin: 0;
+}
+.report-article-body {
+  padding: 24px;
+}
+.report-article-body p {
+  color: var(--brown-text);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+/* 写真グリッド */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.photo-placeholder {
+  background: var(--beige-light);
+  border: 2px dashed var(--green-main);
+  border-radius: 8px;
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-text);
+  font-size: 0.85rem;
+  gap: 6px;
+}
+.photo-placeholder .ph-icon { font-size: 2rem; opacity: 0.5; }
+/* 実際の写真 */
+.photo-grid img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  display: block;
+}
+@media (max-width: 480px) {
+  .photo-grid { grid-template-columns: 1fr; }
+  .report-article-header { padding: 16px; }
+  .report-article-body { padding: 16px; }
+}
+
+/* =============================
    会報ページ
 ============================= */
 .pdf-grid {
@@ -850,6 +923,7 @@ main { min-height: 60vh; }
         <li><a href="#" onclick="showPage('about'); return false;" data-page="about">会の紹介</a></li>
         <li><a href="#" onclick="showPage('activities'); return false;" data-page="activities">活動内容</a></li>
         <li><a href="#" onclick="showPage('schedule'); return false;" data-page="schedule">年間予定</a></li>
+        <li><a href="#" onclick="showPage('report'); return false;" data-page="report">活動報告</a></li>
         <li><a href="#" onclick="showPage('news'); return false;" data-page="news">お知らせ</a></li>
         <li><a href="#" onclick="showPage('join'); return false;" data-page="join">入会案内</a></li>
         <li><a href="#" onclick="showPage('kaiho'); return false;" data-page="kaiho">会報</a></li>
@@ -1287,7 +1361,47 @@ main { min-height: 60vh; }
 
 
 <!-- ===========================
-     5. お知らせページ
+     5. 活動報告ページ
+=========================== -->
+<div id="page-report" class="page-section">
+  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>活動報告</div></div>
+  <div class="section-wrap">
+    <div class="section-title">活動報告</div>
+    <p class="section-subtitle">やすらぎの会では、定例会や研修会、地域イベントへの参加など様々な活動を行っています。<br>こちらのページでは活動の様子をご紹介します。</p>
+
+    <!-- ★ 活動報告を追加するときはこの <div class="report-article"> ブロックをコピーして上に貼り付けます ★ -->
+    <div class="report-list">
+
+      <!-- ▼ 記事1：2026年 新座市福祉フェスティバル ▼ -->
+      <article class="report-article">
+        <div class="report-article-header">
+          <div class="report-date">2026年5月31日</div>
+          <h2>2026年 新座市福祉フェスティバルに出店しました</h2>
+        </div>
+        <div class="report-article-body">
+          <p>2026年5月31日（日）に開催された新座市福祉フェスティバルにおいて、やすらぎの会は沖縄そばのお店を出店しました。</p>
+          <p>当日の様子や写真を掲載予定です。</p>
+
+          <!-- ★ 写真を追加するときは <div class="photo-placeholder"> を <img src="images/report/ファイル名.jpg" alt="説明"> に差し替えてください ★ -->
+          <div class="photo-grid">
+            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真1掲載予定</div>
+            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真2掲載予定</div>
+            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真3掲載予定</div>
+            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真4掲載予定</div>
+          </div>
+        </div>
+      </article>
+      <!-- ▲ 記事1ここまで ▲ -->
+
+    </div>
+    <!-- 活動報告ここまで -->
+
+  </div>
+</div><!-- /page-report -->
+
+
+<!-- ===========================
+     6. お知らせページ
 =========================== -->
 <div id="page-news" class="page-section">
   <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>お知らせ</div></div>
@@ -1621,6 +1735,7 @@ main { min-height: 60vh; }
           <li><a href="#" onclick="showPage('about');return false;">会の紹介</a></li>
           <li><a href="#" onclick="showPage('activities');return false;">活動内容</a></li>
           <li><a href="#" onclick="showPage('schedule');return false;">年間予定</a></li>
+          <li><a href="#" onclick="showPage('report');return false;">活動報告</a></li>
           <li><a href="#" onclick="showPage('news');return false;">お知らせ</a></li>
           <li><a href="#" onclick="showPage('join');return false;">入会案内</a></li>
           <li><a href="#" onclick="showPage('kaiho');return false;">会報</a></li>
