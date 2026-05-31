@@ -665,39 +665,165 @@ main { min-height: 60vh; }
   line-height: 1.8;
   margin-bottom: 20px;
 }
-/* 写真グリッド */
+/* 写真ギャラリー */
+.gallery-label {
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 0.95rem;
+  margin: 24px 0 10px;
+}
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 4px;
 }
-.photo-placeholder {
-  background: var(--beige-light);
-  border: 2px dashed var(--green-main);
+.photo-grid a {
+  display: block;
   border-radius: 8px;
+  overflow: hidden;
   aspect-ratio: 4/3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-text);
-  font-size: 0.85rem;
-  gap: 6px;
+  cursor: zoom-in;
+  background: var(--beige-light);
 }
-.photo-placeholder .ph-icon { font-size: 2rem; opacity: 0.5; }
-/* 実際の写真 */
 .photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s, opacity 0.2s;
+}
+.photo-grid a:hover img { transform: scale(1.05); opacity: 0.9; }
+
+/* 記事内写真（時系列レイアウト） */
+.article-photo {
+  margin: 20px 0;
+}
+.article-photo a,
+.article-photo-pair a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.article-photo img {
   width: 100%;
   border-radius: 8px;
   object-fit: cover;
-  aspect-ratio: 4/3;
   display: block;
+  transition: opacity 0.2s;
+}
+.article-photo a:hover img,
+.article-photo-pair a:hover img { opacity: 0.88; }
+.article-photo figcaption,
+.article-photo-pair figcaption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--gray-text);
+  margin-top: 5px;
+}
+.article-photo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+.article-photo-pair figure { margin: 0; }
+.article-photo-pair img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: opacity 0.2s;
+}
+.article-photo-center {
+  max-width: 400px;
+  margin: 20px auto;
 }
 @media (max-width: 480px) {
-  .photo-grid { grid-template-columns: 1fr; }
+  .article-photo-pair { grid-template-columns: 1fr; }
+  .article-photo-center { max-width: 100%; }
+}
+
+/* ライトボックス */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 86vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  object-fit: contain;
+  cursor: default;
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px; right: 22px;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  opacity: 0.85;
+}
+.lightbox-close:hover { opacity: 1; }
+.lightbox-caption {
+  position: fixed;
+  bottom: 18px;
+  left: 0; right: 0;
+  text-align: center;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.88rem;
+  pointer-events: none;
+}
+
+/* 新着活動報告カード（トップページ） */
+.report-preview-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+.report-preview-card:hover { box-shadow: 0 4px 20px rgba(90,171,122,0.2); }
+.report-preview-thumb {
+  width: 110px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.report-preview-body .rp-date { font-size: 0.78rem; color: var(--green-dark); font-weight: 600; margin-bottom: 4px; }
+.report-preview-body .rp-title { font-weight: 700; color: var(--brown-text); margin-bottom: 6px; font-size: 0.97rem; }
+.report-preview-body .rp-desc { font-size: 0.88rem; color: var(--gray-text); line-height: 1.6; margin: 0 0 6px; }
+.report-preview-body .rp-more { color: var(--green-dark); font-size: 0.85rem; font-weight: 600; }
+
+@media (max-width: 640px) {
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
   .report-article-header { padding: 16px; }
   .report-article-body { padding: 16px; }
+  .report-preview-thumb { width: 80px; height: 60px; }
 }
 
 /* =============================
@@ -1027,6 +1153,20 @@ main { min-height: 60vh; }
           現在、お知らせはありません。
         </div>
       </div>
+    </div>
+
+    <!-- 新着活動報告 -->
+    <div class="mb-36">
+      <div class="section-title">📸 新着活動報告</div>
+      <a class="report-preview-card" href="#" onclick="showPage('report');return false;">
+        <img class="report-preview-thumb" src="images/report/fest2026_08_booth2.jpg" alt="福祉フェスティバル">
+        <div class="report-preview-body">
+          <div class="rp-date">2026年5月31日</div>
+          <div class="rp-title">第33回新座市福祉フェスティバルに出店しました</div>
+          <p class="rp-desc">沖縄そばの販売を行い、約2時間で完売！たくさんのお客様にお立ち寄りいただきました。</p>
+          <span class="rp-more">続きを読む →</span>
+        </div>
+      </a>
     </div>
 
     <!-- 活動について簡単な紹介 -->
@@ -1388,23 +1528,92 @@ main { min-height: 60vh; }
     <!-- ★ 活動報告を追加するときはこの <div class="report-article"> ブロックをコピーして上に貼り付けます ★ -->
     <div class="report-list">
 
-      <!-- ▼ 記事1：2026年 新座市福祉フェスティバル ▼ -->
+      <!-- ▼ 記事1：第33回新座市福祉フェスティバル ▼ -->
       <article class="report-article">
         <div class="report-article-header">
-          <div class="report-date">2026年5月31日</div>
-          <h2>2026年 新座市福祉フェスティバルに出店しました</h2>
+          <div class="report-date">2026年5月31日（令和8年）</div>
+          <h2>第33回新座市福祉フェスティバルに出店しました</h2>
         </div>
         <div class="report-article-body">
-          <p>2026年5月31日（日）に開催された新座市福祉フェスティバルにおいて、やすらぎの会は沖縄そばのお店を出店しました。</p>
-          <p>当日の様子や写真を掲載予定です。</p>
 
-          <!-- ★ 写真を追加するときは <div class="photo-placeholder"> を <img src="images/report/ファイル名.jpg" alt="説明"> に差し替えてください ★ -->
-          <div class="photo-grid">
-            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真1掲載予定</div>
-            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真2掲載予定</div>
-            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真3掲載予定</div>
-            <div class="photo-placeholder"><span class="ph-icon">🖼</span>写真4掲載予定</div>
+          <!-- ① チラシ＋看板：開催日前後 -->
+          <div class="article-photo-pair">
+            <figure>
+              <a href="images/report/fest2026_01_flyer.jpg" onclick="openLightbox(this,event);return false;" data-caption="第33回新座市福祉フェスティバル チラシ">
+                <img src="images/report/fest2026_01_flyer.jpg" alt="福祉フェスティバルチラシ" loading="lazy">
+              </a>
+              <figcaption>▲ 第33回 福祉フェスティバル チラシ</figcaption>
+            </figure>
+            <figure>
+              <a href="images/report/fest2026_03_sign.jpg" onclick="openLightbox(this,event);return false;" data-caption="第33回新座市福祉フェスティバル 会場前の看板">
+                <img src="images/report/fest2026_03_sign.jpg" alt="会場前の看板" loading="lazy">
+              </a>
+              <figcaption>▲ 会場前の看板（令和8年5月31日）</figcaption>
+            </figure>
           </div>
+
+          <p>第33回新座市福祉フェスティバル（令和8年5月31日）にて、やすらぎの会は例年行っている海藻類・小物の販売に加え、今年は新たに沖縄そばの販売を行いました。</p>
+
+          <!-- ② ブース全景：開店 -->
+          <figure class="article-photo">
+            <a href="images/report/fest2026_08_booth2.jpg" onclick="openLightbox(this,event);return false;" data-caption="やすらぎの会ブースの全景">
+              <img src="images/report/fest2026_08_booth2.jpg" alt="ブースの全景" loading="lazy" style="aspect-ratio:4/3; object-fit:cover;">
+            </a>
+            <figcaption>▲ やすらぎの会ブースの全景</figcaption>
+          </figure>
+
+          <p>開始直後から多くのお客様にお立ち寄りいただきました。</p>
+
+          <!-- ③ お客様＋調理スタッフ：営業中 -->
+          <div class="article-photo-pair">
+            <figure>
+              <a href="images/report/fest2026_06_booth1.jpg" onclick="openLightbox(this,event);return false;" data-caption="お客様でにぎわうブースの様子">
+                <img src="images/report/fest2026_06_booth1.jpg" alt="お客様でにぎわうブース" loading="lazy">
+              </a>
+              <figcaption>▲ お客様でにぎわうブース</figcaption>
+            </figure>
+            <figure>
+              <a href="images/report/fest2026_07_cooking.jpg" onclick="openLightbox(this,event);return false;" data-caption="調理スタッフの奮闘">
+                <img src="images/report/fest2026_07_cooking.jpg" alt="調理スタッフの様子" loading="lazy">
+              </a>
+              <figcaption>▲ 調理スタッフが奮闘中</figcaption>
+            </figure>
+          </div>
+
+          <!-- ④ 沖縄そば＋麺の準備：料理の様子 -->
+          <div class="article-photo-pair">
+            <figure>
+              <a href="images/report/fest2026_02_soba.jpg" onclick="openLightbox(this,event);return false;" data-caption="完成した沖縄そば（やすらぎの会特製）">
+                <img src="images/report/fest2026_02_soba.jpg" alt="完成した沖縄そば" loading="lazy">
+              </a>
+              <figcaption>▲ 完成した沖縄そば（やすらぎの会特製）</figcaption>
+            </figure>
+            <figure>
+              <a href="images/report/fest2026_05_noodles.jpg" onclick="openLightbox(this,event);return false;" data-caption="提供前の麺を準備中">
+                <img src="images/report/fest2026_05_noodles.jpg" alt="準備中の麺" loading="lazy">
+              </a>
+              <figcaption>▲ 提供前の麺を準備中</figcaption>
+            </figure>
+          </div>
+
+          <div class="green-box" style="margin:4px 0 20px;">
+            <p style="font-weight:700; margin-bottom:6px;">💬 お客様からの声：</p>
+            <p style="margin:0; line-height:2.2;">「沖縄そばはめったに食べられない」<br>「汁がとてもおいしい」</p>
+          </div>
+
+          <p>沖縄そばは約2時間で完売となりました。完売後も、「食べられなくて残念」「来年もぜひ出してほしい」というお声をいただき、予想以上の反響にメンバー一同大変励まされました。</p>
+
+          <!-- ⑤ 完売の張り紙：終了 -->
+          <figure class="article-photo article-photo-center">
+            <a href="images/report/fest2026_04_soldout.jpg" onclick="openLightbox(this,event);return false;" data-caption="おかげさまで完売です！">
+              <img src="images/report/fest2026_04_soldout.jpg" alt="完売の張り紙" loading="lazy" style="aspect-ratio:4/3; object-fit:cover;">
+            </a>
+            <figcaption>▲ おかげさまで完売です！</figcaption>
+          </figure>
+
+          <p>ご来場いただいた皆さま、お手伝いいただいた皆さま、本当にありがとうございました。</p>
+          <p>やすらぎの会では、今後も地域の皆さまとの交流を大切にしながら活動を続けてまいります。また、秋のボランティア祭りへの出店も検討しています。</p>
+
         </div>
       </article>
       <!-- ▲ 記事1ここまで ▲ -->
@@ -1734,6 +1943,13 @@ main { min-height: 60vh; }
   </div>
 </div><!-- /page-qa -->
 
+<!-- ライトボックス -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="閉じる">&times;</button>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+  <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
 </main>
 
 <!-- ========== フッター ========== -->
@@ -1821,6 +2037,23 @@ function toggleQA(questionEl) {
 
 // 初期表示
 showPage('home');
+
+// ライトボックス
+function openLightbox(el, e) {
+  if (e) e.stopPropagation();
+  document.getElementById('lightbox-img').src = el.href;
+  document.getElementById('lightbox-img').alt = el.querySelector('img').alt;
+  document.getElementById('lightbox-caption').textContent = el.dataset.caption || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
