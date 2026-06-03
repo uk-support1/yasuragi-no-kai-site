@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ホーム（メインページ） -->
   <url>
     <loc>https://uk-support1.github.io/yasuragi-no-kai-site/</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- 会の紹介 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#about</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 活動内容 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#activities</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 年間予定 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#schedule</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 活動報告 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#report</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- お知らせ -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#news</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 入会案内 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#join</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 会報 -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#kaiho</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- アクセス -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#access</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Q&A -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#qa</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- お問い合わせ -->
+  <url>
+    <loc>https://uk-support1.github.io/yasuragi-no-kai-site/#contact</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
