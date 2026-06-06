@@ -12,7 +12,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-FRNFWJ6BJ', { send_page_view: false });
+  gtag('config', 'G-FRNFWJ6BJ');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1982,6 +1982,8 @@ var GA_PAGE_TITLES = {
   qa:         'Q&A',
   contact:    'お問い合わせ'
 };
+// 初回ホーム表示フラグ（gtag('config')の自動page_viewと重複させない）
+var GA_INITIALIZED = false;
 
 // ページ切り替え
 function showPage(pageId) {
@@ -2009,13 +2011,16 @@ function showPage(pageId) {
   toggle.classList.remove('open');
 
   // Google Analytics：仮想ページビューを送信
-  if (typeof gtag === 'function') {
+  // 初回ホーム表示は gtag('config') が自動で page_view を送信するためスキップし、
+  // 2回目以降（ページ遷移）のみ手動送信して重複計測を防ぐ
+  if (typeof gtag === 'function' && GA_INITIALIZED) {
     gtag('event', 'page_view', {
       page_title:    (GA_PAGE_TITLES[pageId] || pageId) + ' | やすらぎの会',
       page_location: 'https://uk-support1.github.io/yasuragi-no-kai-site/#' + pageId,
       page_path:     '/#' + pageId
     });
   }
+  GA_INITIALIZED = true;
 }
 
 // ハンバーガーメニュー
