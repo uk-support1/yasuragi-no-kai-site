@@ -554,15 +554,60 @@ main { min-height: 60vh; }
 .news-page-item {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 24px 28px;
+  padding: 0;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
   border-left: 4px solid var(--green-main);
+  overflow: hidden;
 }
-.news-page-item .meta { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.news-page-item .news-header {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  transition: background 0.15s;
+}
+.news-page-item .news-header:hover { background: var(--green-pale); }
+.news-page-item .meta { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
 .news-page-item .date { font-size: 0.85rem; color: var(--gray-text); }
-.news-page-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--brown-text); }
-.news-page-item p { font-size: 0.92rem; color: var(--gray-text); line-height: 1.8; }
+.news-page-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--brown-text); margin: 0; }
+.news-toggle-icon { font-size: 1rem; color: var(--green-dark); flex-shrink: 0; margin-top: 4px; transition: transform 0.2s; }
+.news-page-item.open .news-toggle-icon { transform: rotate(180deg); }
+/* 詳細エリア */
+.news-detail {
+  display: none;
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--green-light);
+}
+.news-page-item.open .news-detail { display: block; }
+.news-detail p { font-size: 0.93rem; color: var(--brown-text); line-height: 1.9; margin-bottom: 12px; }
+.news-section {
+  margin: 16px 0 8px;
+}
+.news-section-head {
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--green-light);
+}
+.news-section p { margin: 4px 0; }
+.news-detail-box {
+  background: var(--green-pale);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--brown-text);
+  line-height: 1.8;
+}
+@media (max-width: 480px) {
+  .news-page-item .news-header { padding: 16px; }
+  .news-detail { padding: 0 16px 16px; }
+}
 
 /* =============================
    入会案内ページ
@@ -1140,6 +1185,14 @@ main { min-height: 60vh; }
       <div class="section-title">最新のお知らせ</div>
       <p class="section-subtitle">新着情報・定例会のご案内</p>
       <div class="news-list mb-24">
+        <!-- ★ 新しいお知らせはここに追加 ★ -->
+        <div class="news-item" onclick="showPage('news')" style="cursor:pointer;">
+          <div class="news-date">2026.06.06</div>
+          <div>
+            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">例会案内</span>
+            <span class="news-title">📅 6月例会のお知らせ（6/14・中央公民館）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span></span>
+          </div>
+        </div>
         <div class="news-item" onclick="showPage('report')" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <img src="images/report/fest2026_02_soba.jpg" alt="沖縄そば" style="width:100px; height:100px; object-fit:cover; object-position:center center; border-radius:6px; flex-shrink:0;">
           <div>
@@ -1609,7 +1662,50 @@ main { min-height: 60vh; }
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
 
-    <p style="color:var(--gray-text); font-size:0.97rem; padding:24px 0;">現在、お知らせはありません。</p>
+    <!-- 2026年6月6日：6月例会のお知らせ -->
+    <div class="news-page-item open" id="news-2026-06">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年6月6日</span>
+            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">例会案内</span>
+          </div>
+          <h3>📅 6月例会のお知らせ</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>次回のやすらぎの会例会を開催します。<br>初めての方もお気軽にご参加ください。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 日時</div>
+          <p>2026年6月14日（日）　13:00〜15:00</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 会場</div>
+          <p>中央公民館 2階 視聴覚室</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 内容</div>
+          <p>① 福祉フェスティバル出店結果報告</p>
+          <p>② 勉強会<br>
+          「みんなねっと」5月号の読み合わせ<br>
+          <span style="font-size:0.9rem; color:var(--gray-text);">〜特集 家族会全国組織結成60周年を迎えて〜</span></p>
+          <p>③ 近況報告<br>
+          <span style="font-size:0.9rem; color:var(--gray-text);">お互いの悩みや苦労を分かち合う時間です。</span></p>
+        </div>
+
+        <div class="news-detail-box">
+          🌿 <strong>参加について</strong><br>
+          ご家族の立場であれば、どなたでもご参加いただけます。<br>
+          見学のみの参加も歓迎しています。
+        </div>
+      </div>
+    </div>
 
     <!-- お知らせ追加ここまで -->
 
@@ -2034,6 +2130,12 @@ function toggleMenu() {
 // Q&Aアコーディオン
 function toggleQA(questionEl) {
   var item = questionEl.closest('.qa-item');
+  item.classList.toggle('open');
+}
+
+// お知らせアコーディオン
+function toggleNews(headerEl) {
+  var item = headerEl.closest('.news-page-item');
   item.classList.toggle('open');
 }
 
