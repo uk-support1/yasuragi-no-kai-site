@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 背景 -->
+  <rect width="200" height="200" fill="#E8F5E9" rx="12"/>
+
+  <!-- テーブル（楕円） -->
+  <ellipse cx="100" cy="138" rx="68" ry="22" fill="#C8E6C9"/>
+  <ellipse cx="100" cy="130" rx="68" ry="22" fill="#A5D6A7"/>
+
+  <!-- 左の人（頭） -->
+  <circle cx="36" cy="88" r="18" fill="#66BB6A"/>
+  <!-- 左の人（体） -->
+  <path d="M16 122 Q16 108 36 108 Q56 108 56 122 Z" fill="#66BB6A"/>
+
+  <!-- 中央の人（頭・少し大きく前に） -->
+  <circle cx="100" cy="80" r="20" fill="#2E7D32"/>
+  <!-- 中央の人（体） -->
+  <path d="M78 116 Q78 100 100 100 Q122 100 122 116 Z" fill="#2E7D32"/>
+
+  <!-- 右の人（頭） -->
+  <circle cx="164" cy="88" r="18" fill="#66BB6A"/>
+  <!-- 右の人（体） -->
+  <path d="M144 122 Q144 108 164 108 Q184 108 184 122 Z" fill="#66BB6A"/>
+
+  <!-- 吹き出し（左） -->
+  <rect x="42" y="46" width="40" height="26" rx="8" fill="white" opacity="0.92"/>
+  <polygon points="50,72 56,82 64,72" fill="white" opacity="0.92"/>
+  <circle cx="55" cy="59" r="3.5" fill="#4CAF50"/>
+  <circle cx="66" cy="59" r="3.5" fill="#4CAF50"/>
+  <circle cx="77" cy="59" r="3.5" fill="#4CAF50"/>
+
+  <!-- 吹き出し（右） -->
+  <rect x="118" y="46" width="40" height="26" rx="8" fill="white" opacity="0.92"/>
+  <polygon points="136,72 142,82 150,72" fill="white" opacity="0.92"/>
+  <circle cx="131" cy="59" r="3.5" fill="#4CAF50"/>
+  <circle cx="142" cy="59" r="3.5" fill="#4CAF50"/>
+  <circle cx="153" cy="59" r="3.5" fill="#4CAF50"/>
+
+  <!-- テーブル上のノート -->
+  <rect x="82" y="120" width="36" height="24" rx="4" fill="white" opacity="0.8"/>
+  <line x1="88" y1="128" x2="112" y2="128" stroke="#A5D6A7" stroke-width="2"/>
+  <line x1="88" y1="134" x2="112" y2="134" stroke="#A5D6A7" stroke-width="2"/>
+  <line x1="88" y1="140" x2="104" y2="140" stroke="#A5D6A7" stroke-width="2"/>
+</svg>

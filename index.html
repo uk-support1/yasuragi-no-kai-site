@@ -1186,11 +1186,14 @@ main { min-height: 60vh; }
       <p class="section-subtitle">新着情報・定例会のご案内</p>
       <div class="news-list mb-24">
         <!-- ★ 新しいお知らせはここに追加 ★ -->
-        <div class="news-item" onclick="showPage('news')" style="cursor:pointer;">
-          <div class="news-date">2026.06.06</div>
+        <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <img src="images/meeting-icon.svg" alt="例会アイコン" style="width:100px; height:100px; object-fit:cover; border-radius:6px; flex-shrink:0;">
           <div>
-            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">例会案内</span>
-            <span class="news-title">📅 6月例会のお知らせ（6/14・中央公民館）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span></span>
+            <div class="news-date">2026.06.06</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">例会案内</span>
+              6月例会のお知らせ（6/14・中央公民館）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span>
+            </div>
           </div>
         </div>
         <div class="news-item" onclick="showPage('report')" style="cursor:pointer; align-items:flex-start; gap:14px;">
