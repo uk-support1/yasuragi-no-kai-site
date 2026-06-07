@@ -1,0 +1,16 @@
+{
+  "name": "新座市精神障害者家族会 やすらぎの会",
+  "short_name": "やすらぎの会",
+  "description": "新座市精神障害者家族会「やすらぎの会」は、精神障害のある方の家族が集い、情報交換や支え合いを行う家族会です。",
+  "start_url": "/yasuragi-no-kai-site/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#3a7a3a",
+  "icons": [
+    {
+      "src": "images/family-icon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
