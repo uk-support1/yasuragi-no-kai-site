@@ -718,6 +718,108 @@ main { min-height: 60vh; }
   line-height: 1.8;
 }
 
+/* 新しいお問い合わせページ用 */
+.contact-intro {
+  background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 100%);
+  border-left: 5px solid var(--green-main);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 24px 28px;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--brown-text);
+}
+.contact-intro p { margin: 0 0 8px; }
+.contact-intro p:last-child { margin-bottom: 0; }
+.method-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-dark);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.method-label-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #78909C;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.gform-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 24px 8px;
+  margin-bottom: 20px;
+}
+.gform-note {
+  font-size: 0.88rem;
+  color: var(--gray-text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.gform-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.gform-container iframe {
+  width: 100%;
+  min-height: 640px;
+  border: none;
+  display: block;
+}
+.gform-placeholder {
+  background: #F5F5F5;
+  border: 2px dashed #B0BEC5;
+  border-radius: var(--radius-sm);
+  padding: 40px 24px;
+  text-align: center;
+  color: #78909C;
+}
+.gform-placeholder .ph-icon { font-size: 3rem; margin-bottom: 12px; }
+.gform-placeholder p { margin: 0 0 6px; font-size: 0.9rem; line-height: 1.7; }
+.contact-phone-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.contact-phone-box .ph-icon-large { font-size: 2.8rem; flex-shrink: 0; }
+.contact-phone-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+.contact-phone-number a {
+  color: inherit;
+  text-decoration: none;
+}
+.contact-phone-number a:hover { text-decoration: underline; }
+.contact-phone-name { font-size: 0.9rem; color: var(--gray-text); margin-top: 4px; }
+@media (max-width: 600px) {
+  .contact-phone-box { flex-direction: column; text-align: center; gap: 12px; }
+  .contact-phone-number { font-size: 1.5rem; }
+  .gform-container iframe { min-height: 700px; }
+}
+
 /* =============================
    活動報告ページ
 ============================= */
@@ -1840,41 +1942,53 @@ main { min-height: 60vh; }
   <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>お問い合わせ</div></div>
   <div class="section-wrap">
     <div class="section-title">お問い合わせ</div>
-    <p class="section-subtitle">入会に関すること、見学のご希望など、お気軽にご連絡ください</p>
+    <p class="section-subtitle">ご家族のことでのご相談、例会への参加など、どんなことでもお気軽にご連絡ください</p>
 
-    <div class="contact-cards mb-36">
-      <div class="contact-card">
-        <div class="c-icon">✉️</div>
-        <h3>メールで問い合わせる</h3>
-        <div class="c-info">yasuragi.niiza@gmail.com</div>
-        <p>件名に「問い合わせ」とご記入ください。<br>数日以内に返信いたします。</p>
-        <div style="margin-top:14px;">
-          <a href="mailto:yasuragi.niiza@gmail.com" class="btn btn-primary" style="font-size:0.9rem; padding:10px 20px;">メールを送る</a>
+    <!-- 説明文 -->
+    <div class="contact-intro mb-28">
+      <p>やすらぎの会へのお問い合わせありがとうございます。</p>
+      <p>ご家族のことでお困りのことや、例会への参加についてなど、お気軽にご連絡ください。</p>
+      <p>内容を確認後、<strong>やすらぎの会 上原よりご連絡いたします。</strong></p>
+    </div>
+
+    <!-- ① フォームで送る（主要手段） -->
+    <div class="mb-28">
+      <span class="method-label">📝 フォームで送る（おすすめ）</span>
+      <div class="gform-box">
+        <p class="gform-note">✅ Googleアカウントへのログインは<strong>不要</strong>です。そのままご利用いただけます。</p>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+             ▼ Googleフォーム作成後、下の src="" を実際のURLに差し替えてください
+             例: src="https://docs.google.com/forms/d/e/1FAIpQLSe○○○/viewform?embedded=true"
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+        <div class="gform-container" id="gform-area">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdDMqceaj7TRadruayeBrXVaew5RJRX7z_hfbBN1KYPTqkO-g/viewform?embedded=true"
+            title="お問い合わせフォーム"
+            loading="lazy"
+          >フォームを読み込んでいます…</iframe>
         </div>
       </div>
-      <div class="contact-card">
-        <div class="c-icon">📞</div>
-        <h3>電話で問い合わせる</h3>
-        <div class="c-info">080-6067-0600</div>
-        <p>担当：やすらぎの会　上原<br>お気軽にご連絡ください。</p>
+    </div>
+
+    <!-- ② 電話で問い合わせる -->
+    <div class="mb-28">
+      <span class="method-label-sub">📞 お電話でのお問い合わせ</span>
+      <div class="contact-phone-box">
+        <div class="ph-icon-large">📞</div>
+        <div>
+          <div class="contact-phone-number">
+            <a href="tel:08060670600">080-6067-0600</a>
+          </div>
+          <div class="contact-phone-name">担当：やすらぎの会　上原</div>
+        </div>
       </div>
     </div>
 
-    <div class="card mb-24">
-      <h3>💬 お問い合わせの例</h3>
-      <ul>
-        <li>入会したいのですが、どのような会ですか？</li>
-        <li>定例会を見学したいのですが、参加できますか？</li>
-        <li>まだ確定ではないのですが、相談だけでもできますか？</li>
-        <li>精神障害のある家族のことで困っています</li>
-        <li>支援機関（医療・福祉）を紹介してもらえますか？</li>
-      </ul>
-    </div>
-
+    <!-- プライバシー -->
     <div class="privacy-note">
       🔒 <strong>個人情報の取り扱いについて</strong><br>
-      お問い合わせでいただいた個人情報（お名前・連絡先など）は、やすらぎの会の活動に必要な連絡のみに使用します。
-      第三者への提供・販売は一切行いません。ご安心ください。
+      いただいた個人情報は、お問い合わせへの対応以外には使用いたしません。第三者への提供・販売は一切行いません。
     </div>
   </div>
 </div><!-- /page-contact -->
