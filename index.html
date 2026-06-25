@@ -256,37 +256,35 @@ main { min-height: 60vh; }
 ============================= */
 /* ヒーロー */
 .hero {
-  background:
-    radial-gradient(ellipse 88% 55% at 52% -8%, rgba(255,255,255,0.92) 0%, transparent 56%),
-    radial-gradient(ellipse 44% 55% at 0%  100%, rgba(76,160,108,0.20)  0%, transparent 55%),
-    linear-gradient(148deg, #b8dfca 0%, #ceeadb 22%, #e2f5eb 48%, #f2fbf6 72%, #fafff8 100%);
-  min-height: 400px;
+  position: relative;
+  min-height: 420px;
   display: flex;
   align-items: center;
-  position: relative;
   overflow: hidden;
   padding: 0;
   text-align: left;
 }
-/* 光線エフェクト */
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  z-index: 0;
+}
+/* 左側にテキストが読みやすいよう半透明グラデーション */
 .hero::before {
   content: '';
   position: absolute;
-  top: -40%; right: 16%;
-  width: 160px; height: 170%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.28) 0%, transparent 100%);
-  transform: rotate(-17deg);
-  transform-origin: top center;
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -40%; right: 8%;
-  width: 80px; height: 160%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.16) 0%, transparent 100%);
-  transform: rotate(-10deg);
-  transform-origin: top center;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10,50,25,0.62) 0%,
+    rgba(10,50,25,0.45) 45%,
+    rgba(0,0,0,0.08)    75%,
+    transparent         100%
+  );
+  z-index: 1;
   pointer-events: none;
 }
 .hero-inner {
@@ -294,90 +292,60 @@ main { min-height: 60vh; }
   z-index: 2;
   max-width: 1060px;
   margin: 0 auto;
-  padding: 56px 40px;
-  display: flex;
-  align-items: center;
-  gap: 48px;
+  padding: 72px 48px;
   width: 100%;
   box-sizing: border-box;
 }
-.hero-text { flex: 1; }
+.hero-text { max-width: 560px; }
 .hero-org-label {
   display: inline-block;
   font-size: 0.82rem;
-  color: #3a7a54;
-  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.12em;
   margin-bottom: 20px;
   font-weight: 600;
-  padding: 4px 14px;
-  border-left: 3px solid #5aab7a;
-  background: rgba(255,255,255,0.65);
-  border-radius: 0 4px 4px 0;
+  padding: 5px 16px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.12);
 }
 .hero-catch {
   font-family: 'Klee One', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', var(--font-serif);
-  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  font-size: clamp(2.2rem, 4.8vw, 3.4rem);
   font-weight: 600;
-  color: #1a3d2a;
+  color: #ffffff;
   line-height: 1.65;
-  margin-bottom: 22px;
-  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 12px rgba(0,40,20,0.5);
 }
 .hero-sub {
-  font-size: clamp(0.93rem, 1.8vw, 1.05rem);
-  color: #3a6648;
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+  color: rgba(255,255,255,0.92);
   line-height: 2;
   margin-bottom: 36px;
   font-weight: 500;
-}
-/* ハートイラスト */
-.hero-heart-wrap {
-  flex-shrink: 0;
-  width: 220px;
-  height: 220px;
-  position: relative;
-}
-.hero-heart-glow {
-  position: absolute;
-  inset: -28px;
-  background: radial-gradient(circle, rgba(255,155,185,0.32) 0%, rgba(255,200,215,0.14) 50%, transparent 70%);
-  border-radius: 50%;
-  animation: heartGlow 3.5s ease-in-out infinite;
-}
-@keyframes heartGlow {
-  0%, 100% { transform: scale(1);    opacity: 0.75; }
-  50%       { transform: scale(1.12); opacity: 1;    }
-}
-.hero-heart-svg {
-  width: 100%; height: 100%;
-  position: relative; z-index: 1;
-  filter: drop-shadow(0 8px 20px rgba(240,100,130,0.22));
-}
-/* 背景葉っぱ装飾 */
-.hero-leaf-deco {
-  position: absolute;
-  top: 0; right: 0;
-  width: 260px; height: 100%;
-  opacity: 0.13;
-  pointer-events: none;
-  z-index: 1;
+  text-shadow: 0 1px 6px rgba(0,30,15,0.5);
 }
 .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-/* レスポンシブ */
 @media (max-width: 768px) {
-  .hero-inner {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: 40px 20px;
-    gap: 24px;
+  .hero { min-height: 360px; }
+  .hero-inner { padding: 52px 24px; }
+  .hero::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(10,50,25,0.55) 0%,
+      rgba(10,50,25,0.40) 60%,
+      rgba(0,0,0,0.10)    100%
+    );
   }
-  .hero-heart-wrap { width: 160px; height: 160px; }
+  .hero-text { max-width: 100%; text-align: center; }
   .hero-buttons { justify-content: center; }
 }
 @media (max-width: 520px) {
-  .hero { min-height: 300px; }
-  .hero-catch { font-size: 1.7rem; }
-  .hero-inner { padding: 32px 16px; }
+  .hero { min-height: 320px; }
+  .hero-catch { font-size: 1.8rem; }
+  .hero-inner { padding: 40px 20px; }
   .hero-buttons { flex-direction: column; align-items: center; }
 }
 
@@ -1354,19 +1322,8 @@ main { min-height: 60vh; }
 
   <!-- ヒーローセクション -->
   <section class="hero">
-    <!-- 背景：葉っぱ装飾 -->
-    <svg class="hero-leaf-deco" viewBox="0 0 260 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M180 20 Q235 80 195 168 Q158 80 180 20Z" fill="#2d7a4a" transform="rotate(-18 180 94)"/>
-      <path d="M232 95 Q272 148 248 220 Q208 148 232 95Z" fill="#3d8f5a" transform="rotate(12 240 157)"/>
-      <path d="M148 188 Q200 235 172 312 Q138 235 148 188Z" fill="#4da06a" transform="rotate(-22 160 250)"/>
-      <path d="M208 265 Q248 315 228 385 Q195 316 208 265Z" fill="#3d8f5a" transform="rotate(6 218 325)"/>
-      <circle cx="138" cy="78"  r="5" fill="#5ab87a" opacity="0.7"/>
-      <circle cx="244" cy="182" r="4" fill="#5ab87a" opacity="0.55"/>
-      <circle cx="168" cy="340" r="6" fill="#5ab87a" opacity="0.45"/>
-    </svg>
-
+    <img class="hero-bg-img" src="images/hero-bg.png" alt="">
     <div class="hero-inner">
-      <!-- テキスト -->
       <div class="hero-text">
         <p class="hero-org-label">新座市精神障害者家族会　やすらぎの会</p>
         <h1 class="hero-catch">やさしく、<br>つながり、<br>支えあう。</h1>
@@ -1376,42 +1333,6 @@ main { min-height: 60vh; }
           <a href="#" class="btn btn-secondary" onclick="showPage('about');   return false;">🌿 会の紹介を見る</a>
           <a href="#" class="btn btn-yellow"    onclick="showPage('contact'); return false;">✉ お問い合わせ</a>
         </div>
-      </div>
-
-      <!-- ハートイラスト -->
-      <div class="hero-heart-wrap">
-        <div class="hero-heart-glow"></div>
-        <svg class="hero-heart-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="110" cy="106" r="86" fill="rgba(255,240,246,0.35)"/>
-          <!-- 左の手 -->
-          <path d="M 16 192 Q 28 162 54 151 Q 80 141 106 147 L 113 172 Q 84 165 56 176 Q 34 185 28 208 Z" fill="#f5c8a8"/>
-          <!-- 右の手 -->
-          <path d="M 204 192 Q 192 162 166 151 Q 140 141 114 147 L 107 172 Q 136 165 164 176 Q 186 185 192 208 Z" fill="#f5c8a8"/>
-          <!-- 手のひらつなぎ -->
-          <path d="M 113 172 Q 110 178 107 172 L 103 202 Q 110 206 117 202 Z" fill="#f5c8a8"/>
-          <!-- ハートのぼかし -->
-          <ellipse cx="110" cy="98" rx="54" ry="50" fill="rgba(255,145,175,0.2)"/>
-          <!-- ハート本体 -->
-          <path d="M 110 132
-                   C  86 117  56  98  56  75
-                   C  56  55  71  44  88  44
-                   C  99  44 108  51 110  62
-                   C 112  51 121  44 132  44
-                   C 149  44 164  55 164  75
-                   C 164  98 134 117 110 132 Z"
-                fill="#f48fb1"/>
-          <!-- ハートの陰影 -->
-          <path d="M 110 132 C 86 117 56 98 56 75 C 56 55 71 44 88 44 C 99 44 108 51 110 62 Z"
-                fill="#e06080" opacity="0.12"/>
-          <!-- ハイライト -->
-          <ellipse cx="91" cy="69" rx="12" ry="8.5" fill="rgba(255,255,255,0.42)" transform="rotate(-28 91 69)"/>
-          <!-- スパークル -->
-          <circle cx="50"  cy="56" r="3.5" fill="rgba(255,155,185,0.72)"/>
-          <circle cx="170" cy="53" r="3"   fill="rgba(255,155,185,0.62)"/>
-          <circle cx="40"  cy="96" r="2.5" fill="rgba(255,155,185,0.52)"/>
-          <circle cx="180" cy="93" r="3.5" fill="rgba(255,155,185,0.67)"/>
-          <circle cx="110" cy="36" r="2"   fill="rgba(255,155,185,0.58)"/>
-        </svg>
       </div>
     </div>
   </section>
