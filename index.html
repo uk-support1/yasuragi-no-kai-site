@@ -264,13 +264,54 @@ main { min-height: 60vh; }
   padding: 0;
   text-align: left;
 }
-.hero-bg-img {
+.hero-slide {
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center 40%;
   z-index: 0;
+  opacity: 0;
+  transform: scale(1);
+  animation: heroKenBurns 18s ease-in-out infinite;
+}
+.hero-slide:nth-of-type(1) { animation-delay: 0s; }
+.hero-slide:nth-of-type(2) { animation-delay: 6s; }
+.hero-slide:nth-of-type(3) { animation-delay: 12s; }
+@keyframes heroKenBurns {
+  0%   { opacity: 0; transform: scale(1); }
+  4%   { opacity: 1; }
+  29%  { opacity: 1; transform: scale(1.12); }
+  33%  { opacity: 0; transform: scale(1.12); }
+  100% { opacity: 0; }
+}
+/* 写真が1枚だけの間はフェードさせず、ゆっくり往復ズームのみ */
+.hero-slide:only-of-type {
+  opacity: 1;
+  animation: heroKenBurnsSingle 16s ease-in-out infinite alternate;
+}
+@keyframes heroKenBurnsSingle {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+/* 写真がちょうど2枚の場合は、隙間なくぴったり切り替わるよう専用タイミングに */
+.hero-slide:nth-of-type(1):nth-last-of-type(2),
+.hero-slide:nth-of-type(2):nth-last-of-type(1) {
+  animation-name: heroKenBurns2;
+  animation-duration: 12s;
+}
+.hero-slide:nth-of-type(1):nth-last-of-type(2) { animation-delay: 0s; }
+.hero-slide:nth-of-type(2):nth-last-of-type(1) { animation-delay: 6s; }
+@keyframes heroKenBurns2 {
+  0%   { opacity: 0; transform: scale(1); }
+  8%   { opacity: 1; }
+  42%  { opacity: 1; transform: scale(1.1); }
+  50%  { opacity: 0; transform: scale(1.1); }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { animation: none; opacity: 1; transform: scale(1); }
+  .hero-slide:not(:nth-of-type(1)) { display: none; }
 }
 /* 左側にテキストが読みやすいよう半透明グラデーション */
 .hero::before {
@@ -328,6 +369,36 @@ main { min-height: 60vh; }
   text-shadow: 0 1px 6px rgba(0,30,15,0.5);
 }
 .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+/* キャッチコピーは1枚目（ハートの写真）と同じタイミングでフェード */
+.hero-catch-fade {
+  animation: heroCatchFade 18s ease-in-out infinite;
+}
+@keyframes heroCatchFade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  29%  { opacity: 1; }
+  33%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+/* 写真が1枚だけの間はキャッチコピーも常に表示 */
+.hero:has(.hero-slide:only-of-type) .hero-catch-fade {
+  animation: none;
+  opacity: 1;
+}
+/* 写真がちょうど2枚の場合は、1枚目（ハートの写真）のタイミングに合わせる */
+.hero:has(.hero-slide:nth-of-type(2):nth-last-of-type(1)) .hero-catch-fade {
+  animation: heroCatchFade2 12s ease-in-out infinite;
+}
+@keyframes heroCatchFade2 {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; }
+  42%  { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-catch-fade { animation: none; opacity: 1; }
+}
 @media (max-width: 768px) {
   .hero { min-height: 360px; }
   .hero-inner { padding: 52px 24px; }
@@ -1322,12 +1393,15 @@ main { min-height: 60vh; }
 
   <!-- ヒーローセクション -->
   <section class="hero">
-    <img class="hero-bg-img" src="images/hero-bg.png" alt="">
+    <img class="hero-slide" src="images/hero-bg.png" alt="">
+    <img class="hero-slide" src="images/hero-bg2.png" alt="">
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-org-label">新座市精神障害者家族会　やすらぎの会</p>
-        <h1 class="hero-catch">やさしく、<br>つながり、<br>支えあう。</h1>
-        <p class="hero-sub">家族が元気になることが、<br>本人の安心につながります。</p>
+        <div class="hero-catch-fade">
+          <p class="hero-org-label">新座市精神障害者家族会　やすらぎの会</p>
+          <h1 class="hero-catch">やさしく、<br>つながり、<br>支えあう。</h1>
+          <p class="hero-sub">家族が元気になることが、<br>本人の安心につながります。</p>
+        </div>
         <div class="hero-buttons">
           <a href="#" class="btn btn-primary"   onclick="showPage('join');    return false;">📋 入会のご案内</a>
           <a href="#" class="btn btn-secondary" onclick="showPage('about');   return false;">🌿 会の紹介を見る</a>
