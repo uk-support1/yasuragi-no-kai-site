@@ -257,7 +257,7 @@ main { min-height: 60vh; }
 /* ヒーロー */
 .hero {
   position: relative;
-  min-height: 420px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -273,35 +273,17 @@ main { min-height: 60vh; }
   z-index: 0;
   opacity: 0;
   transform: scale(1);
-  animation: heroKenBurns 18s ease-in-out infinite;
 }
-.hero-slide:nth-of-type(1) { animation-delay: 0s; }
-.hero-slide:nth-of-type(2) { animation-delay: 6s; }
-.hero-slide:nth-of-type(3) { animation-delay: 12s; }
-@keyframes heroKenBurns {
-  0%   { opacity: 0; transform: scale(1); }
-  4%   { opacity: 1; }
-  29%  { opacity: 1; transform: scale(1.12); }
-  33%  { opacity: 0; transform: scale(1.12); }
-  100% { opacity: 0; }
-}
-/* 写真が1枚だけの間はフェードさせず、ゆっくり往復ズームのみ */
-.hero-slide:only-of-type {
-  opacity: 1;
-  animation: heroKenBurnsSingle 16s ease-in-out infinite alternate;
-}
-@keyframes heroKenBurnsSingle {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.12); }
-}
+/* ハートの写真：もう少し上の方にハートが見えるように */
+.hero-slide-1 { object-position: center 8%; }
+/* 額縁の写真：額縁がボタンに被らないよう上の方を見せる */
+.hero-slide-2 { object-position: center 95%; }
 /* 写真がちょうど2枚の場合は、隙間なくぴったり切り替わるよう専用タイミングに */
-.hero-slide:nth-of-type(1):nth-last-of-type(2),
-.hero-slide:nth-of-type(2):nth-last-of-type(1) {
-  animation-name: heroKenBurns2;
-  animation-duration: 12s;
+.hero-slide-1, .hero-slide-2 {
+  animation: heroKenBurns2 12s ease-in-out infinite;
 }
-.hero-slide:nth-of-type(1):nth-last-of-type(2) { animation-delay: 0s; }
-.hero-slide:nth-of-type(2):nth-last-of-type(1) { animation-delay: 6s; }
+.hero-slide-1 { animation-delay: 0s; }
+.hero-slide-2 { animation-delay: 6s; }
 @keyframes heroKenBurns2 {
   0%   { opacity: 0; transform: scale(1); }
   8%   { opacity: 1; }
@@ -311,7 +293,7 @@ main { min-height: 60vh; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { animation: none; opacity: 1; transform: scale(1); }
-  .hero-slide:not(:nth-of-type(1)) { display: none; }
+  .hero-slide-2 { display: none; }
 }
 /* 左側にテキストが読みやすいよう半透明グラデーション */
 .hero::before {
@@ -333,11 +315,11 @@ main { min-height: 60vh; }
   z-index: 2;
   max-width: 1060px;
   margin: 0 auto;
-  padding: 72px 48px;
+  padding: 64px 48px;
   width: 100%;
   box-sizing: border-box;
 }
-.hero-text { max-width: 560px; }
+.hero-text { max-width: 640px; }
 .hero-org-label {
   display: inline-block;
   font-size: 0.82rem;
@@ -370,23 +352,8 @@ main { min-height: 60vh; }
 }
 .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
 /* キャッチコピーは1枚目（ハートの写真）と同じタイミングでフェード */
+/* キャッチコピーは1枚目（ハートの写真）と同じタイミングでフェード */
 .hero-catch-fade {
-  animation: heroCatchFade 18s ease-in-out infinite;
-}
-@keyframes heroCatchFade {
-  0%   { opacity: 0; }
-  4%   { opacity: 1; }
-  29%  { opacity: 1; }
-  33%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-/* 写真が1枚だけの間はキャッチコピーも常に表示 */
-.hero:has(.hero-slide:only-of-type) .hero-catch-fade {
-  animation: none;
-  opacity: 1;
-}
-/* 写真がちょうど2枚の場合は、1枚目（ハートの写真）のタイミングに合わせる */
-.hero:has(.hero-slide:nth-of-type(2):nth-last-of-type(1)) .hero-catch-fade {
   animation: heroCatchFade2 12s ease-in-out infinite;
 }
 @keyframes heroCatchFade2 {
@@ -400,7 +367,7 @@ main { min-height: 60vh; }
   .hero-catch-fade { animation: none; opacity: 1; }
 }
 @media (max-width: 768px) {
-  .hero { min-height: 360px; }
+  .hero { min-height: 420px; }
   .hero-inner { padding: 52px 24px; }
   .hero::before {
     background: linear-gradient(
@@ -412,11 +379,17 @@ main { min-height: 60vh; }
   }
   .hero-text { max-width: 100%; text-align: center; }
   .hero-buttons { justify-content: center; }
+  /* 額縁の写真：スマホでは見切れないよう全体を収めて上に表示 */
+  .hero-slide-2 {
+    object-fit: contain;
+    object-position: center top;
+    background: #dbe6d3;
+  }
 }
 @media (max-width: 520px) {
-  .hero { min-height: 320px; }
+  .hero { min-height: 440px; }
   .hero-catch { font-size: 1.8rem; }
-  .hero-inner { padding: 40px 20px; }
+  .hero-inner { padding: 102px 20px 40px; }
   .hero-buttons { flex-direction: column; align-items: center; }
 }
 
@@ -432,6 +405,7 @@ main { min-height: 60vh; }
   cursor: pointer;
   border: none;
   text-decoration: none;
+  white-space: nowrap;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,125,90,0.20); text-decoration: none; }
@@ -1320,7 +1294,6 @@ main { min-height: 60vh; }
 }
 @media (max-width: 520px) {
   html { font-size: 16px; }
-  .hero { min-height: 300px; }
   .section-wrap { padding: 32px 16px; }
   .pdf-grid { grid-template-columns: 1fr; }
   .info-table th { width: 100px; }
@@ -1393,8 +1366,11 @@ main { min-height: 60vh; }
 
   <!-- ヒーローセクション -->
   <section class="hero">
-    <img class="hero-slide" src="images/hero-bg.png" alt="">
-    <img class="hero-slide" src="images/hero-bg2.png" alt="">
+    <img class="hero-slide hero-slide-1" src="images/hero-bg.png" alt="">
+    <picture>
+      <source media="(max-width: 768px)" srcset="images/hero-bg2-mobile.png">
+      <img class="hero-slide hero-slide-2" src="images/hero-bg2.png" alt="">
+    </picture>
     <div class="hero-inner">
       <div class="hero-text">
         <div class="hero-catch-fade">
