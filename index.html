@@ -1414,6 +1414,16 @@ main { min-height: 60vh; }
       <div class="news-list mb-24">
         <!-- ★ 新しいお知らせはここに追加 ★ -->
         <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <img src="images/news/IMG_6001.jpg" alt="島原小町のそうめん" style="width:100px; height:100px; object-fit:cover; border-radius:6px; flex-shrink:0;">
+          <div>
+            <div class="news-date">2026.07.17</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">例会報告</span>
+              7月例会を開催しました<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <img src="images/meeting-icon.svg" alt="例会アイコン" style="width:100px; height:100px; object-fit:cover; border-radius:6px; flex-shrink:0;">
           <div>
             <div class="news-date">2026.06.25</div>
@@ -1891,6 +1901,50 @@ main { min-height: 60vh; }
     <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <!-- 2026年7月17日：7月例会 開催報告 -->
+    <div class="news-page-item open" id="news-2026-07-report">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年7月17日</span>
+            <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">例会報告</span>
+          </div>
+          <h3>✅ 7月例会を開催しました</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>2026年7月17日（金）、中央公民館2階の和室にて、7月例会を開催しました。</p>
+          <p>当初予定していた視聴覚室から急きょ会場が変更となりましたが、当日は10名の皆さまにご参加いただきました。和室には大きなスクリーンとプロジェクターを設置し、スライドと配布資料を使いながら例会を行いました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 報告・共有事項</div>
+          <p>埼家連が予定している池袋防災館での防災体験、研修会、みんなねっと全国大会のほか、社会福祉法人にいざ後援会の日帰りバス旅行、合同絵画展、ボランティアまつりなど、今後の活動予定について確認しました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 勉強会：向谷地生良さんの考え方から学ぶ（第1回）</div>
+          <p>今回の勉強会として、向谷地生良さんの考え方から学ぶ3回シリーズの第1回「病気ではなく、人を見る」を実施しました。途中では、参加者同士がそれぞれの身近な体験に引き寄せながら話し合う時間もあり、落ち着いた雰囲気の中で学びを深める機会となりました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ そうめんのお渡し</div>
+          <p>例会終了後には、埼家連を通じてご購入いただいた「島原小町」のそうめんを購入者の皆さまへお渡ししました。今年も多くの方にご購入いただき、ありがとうございました。</p>
+          <figure style="margin:16px 0 8px; text-align:center;">
+            <img src="images/news/IMG_6001.jpg" alt="島原小町のそうめん" style="max-width:100%; width:360px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+            <figcaption style="font-size:0.82rem; color:var(--gray-text); margin-top:6px;">例会終了後にお渡しした「島原小町」のそうめん</figcaption>
+          </figure>
+          <p>そうめん購入費の一部は、埼家連およびやすらぎの会の活動資金として活用されます。</p>
+        </div>
+
+        <div class="news-detail-box">
+          🌿 今後も、皆さまに支えていただきながら、家族同士が安心して集い、学び合える場を大切にしていきます。
+        </div>
+      </div>
+    </div>
 
     <!-- 2026年6月25日：7月例会のお知らせ -->
     <div class="news-page-item open" id="news-2026-07">
