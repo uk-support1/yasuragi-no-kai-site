@@ -1414,6 +1414,16 @@ main { min-height: 60vh; }
       <div class="news-list mb-24">
         <!-- ★ 新しいお知らせはここに追加 ★ -->
         <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <div style="width:100px; height:100px; flex-shrink:0; border-radius:6px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:2.4rem;">🍉</div>
+          <div>
+            <div class="news-date">2026年7月下旬</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">お知らせ</span>
+              8月納涼会のお知らせ（8/9・季粋）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <img src="images/news/IMG_6001.jpg" alt="島原小町のそうめん" style="width:100px; height:100px; object-fit:cover; border-radius:6px; flex-shrink:0;">
           <div>
             <div class="news-date">2026.07.17</div>
@@ -1901,6 +1911,71 @@ main { min-height: 60vh; }
     <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <!-- 2026年7月下旬：8月納涼会のお知らせ -->
+    <div class="news-page-item open" id="news-2026-08-noryokai">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年7月下旬</span>
+            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">お知らせ</span>
+          </div>
+          <h3>🍉 8月納涼会のお知らせ</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>2026年8月9日（日）、やすらぎの会では、会員同士の交流を目的とした納涼会を開催します。</p>
+          <p>日頃の例会とは少し雰囲気を変えて、食事をしながら、会員同士でゆっくりお話しできる時間にしたいと思います。<br>初めての方や、久しぶりに参加される方も、どうぞお気軽にご参加ください。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 開催概要</div>
+          <table style="width:100%; border-collapse:collapse; font-size:0.95rem; margin-top:8px;">
+            <tbody>
+              <tr style="border-bottom:1px solid var(--green-pale);">
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap; width:7em;">日時</th>
+                <td style="padding:8px 0;">2026年8月9日（日）11時集合</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--green-pale);">
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap;">解散予定</th>
+                <td style="padding:8px 0;">13時過ぎ頃</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--green-pale);">
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap;">会場</th>
+                <td style="padding:8px 0;">
+                  季粋<br>
+                  <span style="font-size:0.88rem; color:var(--gray-text);">新座市栗原5丁目7-1</span><br>
+                  <a href="https://kisui-hibarigaoka.com/free/kisui_store_information" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:var(--green-dark);">季粋 公式サイト ↗</a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=季粋%20新座市栗原5丁目7-1" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:var(--green-dark);">Googleマップで見る ↗</a>
+                </td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--green-pale);">
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap;">会費</th>
+                <td style="padding:8px 0;">1,000円</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--green-pale);">
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap;">申込締切</th>
+                <td style="padding:8px 0;">2026年8月3日（月）</td>
+              </tr>
+              <tr>
+                <th style="text-align:left; padding:8px 12px 8px 0; color:var(--green-dark); font-weight:700; white-space:nowrap;">申込先</th>
+                <td style="padding:8px 0;">
+                  やすらぎの会 上原<br>
+                  📞 <a href="tel:08060670600" style="color:inherit;">080-6067-0600</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="news-detail-box">
+          🌿 移動手段がない方は、申込時に送迎についてもご相談ください。<br>
+          参加をご希望の方は、<strong>8月3日（月）までに</strong>やすらぎの会 上原までお申し込みください。
+        </div>
+      </div>
+    </div>
 
     <!-- 2026年7月17日：7月例会 開催報告 -->
     <div class="news-page-item open" id="news-2026-07-report">
