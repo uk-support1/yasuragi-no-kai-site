@@ -953,15 +953,15 @@ main { min-height: 60vh; }
 .study-material-card {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  background: #edf7f1;
-  border: 1px solid var(--green-light);
-  border-radius: 10px;
-  padding: 18px 20px;
+  gap: 20px;
+  background: #e6f4ec;
+  border: 2px solid var(--green-light);
+  border-radius: 12px;
+  padding: 22px 24px;
   margin-bottom: 28px;
 }
 .study-material-card .smc-icon {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   flex-shrink: 0;
   line-height: 1;
 }
@@ -969,53 +969,56 @@ main { min-height: 60vh; }
 .study-material-card .smc-title {
   font-weight: 700;
   color: var(--brown-text);
-  font-size: 0.98rem;
-  margin: 0 0 4px;
+  font-size: 1.05rem;
+  margin: 0 0 6px;
 }
 .study-material-card .smc-desc {
   color: var(--green-dark);
-  font-size: 0.87rem;
-  margin: 0 0 12px;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  margin: 0 0 14px;
+  line-height: 1.7;
 }
 .study-material-card .smc-btn {
   display: inline-block;
   background: var(--green-main);
   color: #fff;
-  padding: 9px 20px;
+  padding: 11px 26px;
   border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-decoration: none;
 }
 .study-point {
   display: flex;
   gap: 24px;
   align-items: flex-start;
-  margin-bottom: 32px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--green-light);
+  background: #fbfdf9;
+  border: 1px solid var(--green-light);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
 }
-.study-point:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.study-point:last-of-type { margin-bottom: 0; }
 .study-point-text { flex: 1 1 0; min-width: 0; }
 .study-point-text h3 {
   font-size: 1.05rem;
   color: var(--green-dark);
   font-weight: 700;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   padding-left: 10px;
   border-left: 4px solid var(--green-main);
   line-height: 1.5;
 }
 .study-point-text p {
   color: var(--brown-text);
-  line-height: 1.85;
-  margin: 0;
+  line-height: 1.9;
+  margin: 0 0 0.9em;
   font-size: 0.95rem;
 }
+.study-point-text p:last-child { margin-bottom: 0; }
 .study-point-image {
-  flex: 0 0 380px;
-  max-width: 45%;
+  flex: 0 0 440px;
+  max-width: 50%;
 }
 .study-point.reverse .study-point-image { order: -1; }
 .study-point-image figure { margin: 0; }
@@ -1032,9 +1035,11 @@ main { min-height: 60vh; }
   text-align: center;
 }
 @media (max-width: 768px) {
-  .study-point { flex-direction: column; }
+  .study-point { flex-direction: column; padding: 16px; }
   .study-point.reverse .study-point-image { order: 0; }
   .study-point-image { flex: none; max-width: 100%; width: 100%; }
+  .study-material-card { gap: 14px; padding: 16px 18px; }
+  .study-material-card .smc-btn { display: block; text-align: center; padding: 13px 20px; }
 }
 /* 写真ギャラリー */
 .gallery-label {
@@ -1915,7 +1920,7 @@ main { min-height: 60vh; }
           <div class="study-material-card">
             <div class="smc-icon">📄</div>
             <div class="smc-body">
-              <p class="smc-title">当日投影・配布した資料</p>
+              <p class="smc-title">当日投影・配布した資料はこちら</p>
               <p class="smc-desc">7月例会の勉強会で使用したスライド資料をPDFでご覧いただけます。</p>
               <a href="pdfs/kenshu_1_mukaiyachi_260717.pdf" target="_blank" rel="noopener noreferrer" class="smc-btn">資料を見る（PDF）</a>
             </div>
@@ -1925,7 +1930,9 @@ main { min-height: 60vh; }
           <div class="study-point">
             <div class="study-point-text">
               <h3>3回連続勉強会の第1回として</h3>
-              <p>今回の勉強会は、向谷地生良さんから学ぶ家族のための3回連続勉強会の第1回として行いました。第1回では「病気ではなく、人を見る」をテーマに、当事者研究の考え方を学びました。</p>
+              <p>今回の勉強会は、向谷地生良さんの実践から学ぶ「家族のための3回連続勉強会」の第1回として行いました。</p>
+              <p>第1回のテーマは「病気ではなく、人を見る」です。家族は、長く本人を心配し、支えてきたからこそ、「どうしてこうなるのだろう」「早く良くなってほしい」という思いを抱きやすいものです。</p>
+              <p>今回の勉強会では、そのような家族自身の戸惑いや焦りも大切にしながら、病気や症状だけで本人を見るのではなく、その奥にある本人の苦労や困りごとに目を向ける視点を一緒に学びました。</p>
             </div>
             <div class="study-point-image">
               <figure>
@@ -1939,7 +1946,9 @@ main { min-height: 60vh; }
           <div class="study-point reverse">
             <div class="study-point-text">
               <h3>当事者研究の考え方</h3>
-              <p>当事者研究では、本人の苦労を、本人と仲間で一緒に研究していく視点を大切にします。専門家が一方的に解決するのではなく、本人の言葉や経験から理解していくことを学びました。</p>
+              <p>当事者研究では、本人の苦労を、本人と仲間で一緒に研究していく視点を大切にします。</p>
+              <p>困りごとを「誰かが一方的に解決するもの」として見るのではなく、本人の言葉や経験を手がかりにしながら、何に困っているのか、どのような助け方が合うのかを一緒に考えていきます。</p>
+              <p>家族にとっても、本人を「支えなければならない対象」として一人で抱え込むのではなく、本人や支援者、同じような経験を持つ仲間とともに考えるきっかけになる考え方です。</p>
             </div>
             <div class="study-point-image">
               <figure>
@@ -1953,7 +1962,9 @@ main { min-height: 60vh; }
           <div class="study-point">
             <div class="study-point-text">
               <h3>病気だけで、その人を見ない</h3>
-              <p>「病気を見ない」のではなく、病気や症状だけでその人を見ないことが大切です。病気の奥にある、その人の不安、苦労、願いにも目を向ける視点を確認しました。</p>
+              <p>今回のテーマである「病気ではなく、人を見る」は、病気を見ないという意味ではありません。</p>
+              <p>大切なのは、病気や症状だけでその人を決めつけないことです。同じ症状や行動に見えても、その背景には、不安、怖さ、疲れ、安心したい気持ち、自分を守ろうとする思いなどがあるかもしれません。</p>
+              <p>病気そのものだけでなく、その人がどのような苦労を抱え、何に困っているのかに目を向けることで、家族としての関わり方にも少し余白が生まれます。</p>
             </div>
             <div class="study-point-image">
               <figure>
@@ -1967,7 +1978,9 @@ main { min-height: 60vh; }
           <div class="study-point reverse">
             <div class="study-point-text">
               <h3>「なぜ？」より「何を実現したかったか」</h3>
-              <p>行動の理由を問い詰めるのではなく、「何を確認できると安心できそうか」「何を守ろうとしていたのか」という聞き方に変えることで、本人の困りごとや願いが見えやすくなります。</p>
+              <p>日々の関わりの中では、「なんでそんなことをするの？」「どうして分かってくれないの？」と聞きたくなる場面があります。しかし、その聞き方は、本人にとって責められているように感じられることもあります。</p>
+              <p>今回の勉強会では、「何を確認できると安心できそうか」「何を避けたかったのか」「何を守ろうとしていたのか」というように、本人の意図や願いを確認する聞き方を学びました。</p>
+              <p>行動だけを見るのではなく、その奥にある困りごとや守りたかったことに目を向けることで、本人との会話の入り口が少し変わっていきます。</p>
             </div>
             <div class="study-point-image">
               <figure>
@@ -1981,7 +1994,9 @@ main { min-height: 60vh; }
           <div class="study-point">
             <div class="study-point-text">
               <h3>今回の学びと次回に向けて</h3>
-              <p>今回の勉強会では、本人と問題を分けて考えること、行動を責めずに背景にある苦労を見ることを学びました。次回は9月例会で、「幻覚・妄想をどう聴くか」をテーマに学ぶ予定です。</p>
+              <p>今回の勉強会では、「本人」と「問題」を分けて考えること、そして行動を責めるのではなく、その背景にある苦労や願いに目を向けることを学びました。</p>
+              <p>家族として、すぐに答えを見つけることは難しい場合もあります。それでも、見方や聞き方を少し変えることで、本人との関わり方に新しい可能性が生まれるかもしれません。</p>
+              <p>次回は9月例会で、「幻覚・妄想をどう聴くか」をテーマに学ぶ予定です。本人の困りごとに寄り添うために、家族としてどのように話を聴いていくかを、引き続き一緒に考えていきます。</p>
             </div>
             <div class="study-point-image">
               <figure>
