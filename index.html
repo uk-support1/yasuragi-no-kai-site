@@ -1436,7 +1436,6 @@ main { min-height: 60vh; }
       <ul>
         <li><a href="#" onclick="showPage('home'); return false;" data-page="home">ホーム</a></li>
         <li><a href="#" onclick="showPage('about'); return false;" data-page="about">会の紹介</a></li>
-        <li><a href="#" onclick="showPage('activities'); return false;" data-page="activities">活動内容</a></li>
         <li><a href="#" onclick="showPage('schedule'); return false;" data-page="schedule">年間予定</a></li>
         <li><a href="#" onclick="showPage('report'); return false;" data-page="report">活動報告</a></li>
         <li><a href="#" onclick="showPage('news'); return false;" data-page="news">お知らせ</a></li>
@@ -1605,6 +1604,86 @@ main { min-height: 60vh; }
     </div>
 
     <div class="card mb-36">
+      <h3>🗓 主な活動内容</h3>
+      <p style="font-size:0.95rem; color:var(--brown-text); line-height:1.8; margin-bottom:20px;">やすらぎの会では、定例会や学習会、会報の発行などを通じて、家族同士が安心してつながり、学び合える場づくりを行っています。</p>
+
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="act-icon">💬</div>
+          <div>
+            <h3>定例会（月1回）</h3>
+            <p>原則として、偶数月の第2日曜日と奇数月の第2金曜日の午後1時から3時まで開催しています。家族同士が近況を話し合い、情報交換をする場です。はじめての方も安心してご参加いただけます。</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="act-icon">📖</div>
+          <div>
+            <h3>学習会・講演会</h3>
+            <p>精神障害の理解を深めるための学習会や、福祉・医療の専門家を招いた講演会を年数回開催しています。</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="act-icon">🎉</div>
+          <div>
+            <h3>交流会・レクリエーション</h3>
+            <p>年に1〜2回、会員同士の親睦を深める交流会を開催。日常から離れてリフレッシュする機会を作っています。</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="act-icon">📰</div>
+          <div>
+            <h3>会報「やすらぎの会だより」の発行</h3>
+            <p>毎月、会報を発行。定例会の内容・福祉情報・会員からの声などを掲載しています。</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="act-icon">🤝</div>
+          <div>
+            <h3>行政・支援機関との連携</h3>
+            <p>新座市障害福祉課・社会福祉協議会などと連携し、地域の精神保健福祉の充実に向けて意見交換を行っています。</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="act-icon">📡</div>
+          <div>
+            <h3>情報発信・啓発活動</h3>
+            <p>このホームページや会報を通じて、精神障害への正しい理解を広める情報発信を行っています。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="green-box" style="margin-top:16px;">
+        🌱 活動はすべて、会員によって自主的に運営されています。参加できる範囲・タイミングは、それぞれのペースで構いません。気軽に関わっていただける環境を大切にしています。
+      </div>
+
+      <!-- 家族電話相談 -->
+      <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--green-light);">
+        <h3 style="font-size:1rem; margin-bottom:8px;">📞 家族電話相談のご案内</h3>
+        <p style="font-size:0.9rem; color:var(--gray-text); margin-bottom:14px;">
+          ※ やすらぎの会・家族相談は都合により、しばらくの間、休ませていただきますのでご了承ください。<br>
+          　埼家連の「心をつなぐ家族電話相談」をご利用ください。
+        </p>
+        <div class="green-box" style="text-align:left;">
+          <p style="font-weight:700; color:var(--green-dark); margin-bottom:12px;">【心をつなぐ家族電話相談】</p>
+          <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+            <tr>
+              <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">電　話</th>
+              <td style="padding:6px 0;">080-6685-2128（携帯）</td>
+            </tr>
+            <tr>
+              <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">相談日</th>
+              <td style="padding:6px 0;">毎週 月〜木<br><span style="font-size:0.85rem; color:var(--gray-text);">※ 金・土・日・祝日はお休みです</span></td>
+            </tr>
+            <tr>
+              <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">時　間</th>
+              <td style="padding:6px 0;">10:00〜12:00　／　13:00〜15:00</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-36">
       <h3>🏛 関係機関・連携先</h3>
       <ul>
         <li><a href="https://www.shafukuniiza.or.jp/index.html" target="_blank" rel="noopener noreferrer">社会福祉法人にいざ</a></li>
@@ -1625,88 +1704,6 @@ main { min-height: 60vh; }
 <!-- ===========================
      3. 活動内容ページ
 =========================== -->
-<div id="page-activities" class="page-section">
-  <div class="breadcrumb"><div class="breadcrumb-inner"><a href="#" onclick="showPage('home');return false;">ホーム</a><span>›</span>活動内容</div></div>
-  <div class="section-wrap">
-    <div class="section-title">活動内容</div>
-    <p class="section-subtitle">やすらぎの会では、以下のような活動を行っています</p>
-
-    <div class="activity-grid mb-36">
-      <div class="activity-card">
-        <div class="act-icon">💬</div>
-        <div>
-          <h3>定例会（月1回）</h3>
-          <p>原則として、偶数月の第2日曜日と奇数月の第2金曜日の午後1時から3時まで開催しています。家族同士が近況を話し合い、情報交換をする場です。はじめての方も安心してご参加いただけます。</p>
-        </div>
-      </div>
-      <div class="activity-card">
-        <div class="act-icon">📖</div>
-        <div>
-          <h3>学習会・講演会</h3>
-          <p>精神障害の理解を深めるための学習会や、福祉・医療の専門家を招いた講演会を年数回開催しています。</p>
-        </div>
-      </div>
-      <div class="activity-card">
-        <div class="act-icon">🎉</div>
-        <div>
-          <h3>交流会・レクリエーション</h3>
-          <p>年に1〜2回、会員同士の親睦を深める交流会を開催。日常から離れてリフレッシュする機会を作っています。</p>
-        </div>
-      </div>
-      <div class="activity-card">
-        <div class="act-icon">📰</div>
-        <div>
-          <h3>会報「やすらぎの会だより」の発行</h3>
-          <p>毎月、会報を発行。定例会の内容・福祉情報・会員からの声などを掲載しています。</p>
-        </div>
-      </div>
-      <div class="activity-card">
-        <div class="act-icon">🤝</div>
-        <div>
-          <h3>行政・支援機関との連携</h3>
-          <p>新座市障害福祉課・社会福祉協議会などと連携し、地域の精神保健福祉の充実に向けて意見交換を行っています。</p>
-        </div>
-      </div>
-      <div class="activity-card">
-        <div class="act-icon">📡</div>
-        <div>
-          <h3>情報発信・啓発活動</h3>
-          <p>このホームページや会報を通じて、精神障害への正しい理解を広める情報発信を行っています。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="green-box">
-      🌱 活動はすべて、会員によって自主的に運営されています。参加できる範囲・タイミングは、それぞれのペースで構いません。気軽に関わっていただける環境を大切にしています。
-    </div>
-
-    <!-- 家族相談会 -->
-    <div class="card mt-24">
-      <h3>📞 家族電話相談のご案内</h3>
-      <p style="font-size:0.9rem; color:var(--gray-text); margin-bottom:20px;">
-        ※ やすらぎの会・家族相談は都合により、しばらくの間、休ませていただきますのでご了承ください。<br>
-        　埼家連の「心をつなぐ家族電話相談」をご利用ください。
-      </p>
-      <div class="green-box" style="text-align:left;">
-        <p style="font-weight:700; color:var(--green-dark); margin-bottom:12px;">【心をつなぐ家族電話相談】</p>
-        <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
-          <tr>
-            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">電　話</th>
-            <td style="padding:6px 0;">080-6685-2128（携帯）</td>
-          </tr>
-          <tr>
-            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">相談日</th>
-            <td style="padding:6px 0;">毎週 月〜木<br><span style="font-size:0.85rem; color:var(--gray-text);">※ 金・土・日・祝日はお休みです</span></td>
-          </tr>
-          <tr>
-            <th style="text-align:left; padding:6px 16px 6px 0; color:var(--green-dark); white-space:nowrap; vertical-align:top;">時　間</th>
-            <td style="padding:6px 0;">10:00〜12:00　／　13:00〜15:00</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div><!-- /page-activities -->
 
 
 <!-- ===========================
@@ -2645,7 +2642,6 @@ main { min-height: 60vh; }
         <ul>
           <li><a href="#" onclick="showPage('home');return false;">ホーム</a></li>
           <li><a href="#" onclick="showPage('about');return false;">会の紹介</a></li>
-          <li><a href="#" onclick="showPage('activities');return false;">活動内容</a></li>
           <li><a href="#" onclick="showPage('schedule');return false;">年間予定</a></li>
           <li><a href="#" onclick="showPage('report');return false;">活動報告</a></li>
           <li><a href="#" onclick="showPage('news');return false;">お知らせ</a></li>
@@ -2679,7 +2675,6 @@ main { min-height: 60vh; }
 var GA_PAGE_TITLES = {
   home:       'ホーム',
   about:      '会の紹介',
-  activities: '活動内容',
   schedule:   '年間予定',
   report:     '活動報告',
   news:       'お知らせ',
