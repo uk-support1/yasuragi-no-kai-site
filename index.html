@@ -949,6 +949,93 @@ main { min-height: 60vh; }
   line-height: 1.8;
   margin-bottom: 20px;
 }
+/* 勉強会記事専用レイアウト */
+.study-material-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #edf7f1;
+  border: 1px solid var(--green-light);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+.study-material-card .smc-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.study-material-card .smc-body { flex: 1; }
+.study-material-card .smc-title {
+  font-weight: 700;
+  color: var(--brown-text);
+  font-size: 0.98rem;
+  margin: 0 0 4px;
+}
+.study-material-card .smc-desc {
+  color: var(--green-dark);
+  font-size: 0.87rem;
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+.study-material-card .smc-btn {
+  display: inline-block;
+  background: var(--green-main);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.study-point {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--green-light);
+}
+.study-point:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.study-point-text { flex: 1 1 0; min-width: 0; }
+.study-point-text h3 {
+  font-size: 1.05rem;
+  color: var(--green-dark);
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding-left: 10px;
+  border-left: 4px solid var(--green-main);
+  line-height: 1.5;
+}
+.study-point-text p {
+  color: var(--brown-text);
+  line-height: 1.85;
+  margin: 0;
+  font-size: 0.95rem;
+}
+.study-point-image {
+  flex: 0 0 380px;
+  max-width: 45%;
+}
+.study-point.reverse .study-point-image { order: -1; }
+.study-point-image figure { margin: 0; }
+.study-point-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+.study-point-image figcaption {
+  font-size: 0.78rem;
+  color: var(--green-dark);
+  margin-top: 6px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .study-point { flex-direction: column; }
+  .study-point.reverse .study-point-image { order: 0; }
+  .study-point-image { flex: none; max-width: 100%; width: 100%; }
+}
 /* 写真ギャラリー */
 .gallery-label {
   font-weight: 700;
@@ -1820,71 +1907,89 @@ main { min-height: 60vh; }
         </div>
         <div class="report-article-body">
 
-          <p style="font-weight:600; color:var(--accent);">向谷地生良さんから学ぶ、家族のための3回連続勉強会 第1回</p>
+          <p style="font-weight:600; color:var(--green-dark);">向谷地生良さんから学ぶ、家族のための3回連続勉強会 第1回</p>
 
           <p>令和8年7月17日（木）の7月例会において、向谷地生良先生（北海道医療大学教授・浦河べてるの家ソーシャルワーカー）の著書をもとに、やすらぎの会会員が作成したオリジナルスライドを使って第1回勉強会を行いました。</p>
 
-          <p>今回は3回連続勉強会の第1回として、「病気ではなく、人を見る」をテーマに取り上げ、家族として当事者とどう向き合うかを、参加者みんなで考えました。</p>
+          <!-- PDF資料カード -->
+          <div class="study-material-card">
+            <div class="smc-icon">📄</div>
+            <div class="smc-body">
+              <p class="smc-title">当日投影・配布した資料</p>
+              <p class="smc-desc">7月例会の勉強会で使用したスライド資料をPDFでご覧いただけます。</p>
+              <a href="pdfs/kenshu_1_mukaiyachi_260717.pdf" target="_blank" rel="noopener noreferrer" class="smc-btn">資料を見る（PDF）</a>
+            </div>
+          </div>
 
-          <p>
-            <a href="pdfs/kenshu_1_mukaiyachi_260717.pdf" target="_blank" rel="noopener noreferrer"
-               style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:#fff; padding:8px 16px; border-radius:6px; font-size:0.9rem; text-decoration:none;">
-              &#x1F4C4; 当日投影・配布した資料を見る（PDF）
-            </a>
-          </p>
+          <!-- 導入ブロック -->
+          <div class="study-point">
+            <div class="study-point-text">
+              <h3>3回連続勉強会の第1回として</h3>
+              <p>今回の勉強会は、向谷地生良さんから学ぶ家族のための3回連続勉強会の第1回として行いました。第1回では「病気ではなく、人を見る」をテーマに、当事者研究の考え方を学びました。</p>
+            </div>
+            <div class="study-point-image">
+              <figure>
+                <img src="images/report/study2026/slide_p02.png" alt="3回連続勉強会の概要スライド" loading="lazy">
+                <figcaption>▲ 3回連続勉強会の概要。今回はその第1回です。</figcaption>
+              </figure>
+            </div>
+          </div>
 
-          <!-- スライド p02：3回連続勉強会の全体像 -->
-          <figure class="article-photo">
-            <img src="images/report/study2026/slide_p02.png" alt="3回連続勉強会の概要スライド" loading="lazy" style="max-width:720px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-            <figcaption>▲ 3回連続勉強会の概要。今回はその第1回です。</figcaption>
-          </figure>
+          <!-- ポイント1 -->
+          <div class="study-point reverse">
+            <div class="study-point-text">
+              <h3>当事者研究の考え方</h3>
+              <p>当事者研究では、本人の苦労を、本人と仲間で一緒に研究していく視点を大切にします。専門家が一方的に解決するのではなく、本人の言葉や経験から理解していくことを学びました。</p>
+            </div>
+            <div class="study-point-image">
+              <figure>
+                <img src="images/report/study2026/slide_p07.png" alt="当事者研究とは？スライド" loading="lazy">
+                <figcaption>▲ 当事者研究とは？　―本人の苦労を、本人と仲間で研究する</figcaption>
+              </figure>
+            </div>
+          </div>
 
-          <h3 style="font-size:1.05rem; margin:20px 0 8px; color:var(--text-main);">「当事者研究」とは？</h3>
+          <!-- ポイント2 -->
+          <div class="study-point">
+            <div class="study-point-text">
+              <h3>病気だけで、その人を見ない</h3>
+              <p>「病気を見ない」のではなく、病気や症状だけでその人を見ないことが大切です。病気の奥にある、その人の不安、苦労、願いにも目を向ける視点を確認しました。</p>
+            </div>
+            <div class="study-point-image">
+              <figure>
+                <img src="images/report/study2026/slide_p10.png" alt="病気ではなく、人を見るスライド" loading="lazy">
+                <figcaption>▲ 病気や症状の奥にある「人間としての営み」に目を向ける</figcaption>
+              </figure>
+            </div>
+          </div>
 
-          <p>「当事者研究」とは、北海道・浦河べてるの家が生み出した取り組みで、精神障害を持つ当事者が自分自身の「苦労」を仲間とともに研究・言語化していくアプローチです。専門家による「解釈」ではなく、本人の言葉で自分の経験を理解していくことを大切にしています。</p>
+          <!-- ポイント3 -->
+          <div class="study-point reverse">
+            <div class="study-point-text">
+              <h3>「なぜ？」より「何を実現したかったか」</h3>
+              <p>行動の理由を問い詰めるのではなく、「何を確認できると安心できそうか」「何を守ろうとしていたのか」という聞き方に変えることで、本人の困りごとや願いが見えやすくなります。</p>
+            </div>
+            <div class="study-point-image">
+              <figure>
+                <img src="images/report/study2026/slide_p15.png" alt="「なぜ？」より「何を実現したかったか」事例スライド" loading="lazy">
+                <figcaption>▲ 「聞き方」を変えると、本人の答えが変わる4つの場面</figcaption>
+              </figure>
+            </div>
+          </div>
 
-          <!-- スライド p07：当事者研究とは？ -->
-          <figure class="article-photo">
-            <img src="images/report/study2026/slide_p07.png" alt="当事者研究とは？スライド" loading="lazy" style="max-width:720px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-            <figcaption>▲ 当事者研究とは？　―浦河べてるの家から生まれた取り組み</figcaption>
-          </figure>
-
-          <h3 style="font-size:1.05rem; margin:20px 0 8px; color:var(--text-main);">病気ではなく、人を見る</h3>
-
-          <p>家族として、ついつい「この病気のせいで…」と、病名や症状を中心に見てしまいがちです。しかし当事者研究では、目の前にいるのは「病気を持つ人」ではなく、「苦労している人」だという視点を大切にします。診断名のラベルより、その人自身の思い・願い・苦労に目を向けることで、関わり方が変わってきます。</p>
-
-          <!-- スライド p10：病気ではなく、人を見る -->
-          <figure class="article-photo">
-            <img src="images/report/study2026/slide_p10.png" alt="病気ではなく、人を見るスライド" loading="lazy" style="max-width:720px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-            <figcaption>▲ 病気ではなく、その人自身の苦労に目を向ける視点</figcaption>
-          </figure>
-
-          <h3 style="font-size:1.05rem; margin:20px 0 8px; color:var(--text-main);">「なぜ？」より「何を実現したかったか」</h3>
-
-          <p>困った行動を見たとき、「なんでそんなことをするの？」と理由を追及したくなります。しかし当事者研究では、「なぜ？」（原因追及）より「何を実現したかったか」（意図や願い）を聞くことが大切だと考えます。責めるのではなく、行動の背景にある「本人の苦労や願い」を理解しようとするアプローチです。</p>
-
-          <!-- スライド p15：「なぜ？」より「何を実現したかったか」【事例】 -->
-          <figure class="article-photo">
-            <img src="images/report/study2026/slide_p15.png" alt="「なぜ？」より「何を実現したかったか」事例スライド" loading="lazy" style="max-width:720px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-            <figcaption>▲ よくある場面で「聞き方」を変えると、本人の答えが変わる例</figcaption>
-          </figure>
-
-          <p>たとえば「同じことを何度も確認する」という行動に対して、「なんで何度も同じことを聞くの？」ではなく、「何を確認できると、少し安心できそう？」と聞くことで、「ちゃんと大丈夫か分からなくて、不安になる」という本音が引き出せます。</p>
-
-          <!-- スライド p19：今日のまとめ＆次回予告 -->
-          <figure class="article-photo">
-            <img src="images/report/study2026/slide_p19.png" alt="今日のまとめと次回予告スライド" loading="lazy" style="max-width:720px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.12);">
-            <figcaption>▲ 今日のまとめと第2回の予告</figcaption>
-          </figure>
-
-          <p>第1回のまとめは次の3点です。</p>
-          <ul style="margin:8px 0 16px 1.5rem; line-height:1.9;">
-            <li>病気そのものではなく、病気に苦労している「人」を見る。</li>
-            <li>「本人」と「問題」を切り離す（人と問題を分ける）。</li>
-            <li>「なぜ」と責めず、「何を守ろうとしたのか」と背景に寄り添う。</li>
-          </ul>
-
-          <p>次回（第2回）は「幻覚・妄想をどう聴くか ―本人の困りごとに寄り添うために―」をテーマに行います。今回の「人と問題を分ける」視点を土台に、具体的な「聴き方」へと進みます。</p>
+          <!-- まとめ -->
+          <div class="study-point">
+            <div class="study-point-text">
+              <h3>今回の学びと次回に向けて</h3>
+              <p>今回の勉強会では、本人と問題を分けて考えること、行動を責めずに背景にある苦労を見ることを学びました。次回は9月例会で、「幻覚・妄想をどう聴くか」をテーマに学ぶ予定です。</p>
+            </div>
+            <div class="study-point-image">
+              <figure>
+                <img src="images/report/study2026/slide_p19.png" alt="今日のまとめと次回予告スライド" loading="lazy">
+                <figcaption>▲ 今回のまとめ。次回（第2回）は「幻覚・妄想をどう聴くか」</figcaption>
+              </figure>
+            </div>
+          </div>
 
         </div>
       </article>
