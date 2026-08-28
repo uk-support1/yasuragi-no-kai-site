@@ -929,7 +929,15 @@ main { min-height: 60vh; }
   background: linear-gradient(135deg, var(--green-light) 0%, #e8f5ec 100%);
   padding: 20px 24px 16px;
   border-bottom: 2px solid var(--green-main);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  user-select: none;
 }
+.report-article-header:hover { background: linear-gradient(135deg, #c8e6d0 0%, #ddf0e4 100%); }
+.report-article-header-text { flex: 1; }
 .report-article-header .report-date {
   font-size: 0.85rem;
   color: var(--green-dark);
@@ -941,9 +949,13 @@ main { min-height: 60vh; }
   color: var(--brown-text);
   margin: 0;
 }
+.report-toggle-icon { font-size: 1rem; color: var(--green-dark); flex-shrink: 0; margin-top: 6px; transition: transform 0.2s; }
+.report-article.open .report-toggle-icon { transform: rotate(180deg); }
 .report-article-body {
+  display: none;
   padding: 24px;
 }
+.report-article.open .report-article-body { display: block; }
 .report-article-body p {
   color: var(--brown-text);
   line-height: 1.8;
@@ -1903,10 +1915,13 @@ main { min-height: 60vh; }
 
       <!-- ▼ 記事3：8月例会 納涼・お食事会 ▼ -->
       <article class="report-article">
-        <div class="report-article-header">
-          <div class="report-date">2026年8月9日（令和8年）</div>
-          <h2>納涼・お食事会！</h2>
-          <p style="margin:6px 0 0; font-size:0.9rem; color:var(--gray-text);">8月例会　会場：季粋（日本料理店）　参加 12名</p>
+        <div class="report-article-header" onclick="toggleReport(this)">
+          <div class="report-article-header-text">
+            <div class="report-date">2026年8月9日（令和8年）</div>
+            <h2>納涼・お食事会！</h2>
+            <p style="margin:6px 0 0; font-size:0.9rem; color:var(--gray-text);">8月例会　会場：季粋（日本料理店）　参加 12名</p>
+          </div>
+          <span class="report-toggle-icon">▼</span>
         </div>
         <div class="report-article-body">
 
@@ -1948,9 +1963,12 @@ main { min-height: 60vh; }
 
       <!-- ▼ 記事2：7月例会 勉強会「病気ではなく、人を見る」 ▼ -->
       <article class="report-article">
-        <div class="report-article-header">
-          <div class="report-date">2026年7月17日（令和8年）</div>
-          <h2>勉強会「病気ではなく、人を見る」を開催しました</h2>
+        <div class="report-article-header" onclick="toggleReport(this)">
+          <div class="report-article-header-text">
+            <div class="report-date">2026年7月17日（令和8年）</div>
+            <h2>勉強会「病気ではなく、人を見る」を開催しました</h2>
+          </div>
+          <span class="report-toggle-icon">▼</span>
         </div>
         <div class="report-article-body">
 
@@ -2053,9 +2071,12 @@ main { min-height: 60vh; }
 
       <!-- ▼ 記事1：第33回新座市福祉フェスティバル ▼ -->
       <article class="report-article">
-        <div class="report-article-header">
-          <div class="report-date">2026年5月31日（令和8年）</div>
-          <h2>第33回新座市福祉フェスティバルに出店しました</h2>
+        <div class="report-article-header" onclick="toggleReport(this)">
+          <div class="report-article-header-text">
+            <div class="report-date">2026年5月31日（令和8年）</div>
+            <h2>第33回新座市福祉フェスティバルに出店しました</h2>
+          </div>
+          <span class="report-toggle-icon">▼</span>
         </div>
         <div class="report-article-body">
 
@@ -2881,6 +2902,12 @@ function toggleQA(questionEl) {
 // お知らせアコーディオン
 function toggleNews(headerEl) {
   var item = headerEl.closest('.news-page-item');
+  item.classList.toggle('open');
+}
+
+// 活動報告アコーディオン
+function toggleReport(headerEl) {
+  var item = headerEl.closest('.report-article');
   item.classList.toggle('open');
 }
 
