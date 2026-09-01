@@ -3033,6 +3033,9 @@ function toggleReport(headerEl) {
   item.classList.toggle('open');
 }
 
+// 初期表示
+showPage('home');
+
 // Formspree標準POST送信後の ?sent= パラメータでサンクスメッセージを表示
 (function() {
   var params = new URLSearchParams(window.location.search);
@@ -3043,17 +3046,16 @@ function toggleReport(headerEl) {
     var f = document.getElementById('contact-form');
     if (t) t.style.display = 'block';
     if (f) f.style.display = 'none';
+    history.replaceState(null, '', window.location.pathname);
   } else if (sent === 'join') {
     showPage('join');
     var t2 = document.getElementById('join-thanks');
     var f2 = document.getElementById('join-form');
     if (t2) t2.style.display = 'block';
     if (f2) f2.style.display = 'none';
+    history.replaceState(null, '', window.location.pathname);
   }
 })();
-
-// 初期表示
-showPage('home');
 
 // ライトボックス
 function openLightbox(el, e) {
