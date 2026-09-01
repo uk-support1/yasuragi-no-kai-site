@@ -843,45 +843,94 @@ main { min-height: 60vh; }
   border-radius: 20px;
   margin-bottom: 10px;
 }
-.gform-box {
+.contact-form-box {
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 24px 24px 8px;
+  padding: 28px 28px 24px;
   margin-bottom: 20px;
 }
-.gform-note {
+.contact-form-note {
   font-size: 0.88rem;
   color: var(--gray-text);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  margin-bottom: 20px;
 }
-.gform-container {
-  position: relative;
-  width: 100%;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  padding-bottom: 100px;
-  background: #fff;
+.contact-form .form-group {
+  margin-bottom: 20px;
 }
-.gform-container iframe {
-  width: 100%;
-  min-height: 640px;
-  border: none;
+.contact-form label {
   display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brown-text);
+  margin-bottom: 6px;
 }
-.gform-placeholder {
-  background: #F5F5F5;
-  border: 2px dashed #B0BEC5;
-  border-radius: var(--radius-sm);
-  padding: 40px 24px;
+.contact-form label .required-mark {
+  display: inline-block;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1.5px solid #c8d8c8;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--brown-text);
+  background: #fafafa;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  border-color: var(--green-main);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(90,171,122,0.15);
+}
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.contact-form .submit-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 8px;
+}
+.contact-form .submit-btn:hover { background: var(--green-main); }
+.contact-form .submit-btn:disabled { background: #a0b8a0; cursor: not-allowed; }
+.contact-form-thanks {
+  display: none;
+  background: var(--green-light);
+  border: 1.5px solid var(--green-main);
+  border-radius: var(--radius);
+  padding: 24px 28px;
   text-align: center;
-  color: #78909C;
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.8;
 }
-.gform-placeholder .ph-icon { font-size: 3rem; margin-bottom: 12px; }
-.gform-placeholder p { margin: 0 0 6px; font-size: 0.9rem; line-height: 1.7; }
 .contact-phone-box {
   background: var(--white);
   border-radius: var(--radius);
@@ -2498,15 +2547,40 @@ main { min-height: 60vh; }
     <!-- お問い合わせフォーム -->
     <div class="mt-36">
       <span class="method-label">📝 見学・入会のお問い合わせはこちら</span>
-      <div class="gform-box">
-        <p class="gform-note">📝 お名前、ご連絡先、お問い合わせ内容をご記入いただき、「<strong>送信</strong>」を押してください。</p>
-        <div class="gform-container">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSdDMqceaj7TRadruayeBrXVaew5RJRX7z_hfbBN1KYPTqkO-g/viewform?embedded=true"
-            title="お問い合わせフォーム"
-            loading="lazy"
-          >フォームを読み込んでいます…</iframe>
+      <div class="contact-form-box">
+        <p class="contact-form-note">お名前、ご連絡先、お問い合わせ内容をご記入いただき、「送信する」を押してください。</p>
+
+        <div class="contact-form-thanks" id="join-thanks" role="alert" aria-live="polite">
+          ✅ お問い合わせありがとうございます。<br>
+          内容を確認のうえ、やすらぎの会 上原よりご連絡いたします。
         </div>
+
+        <form
+          class="contact-form"
+          id="join-form"
+          action="https://formspree.io/f/mljejbkd"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="join-name">
+              お名前<span class="required-mark">必須</span>
+            </label>
+            <input type="text" id="join-name" name="name" required autocomplete="name" placeholder="例：山田 花子">
+          </div>
+          <div class="form-group">
+            <label for="join-contact">
+              ご連絡先<span class="required-mark">必須</span>
+            </label>
+            <input type="text" id="join-contact" name="contact" required autocomplete="email" placeholder="例：example@email.com または 090-xxxx-xxxx">
+          </div>
+          <div class="form-group">
+            <label for="join-message">
+              お問い合わせ内容<span class="required-mark">必須</span>
+            </label>
+            <textarea id="join-message" name="message" required placeholder="ご質問・ご相談の内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">送信する</button>
+        </form>
       </div>
       <div class="contact-phone-box mt-20">
         <div class="ph-icon-large">📞</div>
@@ -2544,20 +2618,64 @@ main { min-height: 60vh; }
     <!-- ① フォームで送る（主要手段） -->
     <div class="mb-28">
       <span class="method-label">📝 フォームで送る（おすすめ）</span>
-      <div class="gform-box">
-        <p class="gform-note">📝 お名前、ご連絡先、お問い合わせ内容をご記入いただき、「<strong>送信</strong>」を押してください。</p>
+      <div class="contact-form-box">
+        <p class="contact-form-note">お名前、ご連絡先、お問い合わせ内容をご記入いただき、「送信する」を押してください。</p>
 
-        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-             ▼ Googleフォーム作成後、下の src="" を実際のURLに差し替えてください
-             例: src="https://docs.google.com/forms/d/e/1FAIpQLSe○○○/viewform?embedded=true"
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-        <div class="gform-container" id="gform-area">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSdDMqceaj7TRadruayeBrXVaew5RJRX7z_hfbBN1KYPTqkO-g/viewform?embedded=true"
-            title="お問い合わせフォーム"
-            loading="lazy"
-          >フォームを読み込んでいます…</iframe>
+        <!-- 送信完了メッセージ（送信後に表示） -->
+        <div class="contact-form-thanks" id="contact-thanks" role="alert" aria-live="polite">
+          ✅ お問い合わせありがとうございます。<br>
+          内容を確認のうえ、やすらぎの会 上原よりご連絡いたします。
         </div>
+
+        <!-- Formspreeフォーム -->
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="https://formspree.io/f/mljejbkd"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="contact-name">
+              お名前<span class="required-mark">必須</span>
+            </label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              required
+              autocomplete="name"
+              placeholder="例：山田 花子"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="contact-contact">
+              ご連絡先<span class="required-mark">必須</span>
+            </label>
+            <input
+              type="text"
+              id="contact-contact"
+              name="contact"
+              required
+              autocomplete="email"
+              placeholder="例：example@email.com または 090-xxxx-xxxx"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">
+              お問い合わせ内容<span class="required-mark">必須</span>
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              required
+              placeholder="ご質問・ご相談の内容をご記入ください"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">送信する</button>
+        </form>
       </div>
     </div>
 
@@ -2910,6 +3028,41 @@ function toggleReport(headerEl) {
   var item = headerEl.closest('.report-article');
   item.classList.toggle('open');
 }
+
+// Formspreeフォーム共通ハンドラ
+function setupFormspree(formId, thanksId) {
+  var form = document.getElementById(formId);
+  var thanks = document.getElementById(thanksId);
+  if (!form || !thanks) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        thanks.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = '送信する';
+        alert('送信に失敗しました。時間をおいて再度お試しいただくか、お電話にてご連絡ください。');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = '送信する';
+      alert('送信に失敗しました。ネットワーク接続をご確認ください。');
+    });
+  });
+}
+
+// お問い合わせフォーム・入会フォーム（Formspree）
+setupFormspree('contact-form', 'contact-thanks');
+setupFormspree('join-form', 'join-thanks');
 
 // 初期表示
 showPage('home');
