@@ -2561,6 +2561,8 @@ main { min-height: 60vh; }
           action="https://formspree.io/f/mljejbkd"
           method="POST"
         >
+          <input type="hidden" name="_subject" value="【やすらぎの会】入会・見学のお問い合わせ">
+          <input type="hidden" name="_next" value="https://uk-support1.github.io/yasuragi-no-kai-site/?sent=join">
           <div class="form-group">
             <label for="join-name">
               お名前<span class="required-mark">必須</span>
@@ -2634,6 +2636,8 @@ main { min-height: 60vh; }
           action="https://formspree.io/f/mljejbkd"
           method="POST"
         >
+          <input type="hidden" name="_subject" value="【やすらぎの会】お問い合わせフォームから送信">
+          <input type="hidden" name="_next" value="https://uk-support1.github.io/yasuragi-no-kai-site/?sent=contact">
           <div class="form-group">
             <label for="contact-name">
               お名前<span class="required-mark">必須</span>
@@ -3029,40 +3033,24 @@ function toggleReport(headerEl) {
   item.classList.toggle('open');
 }
 
-// Formspreeフォーム共通ハンドラ
-function setupFormspree(formId, thanksId) {
-  var form = document.getElementById(formId);
-  var thanks = document.getElementById(thanksId);
-  if (!form || !thanks) return;
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = form.querySelector('.submit-btn');
-    btn.disabled = true;
-    btn.textContent = '送信中…';
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(function(res) {
-      if (res.ok) {
-        form.style.display = 'none';
-        thanks.style.display = 'block';
-      } else {
-        btn.disabled = false;
-        btn.textContent = '送信する';
-        alert('送信に失敗しました。時間をおいて再度お試しいただくか、お電話にてご連絡ください。');
-      }
-    }).catch(function() {
-      btn.disabled = false;
-      btn.textContent = '送信する';
-      alert('送信に失敗しました。ネットワーク接続をご確認ください。');
-    });
-  });
-}
-
-// お問い合わせフォーム・入会フォーム（Formspree）
-setupFormspree('contact-form', 'contact-thanks');
-setupFormspree('join-form', 'join-thanks');
+// Formspree標準POST送信後の ?sent= パラメータでサンクスメッセージを表示
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var sent = params.get('sent');
+  if (sent === 'contact') {
+    showPage('contact');
+    var t = document.getElementById('contact-thanks');
+    var f = document.getElementById('contact-form');
+    if (t) t.style.display = 'block';
+    if (f) f.style.display = 'none';
+  } else if (sent === 'join') {
+    showPage('join');
+    var t2 = document.getElementById('join-thanks');
+    var f2 = document.getElementById('join-form');
+    if (t2) t2.style.display = 'block';
+    if (f2) f2.style.display = 'none';
+  }
+})();
 
 // 初期表示
 showPage('home');
