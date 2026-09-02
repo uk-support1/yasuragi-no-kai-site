@@ -1264,6 +1264,37 @@ main { min-height: 60vh; }
 }
 
 /* =============================
+   Bloggerウィジェット
+============================= */
+.blogger-widget {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px 18px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--green-main);
+}
+.blogger-widget-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.blogger-widget-date {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  margin-bottom: 10px;
+}
+.blogger-widget-body {
+  font-size: 0.95rem;
+  color: var(--brown-text);
+  line-height: 1.85;
+}
+.blogger-widget-body p { margin: 0 0 8px; }
+.blogger-widget-body p:last-child { margin-bottom: 0; }
+
+/* =============================
    会報ページ
 ============================= */
 .pdf-grid {
@@ -2482,6 +2513,9 @@ main { min-height: 60vh; }
     <div class="section-title">入会案内</div>
     <p class="section-subtitle">入会を迷っている方も、まずはお気軽にご連絡ください</p>
 
+    <!-- Blogger: 会員募集状況（自動取得） -->
+    <div id="blogger-membership" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+
     <div class="card mb-36">
       <h3>🍀 入会できる方</h3>
       <ul>
@@ -3032,6 +3066,47 @@ function toggleReport(headerEl) {
   var item = headerEl.closest('.report-article');
   item.classList.toggle('open');
 }
+
+// Bloggerウィジェット汎用ローダー
+// 使い方: loadBloggerWidget({ label:'ラベル名', containerId:'div-id', maxResults:1 })
+function loadBloggerWidget(config) {
+  var cbName = 'bloggerCb_' + config.containerId.replace(/-/g, '_');
+  window[cbName] = function(data) {
+    var el = document.getElementById(config.containerId);
+    if (!el) return;
+    try {
+      var entries = (data.feed || {}).entry;
+      if (!entries || entries.length === 0) { return; }
+      var e = entries[0];
+      var d = new Date(e.updated.$t);
+      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+      var body = (e.content || e.summary || {}).$t || '';
+      el.innerHTML =
+        '<div class="blogger-widget-label">📋 ' + config.label + '</div>' +
+        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-body">' + body + '</div>';
+      el.style.display = '';
+    } catch (err) { /* 取得失敗時は非表示のまま */ }
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  var src = 'https://niiza-yasuragi.blogspot.com/feeds/posts/default/-/' +
+    encodeURIComponent(config.label) +
+    '?alt=json-in-script&callback=' + cbName + '&max-results=' + (config.maxResults || 1);
+  var script = document.createElement('script');
+  script.id = cbName + '_s';
+  script.src = src;
+  script.onerror = function() {
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  document.head.appendChild(script);
+}
+
+// 会員募集状況（入会案内ページ）
+loadBloggerWidget({ label: '会員募集状況', containerId: 'blogger-membership', maxResults: 1 });
 
 // 初期表示
 showPage('home');
