@@ -1293,6 +1293,53 @@ main { min-height: 60vh; }
 }
 .blogger-widget-body p { margin: 0 0 8px; }
 .blogger-widget-body p:last-child { margin-bottom: 0; }
+/* 活動報告：Bloggerカードグリッド */
+.blogger-report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.blogger-report-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px 16px;
+  border-top: 3px solid var(--green-main);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.blogger-report-card-date {
+  font-size: 0.78rem;
+  color: var(--gray-text);
+}
+.blogger-report-card-title {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--brown-text);
+  line-height: 1.5;
+}
+.blogger-report-card-body {
+  font-size: 0.85rem;
+  color: var(--gray-text);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.blogger-report-card-body * { margin: 0; padding: 0; }
+.blogger-report-section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+@media (max-width: 480px) {
+  .blogger-report-grid { grid-template-columns: 1fr; }
+}
 
 /* =============================
    会報ページ
@@ -1775,6 +1822,9 @@ main { min-height: 60vh; }
       </div>
     </div>
 
+    <!-- Blogger: 役員紹介（自動取得） -->
+    <div id="blogger-officers" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+
     <div class="card mb-36">
       <h3>🏛 関係機関・連携先</h3>
       <ul>
@@ -1989,6 +2039,12 @@ main { min-height: 60vh; }
   <div class="section-wrap">
     <div class="section-title">活動報告</div>
     <p class="section-subtitle">やすらぎの会では、定例会や研修会、地域イベントへの参加など様々な活動を行っています。<br>こちらのページでは活動の様子をご紹介します。</p>
+
+    <!-- Blogger: 活動報告 最新3件（自動取得） -->
+    <div id="blogger-report-wrap" style="display:none;" aria-live="polite">
+      <div class="blogger-report-section-title">🌐 Bloggerからの最新活動報告</div>
+      <div id="blogger-report" class="blogger-report-grid"></div>
+    </div>
 
     <!-- ★ 活動報告を追加するときはこの <div class="report-article"> ブロックをコピーして上に貼り付けます ★ -->
     <div class="report-list">
@@ -2515,6 +2571,9 @@ main { min-height: 60vh; }
 
     <!-- Blogger: 会員募集状況（自動取得） -->
     <div id="blogger-membership" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+
+    <!-- Blogger: 採用・募集（自動取得） -->
+    <div id="blogger-recruit" class="blogger-widget" style="display:none;" aria-live="polite"></div>
 
     <div class="card mb-36">
       <h3>🍀 入会できる方</h3>
@@ -3107,6 +3166,56 @@ function loadBloggerWidget(config) {
 
 // 会員募集状況（入会案内ページ）
 loadBloggerWidget({ label: '会員募集状況', containerId: 'blogger-membership', maxResults: 1 });
+
+// 採用・募集（入会案内ページ）
+loadBloggerWidget({ label: '採用・募集', containerId: 'blogger-recruit', maxResults: 1 });
+
+// 役員紹介（会の紹介ページ）
+loadBloggerWidget({ label: '役員紹介', containerId: 'blogger-officers', maxResults: 1 });
+
+// 活動報告 最新3件（活動報告ページ）— カードグリッド形式で別途レンダリング
+(function() {
+  var cbName = 'bloggerCb_blogger_report';
+  window[cbName] = function(data) {
+    var wrap = document.getElementById('blogger-report-wrap');
+    var grid = document.getElementById('blogger-report');
+    if (!wrap || !grid) return;
+    try {
+      var entries = (data.feed || {}).entry;
+      if (!entries || entries.length === 0) return;
+      var html = '';
+      entries.forEach(function(e) {
+        var d = new Date(e.updated.$t);
+        var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+        var title = e.title.$t;
+        var body = ((e.content || e.summary || {}).$t || '').replace(/<[^>]+>/g, '');
+        html +=
+          '<div class="blogger-report-card">' +
+            '<div class="blogger-report-card-date">' + dateStr + '</div>' +
+            '<div class="blogger-report-card-title">' + title + '</div>' +
+            '<div class="blogger-report-card-body">' + body + '</div>' +
+          '</div>';
+      });
+      grid.innerHTML = html;
+      wrap.style.display = '';
+    } catch (err) { /* 取得失敗時は非表示のまま */ }
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  var src = 'https://niiza-yasuragi.blogspot.com/feeds/posts/default/-/' +
+    encodeURIComponent('活動報告') +
+    '?alt=json-in-script&callback=' + cbName + '&max-results=3';
+  var script = document.createElement('script');
+  script.id = cbName + '_s';
+  script.src = src;
+  script.onerror = function() {
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  document.head.appendChild(script);
+})();
 
 // 初期表示
 showPage('home');
