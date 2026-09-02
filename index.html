@@ -1264,22 +1264,18 @@ main { min-height: 60vh; }
 }
 
 /* =============================
-   Bloggerウィジェット
+   Bloggerウィジェット共通
 ============================= */
-.blogger-widget {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px 24px 18px;
-  margin-bottom: 24px;
-  border-left: 4px solid var(--green-main);
-}
-.blogger-widget-label {
-  font-size: 0.78rem;
+.blogger-badge {
+  display: inline-block;
+  background: #f57c00;
+  color: #fff;
+  font-size: 0.68rem;
   font-weight: 700;
-  color: var(--green-dark);
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
 }
 .blogger-widget-date {
   font-size: 0.8rem;
@@ -1293,52 +1289,139 @@ main { min-height: 60vh; }
 }
 .blogger-widget-body p { margin: 0 0 8px; }
 .blogger-widget-body p:last-child { margin-bottom: 0; }
-/* 活動報告：Bloggerカードグリッド */
-.blogger-report-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.blogger-report-card {
+
+/* アコーディオン型Bloggerウィジェット */
+.blogger-accordion {
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 18px 20px 16px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--green-main);
+  overflow: hidden;
+}
+.blogger-accordion-header {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  transition: background 0.15s;
+}
+.blogger-accordion-header:hover { background: var(--green-pale); }
+.blogger-accordion-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brown-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.blogger-accordion-icon {
+  font-size: 0.85rem;
+  color: var(--green-dark);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.blogger-accordion.open .blogger-accordion-icon { transform: rotate(180deg); }
+.blogger-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.blogger-accordion.open .blogger-accordion-body { max-height: 2000px; }
+.blogger-accordion-content {
+  padding: 16px 20px 18px;
+  border-top: 1px solid var(--green-light);
+}
+
+/* 活動ブログセクション */
+.blogger-blog-section {
+  background: linear-gradient(135deg, #f0f8f4 0%, #e8f5ec 100%);
+  border: 1px solid var(--green-light);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 36px;
+}
+.blogger-blog-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.blogger-blog-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brown-text);
+  margin: 0;
+}
+.blogger-blog-section-sub {
+  font-size: 0.82rem;
+  color: var(--gray-text);
+  margin: 4px 0 18px;
+}
+.blogger-report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.blogger-report-card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  padding: 16px 18px 14px;
   border-top: 3px solid var(--green-main);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
-.blogger-report-card-date {
-  font-size: 0.78rem;
-  color: var(--gray-text);
+.blogger-report-card:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+  transform: translateY(-2px);
+  text-decoration: none;
 }
+.blogger-report-card-date { font-size: 0.75rem; color: var(--gray-text); }
 .blogger-report-card-title {
-  font-size: 0.97rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--brown-text);
   line-height: 1.5;
 }
 .blogger-report-card-body {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--gray-text);
-  line-height: 1.7;
+  line-height: 1.65;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.blogger-report-card-body * { margin: 0; padding: 0; }
-.blogger-report-section-title {
-  font-size: 0.8rem;
+.blogger-more-btn {
+  display: inline-block;
+  padding: 9px 22px;
+  background: var(--green-dark);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--green-dark);
-  letter-spacing: 0.05em;
-  margin-bottom: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
 }
+.blogger-more-btn:hover { background: var(--green-main); text-decoration: none; }
 @media (max-width: 480px) {
   .blogger-report-grid { grid-template-columns: 1fr; }
+}
+
+/* ナビのBloggerリンク */
+#global-nav a.nav-blogger {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-radius: var(--radius-sm);
 }
 
 /* =============================
@@ -1583,6 +1666,7 @@ main { min-height: 60vh; }
         <li><a href="#" onclick="showPage('access'); return false;" data-page="access">アクセス</a></li>
         <li><a href="#" onclick="showPage('qa'); return false;" data-page="qa">Q&amp;A</a></li>
         <li><a href="#" onclick="showPage('contact'); return false;" data-page="contact">お問い合わせ</a></li>
+        <li><a href="https://niiza-yasuragi.blogspot.com/" target="_blank" rel="noopener noreferrer" class="nav-blogger">Blogger ↗</a></li>
       </ul>
     </nav>
   </div>
@@ -1822,8 +1906,16 @@ main { min-height: 60vh; }
       </div>
     </div>
 
-    <!-- Blogger: 役員紹介（自動取得） -->
-    <div id="blogger-officers" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+    <!-- Blogger: 役員紹介（自動取得・アコーディオン） -->
+    <div id="blogger-officers" class="blogger-accordion" style="display:none;" aria-live="polite">
+      <div class="blogger-accordion-header" onclick="toggleBloggerAccordion(this)">
+        <div class="blogger-accordion-title"><span class="blogger-badge">Blogger</span>役員紹介</div>
+        <span class="blogger-accordion-icon">▼</span>
+      </div>
+      <div class="blogger-accordion-body">
+        <div class="blogger-accordion-content"></div>
+      </div>
+    </div>
 
     <div class="card mb-36">
       <h3>🏛 関係機関・連携先</h3>
@@ -2040,10 +2132,15 @@ main { min-height: 60vh; }
     <div class="section-title">活動報告</div>
     <p class="section-subtitle">やすらぎの会では、定例会や研修会、地域イベントへの参加など様々な活動を行っています。<br>こちらのページでは活動の様子をご紹介します。</p>
 
-    <!-- Blogger: 活動報告 最新3件（自動取得） -->
-    <div id="blogger-report-wrap" style="display:none;" aria-live="polite">
-      <div class="blogger-report-section-title">🌐 Bloggerからの最新活動報告</div>
+    <!-- Blogger: 活動ブログ 最新3件（自動取得・独立セクション） -->
+    <div id="blogger-report-wrap" class="blogger-blog-section" style="display:none;" aria-live="polite">
+      <div class="blogger-blog-section-header">
+        <span class="blogger-badge">Blogger</span>
+        <h3 class="blogger-blog-section-title">活動ブログ（最新記事）</h3>
+      </div>
+      <p class="blogger-blog-section-sub">Bloggerで記事を投稿すると、こちらに自動で反映されます</p>
       <div id="blogger-report" class="blogger-report-grid"></div>
+      <a href="https://niiza-yasuragi.blogspot.com/" target="_blank" rel="noopener noreferrer" class="blogger-more-btn">活動ブログをもっと見る ↗</a>
     </div>
 
     <!-- ★ 活動報告を追加するときはこの <div class="report-article"> ブロックをコピーして上に貼り付けます ★ -->
@@ -2569,11 +2666,27 @@ main { min-height: 60vh; }
     <div class="section-title">入会案内</div>
     <p class="section-subtitle">入会を迷っている方も、まずはお気軽にご連絡ください</p>
 
-    <!-- Blogger: 会員募集状況（自動取得） -->
-    <div id="blogger-membership" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+    <!-- Blogger: 会員募集状況（自動取得・アコーディオン） -->
+    <div id="blogger-membership" class="blogger-accordion" style="display:none;" aria-live="polite">
+      <div class="blogger-accordion-header" onclick="toggleBloggerAccordion(this)">
+        <div class="blogger-accordion-title"><span class="blogger-badge">Blogger</span>現在の会員募集状況</div>
+        <span class="blogger-accordion-icon">▼</span>
+      </div>
+      <div class="blogger-accordion-body">
+        <div class="blogger-accordion-content"></div>
+      </div>
+    </div>
 
-    <!-- Blogger: 採用・募集（自動取得） -->
-    <div id="blogger-recruit" class="blogger-widget" style="display:none;" aria-live="polite"></div>
+    <!-- Blogger: 採用・募集（自動取得・アコーディオン） -->
+    <div id="blogger-recruit" class="blogger-accordion" style="display:none;" aria-live="polite">
+      <div class="blogger-accordion-header" onclick="toggleBloggerAccordion(this)">
+        <div class="blogger-accordion-title"><span class="blogger-badge">Blogger</span>活動協力者募集</div>
+        <span class="blogger-accordion-icon">▼</span>
+      </div>
+      <div class="blogger-accordion-body">
+        <div class="blogger-accordion-content"></div>
+      </div>
+    </div>
 
     <div class="card mb-36">
       <h3>🍀 入会できる方</h3>
@@ -3126,6 +3239,11 @@ function toggleReport(headerEl) {
   item.classList.toggle('open');
 }
 
+// Bloggerアコーディオン開閉
+function toggleBloggerAccordion(headerEl) {
+  headerEl.closest('.blogger-accordion').classList.toggle('open');
+}
+
 // Bloggerウィジェット汎用ローダー
 // 使い方: loadBloggerWidget({ label:'ラベル名', containerId:'div-id', maxResults:1 })
 function loadBloggerWidget(config) {
@@ -3135,13 +3253,14 @@ function loadBloggerWidget(config) {
     if (!el) return;
     try {
       var entries = (data.feed || {}).entry;
-      if (!entries || entries.length === 0) { return; }
+      if (!entries || entries.length === 0) return;
       var e = entries[0];
       var d = new Date(e.updated.$t);
       var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
       var body = (e.content || e.summary || {}).$t || '';
-      el.innerHTML =
-        '<div class="blogger-widget-label">📋 ' + config.label + '</div>' +
+      // アコーディオン内のcontent divに注入、なければ直接
+      var target = el.querySelector('.blogger-accordion-content') || el;
+      target.innerHTML =
         '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
         '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
@@ -3189,12 +3308,14 @@ loadBloggerWidget({ label: '役員紹介', containerId: 'blogger-officers', maxR
         var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
         var title = e.title.$t;
         var body = ((e.content || e.summary || {}).$t || '').replace(/<[^>]+>/g, '');
+        var link = 'https://niiza-yasuragi.blogspot.com/';
+        (e.link || []).forEach(function(l) { if (l.rel === 'alternate') link = l.href; });
         html +=
-          '<div class="blogger-report-card">' +
+          '<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="blogger-report-card">' +
             '<div class="blogger-report-card-date">' + dateStr + '</div>' +
             '<div class="blogger-report-card-title">' + title + '</div>' +
             '<div class="blogger-report-card-body">' + body + '</div>' +
-          '</div>';
+          '</a>';
       });
       grid.innerHTML = html;
       wrap.style.display = '';
