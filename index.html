@@ -3036,6 +3036,14 @@ function toggleReport(headerEl) {
 // 初期表示
 showPage('home');
 
+// ?page= クエリパラメータによる直接遷移
+(function() {
+  var pageId = new URLSearchParams(window.location.search).get('page');
+  if (pageId && document.getElementById('page-' + pageId)) {
+    showPage(pageId);
+  }
+})();
+
 // Formspree標準POST送信後の ?sent= パラメータでサンクスメッセージを表示
 (function() {
   var params = new URLSearchParams(window.location.search);
