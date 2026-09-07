@@ -1658,6 +1658,7 @@ main { min-height: 60vh; }
       <ul>
         <li><a href="#" onclick="showPage('home'); return false;" data-page="home">ホーム</a></li>
         <li><a href="#" onclick="showPage('about'); return false;" data-page="about">会の紹介</a></li>
+        <li><a href="#" onclick="showPageAndScroll('about','blogger-officers'); return false;">役員紹介</a></li>
         <li><a href="#" onclick="showPage('schedule'); return false;" data-page="schedule">年間予定</a></li>
         <li><a href="#" onclick="showPage('report'); return false;" data-page="report">活動報告</a></li>
         <li><a href="#" onclick="showPage('news'); return false;" data-page="news">お知らせ</a></li>
@@ -3237,6 +3238,19 @@ function toggleNews(headerEl) {
 function toggleReport(headerEl) {
   var item = headerEl.closest('.report-article');
   item.classList.toggle('open');
+}
+
+// ページ表示後にアンカーへスクロール
+function showPageAndScroll(pageId, anchorId) {
+  showPage(pageId);
+  setTimeout(function() {
+    var el = document.getElementById(anchorId);
+    if (!el) return;
+    var header = document.getElementById('site-header');
+    var headerH = header ? header.offsetHeight : 72;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 24;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }, 80);
 }
 
 // Bloggerアコーディオン開閉
