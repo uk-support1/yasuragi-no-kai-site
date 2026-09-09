@@ -3060,13 +3060,9 @@ function loadBloggerWidget(config) {
     try {
       var entry = data.entry || ((data.feed || {}).entry || [])[0];
       if (!entry) return;
-      var d = new Date(entry.updated.$t);
-      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
       var body = (entry.content || entry.summary || {}).$t || '';
       var target = el.querySelector('.blogger-accordion-content') || el;
-      target.innerHTML =
-        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
-        '<div class="blogger-widget-body">' + body + '</div>';
+      target.innerHTML = '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
     } catch (err) { /* 取得失敗時は非表示のまま */ }
     delete window[cbName];
