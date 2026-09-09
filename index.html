@@ -3143,9 +3143,7 @@ function getAutoUpdateDateStr() {
       if (!entry) return;
       var body = (entry.content || entry.summary || {}).$t || '';
       var target = el.querySelector('.blogger-accordion-content') || el;
-      target.innerHTML =
-        '<div class="blogger-widget-date">' + getAutoUpdateDateStr() + '</div>' +
-        '<div class="blogger-widget-body">' + body + '</div>';
+      target.innerHTML = '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
     } catch (err) { /* 取得失敗時は非表示のまま */ }
     delete window[cbName];
