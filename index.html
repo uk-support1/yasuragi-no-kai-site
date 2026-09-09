@@ -3051,14 +3051,109 @@ function loadBloggerWidget(config) {
   document.head.appendChild(script);
 }
 
-// 会員募集状況（入会案内ページ）
-loadBloggerWidget({ label: '会員募集状況', containerId: 'blogger-membership', maxResults: 1 });
+// 現在の会員募集状況（入会案内ページ）- Blogger固定ページから取得
+(function() {
+  var cbName = 'bloggerCb_membership_page';
+  window[cbName] = function(data) {
+    var el = document.getElementById('blogger-membership');
+    if (!el) return;
+    try {
+      var entry = data.entry || ((data.feed || {}).entry || [])[0];
+      if (!entry) return;
+      var d = new Date(entry.updated.$t);
+      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+      var body = (entry.content || entry.summary || {}).$t || '';
+      var target = el.querySelector('.blogger-accordion-content') || el;
+      target.innerHTML =
+        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-body">' + body + '</div>';
+      el.style.display = '';
+    } catch (err) { /* 取得失敗時は非表示のまま */ }
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  var script = document.createElement('script');
+  script.id = cbName + '_s';
+  script.src = 'https://niiza-yasuragi.blogspot.com/feeds/pages/default/4457149823498981125' +
+    '?alt=json-in-script&callback=' + cbName;
+  script.onerror = function() {
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  document.head.appendChild(script);
+})();
 
-// 採用・募集（入会案内ページ）
-loadBloggerWidget({ label: '採用・募集', containerId: 'blogger-recruit', maxResults: 1 });
+// 活動協力者を募集しています（入会案内ページ）- Blogger固定ページから取得
+(function() {
+  var cbName = 'bloggerCb_recruit_page';
+  window[cbName] = function(data) {
+    var el = document.getElementById('blogger-recruit');
+    if (!el) return;
+    try {
+      var entry = data.entry || ((data.feed || {}).entry || [])[0];
+      if (!entry) return;
+      var d = new Date(entry.updated.$t);
+      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+      var body = (entry.content || entry.summary || {}).$t || '';
+      var target = el.querySelector('.blogger-accordion-content') || el;
+      target.innerHTML =
+        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-body">' + body + '</div>';
+      el.style.display = '';
+    } catch (err) { /* 取得失敗時は非表示のまま */ }
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  var script = document.createElement('script');
+  script.id = cbName + '_s';
+  script.src = 'https://niiza-yasuragi.blogspot.com/feeds/pages/default/8680483751579958087' +
+    '?alt=json-in-script&callback=' + cbName;
+  script.onerror = function() {
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  document.head.appendChild(script);
+})();
 
-// 役員紹介（会の紹介ページ）
-loadBloggerWidget({ label: '役員紹介', containerId: 'blogger-officers', maxResults: 1 });
+// 役員紹介（会の紹介ページ）- Blogger固定ページから取得
+(function() {
+  var cbName = 'bloggerCb_officers_page';
+  window[cbName] = function(data) {
+    var el = document.getElementById('blogger-officers');
+    if (!el) return;
+    try {
+      // 単一エントリ取得（data.entry）とフィード取得（data.feed.entry[0]）の両方に対応
+      var entry = data.entry || ((data.feed || {}).entry || [])[0];
+      if (!entry) return;
+      var d = new Date(entry.updated.$t);
+      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+      var body = (entry.content || entry.summary || {}).$t || '';
+      var target = el.querySelector('.blogger-accordion-content') || el;
+      target.innerHTML =
+        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-body">' + body + '</div>';
+      el.style.display = '';
+    } catch (err) { /* 取得失敗時は非表示のまま */ }
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  var src = 'https://niiza-yasuragi.blogspot.com/feeds/pages/default/8320833554610957383' +
+    '?alt=json-in-script&callback=' + cbName;
+  var script = document.createElement('script');
+  script.id = cbName + '_s';
+  script.src = src;
+  script.onerror = function() {
+    delete window[cbName];
+    var s = document.getElementById(cbName + '_s');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+  };
+  document.head.appendChild(script);
+})();
 
 // 活動報告 Blogger記事をアコーディオン形式で自動生成（降順・最大10件）
 (function() {
