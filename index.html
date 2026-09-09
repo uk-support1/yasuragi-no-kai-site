@@ -3051,6 +3051,22 @@ function loadBloggerWidget(config) {
   document.head.appendChild(script);
 }
 
+// 毎月2日基準の自動更新日文字列を返す（日本時間）
+function getAutoUpdateDateStr() {
+  var now = new Date();
+  var jst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  var y = jst.getUTCFullYear();
+  var m = jst.getUTCMonth(); // 0-indexed
+  var d = jst.getUTCDate();
+  if (d >= 2) {
+    return y + '年' + (m + 1) + '月2日更新';
+  } else {
+    // 1日の場合は前月2日
+    if (m === 0) { return (y - 1) + '年12月2日更新'; }
+    return y + '年' + m + '月2日更新';
+  }
+}
+
 // 現在の会員募集状況（入会案内ページ）- Blogger固定ページから取得
 (function() {
   var cbName = 'bloggerCb_membership_page';
@@ -3062,7 +3078,9 @@ function loadBloggerWidget(config) {
       if (!entry) return;
       var body = (entry.content || entry.summary || {}).$t || '';
       var target = el.querySelector('.blogger-accordion-content') || el;
-      target.innerHTML = '<div class="blogger-widget-body">' + body + '</div>';
+      target.innerHTML =
+        '<div class="blogger-widget-date">' + getAutoUpdateDateStr() + '</div>' +
+        '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
     } catch (err) { /* 取得失敗時は非表示のまま */ }
     delete window[cbName];
@@ -3090,12 +3108,10 @@ function loadBloggerWidget(config) {
     try {
       var entry = data.entry || ((data.feed || {}).entry || [])[0];
       if (!entry) return;
-      var d = new Date(entry.updated.$t);
-      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
       var body = (entry.content || entry.summary || {}).$t || '';
       var target = el.querySelector('.blogger-accordion-content') || el;
       target.innerHTML =
-        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-date">' + getAutoUpdateDateStr() + '</div>' +
         '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
     } catch (err) { /* 取得失敗時は非表示のまま */ }
@@ -3125,12 +3141,10 @@ function loadBloggerWidget(config) {
       // 単一エントリ取得（data.entry）とフィード取得（data.feed.entry[0]）の両方に対応
       var entry = data.entry || ((data.feed || {}).entry || [])[0];
       if (!entry) return;
-      var d = new Date(entry.updated.$t);
-      var dateStr = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
       var body = (entry.content || entry.summary || {}).$t || '';
       var target = el.querySelector('.blogger-accordion-content') || el;
       target.innerHTML =
-        '<div class="blogger-widget-date">最終更新：' + dateStr + '</div>' +
+        '<div class="blogger-widget-date">' + getAutoUpdateDateStr() + '</div>' +
         '<div class="blogger-widget-body">' + body + '</div>';
       el.style.display = '';
     } catch (err) { /* 取得失敗時は非表示のまま */ }
