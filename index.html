@@ -1731,10 +1731,20 @@ main { min-height: 60vh; }
         <div class="news-item" onclick="showPage('news')" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <div style="width:100px; height:100px; flex-shrink:0; border-radius:6px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:2.4rem;">📅</div>
           <div>
-            <div class="news-date">2026.08.18</div>
+            <div class="news-date">2026.09.15</div>
             <div class="news-title">
               <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">例会案内</span>
-              9月例会のお知らせ（9/11・中央公民館 青年室）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span>
+              10月例会のお知らせ（10/9・中央公民館 視聴覚室）<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 詳細はこちら</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-item" onclick="showReportAndOpenStudy2()" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <img src="images/report/study2026_02/slide_p01.png" alt="第2回勉強会スライド" style="width:100px; height:100px; object-fit:contain; background:var(--beige-main); border-radius:6px; flex-shrink:0;">
+          <div>
+            <div class="news-date">2026.09.11</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">活動報告</span>
+              9月例会を開催しました ― 第2回勉強会「幻覚・妄想をどう聴くか」―<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 活動報告へ</span>
             </div>
           </div>
         </div>
@@ -2040,7 +2050,7 @@ main { min-height: 60vh; }
             <td class="s-date" data-label="日付">10月9日</td>
             <td class="s-day" data-label="曜日">金</td>
             <td data-label="内容"><span class="ev-badge ev-teireikai">定例会</span>10月定例会</td>
-            <td class="s-venue" data-label="会場">中高公民館 視聴覚室</td>
+            <td class="s-venue" data-label="会場">中央公民館 視聴覚室</td>
             <td class="s-time" data-label="時間">13:00〜15:00</td>
             <td class="s-org" data-label="主催">やすらぎの会</td>
           </tr>
@@ -2151,6 +2161,78 @@ main { min-height: 60vh; }
     <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <!-- 2026年9月15日：10月例会のお知らせ -->
+    <div class="news-page-item" id="news-2026-10">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年9月15日</span>
+            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">例会案内</span>
+          </div>
+          <h3>📅 10月例会のお知らせ</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>次回のやすらぎの会例会を開催します。<br>今回は、向谷地生良さんから学ぶ「家族のための3回連続勉強会」の第3回を行います。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 日時</div>
+          <p>2026年10月9日（金）　13:00〜15:00</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 会場</div>
+          <p>新座市立中央公民館　視聴覚室</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 勉強会</div>
+          <p>家族のための3回連続勉強会 第3回</p>
+          <p><strong>「一緒に困り、一緒に考える」</strong></p>
+          <p>家族が具体的に、本人をどのようにサポートしていけるのかを、皆さんと一緒に考えます。</p>
+        </div>
+
+        <div class="news-detail-box">
+          🌿 <strong>参加について</strong><br>
+          初めての方、見学のみの方もお気軽にご参加ください。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026年9月11日：9月例会開催報告 -->
+    <div class="news-page-item" id="news-2026-09-report">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年9月11日</span>
+            <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">例会報告</span>
+          </div>
+          <h3>✅ 9月例会を開催しました</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>2026年9月11日（金）、中央公民館 青年室にて9月例会を開催しました。参加者は6名でした。</p>
+          <p>例会の前半に、埼家連および法人にいざ後援会からの活動報告を共有しました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 勉強会：「幻覚・妄想をどう聴くか」〜本人の困りごとに寄り添うために〜</div>
+          <p>向谷地生良さんから学ぶ「家族のための3回連続勉強会」の第2回として実施しました。</p>
+          <p>幻覚や妄想について、「否定する」「全面的に同意する」のどちらかではなく、本人が感じている怖さ・不安・困りごとに目を向けることを学びました。</p>
+          <p>また、家族だけで抱え込まず、家族会・訪問看護・地域の支援機関・医療機関などの力を借りることも大切だと確認しました。</p>
+        </div>
+
+        <div class="news-detail-box" style="text-align:center;">
+          <a href="#" onclick="showReportAndOpenStudy2(); return false;" style="display:inline-block; padding:10px 22px; background:var(--green-dark); color:#fff; border-radius:20px; font-size:0.9rem; font-weight:700; text-decoration:none;">📖 第2回勉強会の詳しい内容・資料はこちら</a>
+        </div>
+      </div>
+    </div>
 
     <!-- 2026年8月18日：やすらぎの会たより 第310号 -->
     <div class="news-page-item" id="news-2026-08-tayori">
@@ -2370,7 +2452,7 @@ main { min-height: 60vh; }
 
         <div class="news-section">
           <div class="news-section-head">■ 日時</div>
-          <p>2026年7月17日（日）　13:00〜15:00</p>
+          <p>2026年7月17日（金）　13:00〜15:00</p>
         </div>
 
         <div class="news-section">
@@ -2383,6 +2465,51 @@ main { min-height: 60vh; }
           <p>① 各種報告・共有事項</p>
           <p>② 勉強会<br>
           <span style="font-size:0.9rem; color:var(--gray-text);">統合失調症に関するさまざまな事例や書籍（向谷地 生良 著）を参考に、事例を通して当事者との関わり方や支援のあり方について学びます。また、参加者の皆さまと一緒に意見交換を行いながら理解を深めたいと思います。</span></p>
+          <p>③ 近況報告<br>
+          <span style="font-size:0.9rem; color:var(--gray-text);">お互いの悩みや苦労を分かち合う時間です。</span></p>
+        </div>
+
+        <div class="news-detail-box">
+          🌿 <strong>参加について</strong><br>
+          ご家族の立場であれば、どなたでもご参加いただけます。<br>
+          見学のみの参加も歓迎しています。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026年6月6日：6月例会のお知らせ（復元） -->
+    <div class="news-page-item" id="news-2026-06">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年6月6日</span>
+            <span class="news-badge" style="background:var(--green-light); color:var(--green-dark); border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">例会案内</span>
+          </div>
+          <h3>📅 6月例会のお知らせ</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>次回のやすらぎの会例会を開催します。<br>初めての方もお気軽にご参加ください。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 日時</div>
+          <p>2026年6月14日（日）　13:00〜15:00</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 会場</div>
+          <p>中央公民館 2階 視聴覚室</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 内容</div>
+          <p>① 福祉フェスティバル出店結果報告</p>
+          <p>② 勉強会<br>
+          「みんなねっと」5月号の読み合わせ<br>
+          <span style="font-size:0.9rem; color:var(--gray-text);">〜特集 家族会全国組織結成60周年を迎えて〜</span></p>
           <p>③ 近況報告<br>
           <span style="font-size:0.9rem; color:var(--gray-text);">お互いの悩みや苦労を分かち合う時間です。</span></p>
         </div>
@@ -2670,6 +2797,14 @@ main { min-height: 60vh; }
 
     <!-- ★ 会報PDFを追加するときはここにコピーして貼り付けます ★ -->
     <div class="pdf-grid mb-36">
+
+      <!-- 311号 2026年9月 -->
+      <div class="pdf-card">
+        <div class="pdf-icon">📄</div>
+        <div class="pdf-title">第311号</div>
+        <div class="pdf-date">2026年9月号</div>
+        <a href="pdfs/kaiho_311_2026-09.pdf" target="_blank" rel="noopener noreferrer">PDFを開く</a>
+      </div>
 
       <!-- 310号 2026年8月 -->
       <div class="pdf-card">
@@ -2989,6 +3124,27 @@ function toggleNews(headerEl) {
 function toggleReport(headerEl) {
   var item = headerEl.closest('.report-article');
   item.classList.toggle('open');
+}
+
+// 活動報告ページへ遷移し、第2回勉強会記事を開く
+function showReportAndOpenStudy2() {
+  showPage('report');
+  setTimeout(function() {
+    var headers = document.querySelectorAll('#page-report .report-article h2');
+    for (var i = 0; i < headers.length; i++) {
+      if (headers[i].textContent.indexOf('幻覚') !== -1 || headers[i].textContent.indexOf('妄想') !== -1) {
+        var article = headers[i].closest('.report-article');
+        if (article) {
+          article.classList.add('open');
+          var siteHeader = document.getElementById('site-header');
+          var offset = siteHeader ? siteHeader.offsetHeight + 16 : 88;
+          var top = article.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          return;
+        }
+      }
+    }
+  }, 1500);
 }
 
 // ページ表示後にアンカーへスクロール
