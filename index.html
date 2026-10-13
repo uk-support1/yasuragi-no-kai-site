@@ -41,6 +41,58 @@
   }
 }
 </script>
+<!-- 管理者端末の計測除外（gtag.js より前に実行する） -->
+<script>
+(function () {
+  var GA_ID = 'G-FRFNFWJ6BJ', KEY = 'yasuragi_ga_optout', MAX_AGE = 34560000;
+  var path = location.pathname.replace(/[^\/]*$/, '') || '/';
+  function hasCookie() { return ('; ' + document.cookie).indexOf('; ' + KEY + '=1') !== -1; }
+  function hasLS() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  function save(on) {
+    try {
+      document.cookie = KEY + '=' + (on ? '1' : '') + '; Path=' + path + '; Max-Age=' + (on ? MAX_AGE : 0) +
+        '; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+    } catch (e) {}
+    try { if (on) { localStorage.setItem(KEY, '1'); } else { localStorage.removeItem(KEY); } } catch (e) {}
+    return on ? (hasCookie() || hasLS()) : !(hasCookie() || hasLS());
+  }
+  function toast(msg, ok) {
+    function show() {
+      var s = document.createElement('style');
+      s.textContent = '.ga-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);max-width:90%;padding:10px 18px;border-radius:999px;color:#fff;font-size:14px;line-height:1.5;z-index:99999;pointer-events:none;opacity:0;transition:opacity .3s;text-align:center}.ga-toast.show{opacity:1}';
+      document.head.appendChild(s);
+      var d = document.createElement('div');
+      d.className = 'ga-toast';
+      d.setAttribute('role', 'status');
+      d.style.background = ok ? 'rgba(51,51,51,.92)' : 'rgba(138,59,47,.95)';
+      d.textContent = msg;
+      document.body.appendChild(d);
+      setTimeout(function () { d.className = 'ga-toast show'; }, 30);
+      setTimeout(function () { d.className = 'ga-toast'; }, 4500);
+      setTimeout(function () { if (d.parentNode) { d.parentNode.removeChild(d); } }, 5000);
+    }
+    if (document.body) { show(); } else { document.addEventListener('DOMContentLoaded', show); }
+  }
+  var q = location.search.replace(/^\?/, '');
+  if (q) {
+    var parts = q.split('&'), keep = [], cmd = null;
+    for (var i = 0; i < parts.length; i++) {
+      var kv = parts[i].split('=');
+      if (kv[0] === 'analytics' && /^(on|off)$/i.test(kv[1] || '')) { cmd = kv[1].toLowerCase(); } else { keep.push(parts[i]); }
+    }
+    if (cmd) {
+      var ok = save(cmd === 'off');
+      try { history.replaceState(history.state, '', location.pathname + (keep.length ? '?' + keep.join('&') : '') + location.hash); } catch (e) {}
+      toast(ok ? (cmd === 'off' ? 'このブラウザはアクセス解析から除外されました' : 'アクセス解析の除外設定を解除しました')
+               : 'このブラウザでは設定を保存できませんでした（Cookieが無効の可能性があります）', ok);
+    }
+  }
+  if (hasCookie() || hasLS()) {
+    window['ga-disable-' + GA_ID] = true;
+    save(true);
+  }
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FRFNFWJ6BJ"></script>
 <script>
