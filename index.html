@@ -1780,6 +1780,16 @@ main { min-height: 60vh; }
       <p class="section-subtitle">新着情報・定例会のご案内</p>
       <div class="news-list mb-24">
         <!-- ★ 新しいお知らせはここに追加 ★ -->
+        <div class="news-item" onclick="showReportAndOpenKanto2026()" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <img src="images/report/kanto2026/photo_03_keynote.jpg" alt="関東ブロック大会 基調講演" style="width:100px; height:100px; object-fit:cover; object-position:center center; border-radius:6px; flex-shrink:0;">
+          <div>
+            <div class="news-date">2026.11.06</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">活動報告</span>
+              みんなねっと関東ブロック大会2026 in 栃木に参加しました<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 活動報告へ</span>
+            </div>
+          </div>
+        </div>
         <div class="news-item" onclick="showReportAndOpenStudy3()" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <img src="images/report/study2026_03/slide_p01.png" alt="第3回勉強会スライド" style="width:100px; height:100px; object-fit:contain; background:var(--beige-main); border-radius:6px; flex-shrink:0;">
           <div>
@@ -2107,10 +2117,10 @@ main { min-height: 60vh; }
             <td class="s-org" data-label="主催">やすらぎの会</td>
           </tr>
           <tr class="row-minnannetto">
-            <td class="s-date" data-label="日付">11月5日</td>
-            <td class="s-day" data-label="曜日">木</td>
+            <td class="s-date" data-label="日付">11月6日</td>
+            <td class="s-day" data-label="曜日">金</td>
             <td data-label="内容"><span class="ev-badge ev-minnannetto">みんなねっと</span>関東ブロック大会</td>
-            <td class="s-venue" data-label="会場">栃木県開催</td>
+            <td class="s-venue" data-label="会場">ライトキューブ宇都宮（栃木県）</td>
             <td class="s-time" data-label="時間">終日</td>
             <td class="s-org" data-label="主催">みんなねっと</td>
           </tr>
@@ -2213,6 +2223,35 @@ main { min-height: 60vh; }
     <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <!-- 2026年11月6日：関東ブロック大会参加報告 -->
+    <div class="news-page-item" id="news-2026-11-kanto">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年11月6日</span>
+            <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">活動報告</span>
+          </div>
+          <h3>✅ みんなねっと関東ブロック大会2026 in 栃木に参加しました</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>2026年11月6日（金）、ライトキューブ宇都宮（栃木県宇都宮市）で開催された「みんなねっと関東ブロック大会2026 in 栃木」に参加しました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ テーマ：「明日につながる家族の対応」〜自立への旅立ち・親あるうちにどうすべきか〜</div>
+          <p>宇都宮市による「親亡き後」の取り組みの報告、淑徳大学准教授 伊藤千尋氏の基調講演「本人を支える家族も支える 〜家族が“家族”であるために〜」、パネルディスカッション「親あるうちにやっておいて欲しいこと」が行われました。</p>
+          <p>どの家族会も担い手不足という共通の課題に向き合っていることを実感するとともに、これからの家族会のあり方や意義を改めて考える機会となりました。</p>
+        </div>
+
+        <div class="news-detail-box" style="text-align:center;">
+          <a href="#" onclick="showReportAndOpenKanto2026(); return false;" style="display:inline-block; padding:10px 22px; background:var(--green-dark); color:#fff; border-radius:20px; font-size:0.9rem; font-weight:700; text-decoration:none;">📖 大会の様子・参加して感じたことはこちら</a>
+        </div>
+      </div>
+    </div>
 
     <!-- 2026年10月9日：10月例会開催報告 -->
     <div class="news-page-item" id="news-2026-10-report">
@@ -3217,6 +3256,9 @@ function toggleReport(headerEl) {
 }
 
 // 活動報告ページへ遷移し、第2回勉強会記事を開く
+function showReportAndOpenKanto2026() {
+  showReportAndOpenStudy2(['関東ブロック']);
+}
 function showReportAndOpenStudy3() {
   showReportAndOpenStudy2(['一緒に困り']);
 }
