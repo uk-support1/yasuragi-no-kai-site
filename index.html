@@ -1780,6 +1780,16 @@ main { min-height: 60vh; }
       <p class="section-subtitle">新着情報・定例会のご案内</p>
       <div class="news-list mb-24">
         <!-- ★ 新しいお知らせはここに追加 ★ -->
+        <div class="news-item" onclick="showReportAndOpenSaikaren2026()" style="cursor:pointer; align-items:flex-start; gap:14px;">
+          <img src="images/report/saikaren2026/photo_02_lecture.jpg" alt="埼家連 家族研修会で講演する小瀬古伸幸先生" style="width:100px; height:100px; object-fit:cover; object-position:58% center; border-radius:6px; flex-shrink:0;">
+          <div>
+            <div class="news-date">2026.11.25</div>
+            <div class="news-title">
+              <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700; margin-right:6px;">活動報告</span>
+              埼家連の研修会に参加しました ～本人と家族に寄り添う精神科訪問看護～<span style="color:var(--green-dark); font-size:0.85rem; margin-left:8px;">→ 活動報告へ</span>
+            </div>
+          </div>
+        </div>
         <div class="news-item" onclick="showReportAndOpenNagasaki2026()" style="cursor:pointer; align-items:flex-start; gap:14px;">
           <img src="images/report/nagasaki2026/flyer.jpg" alt="みんなねっと全国大会 in 長崎 パンフレット" style="width:100px; height:100px; object-fit:cover; object-position:center top; border-radius:6px; flex-shrink:0;">
           <div>
@@ -2243,6 +2253,34 @@ main { min-height: 60vh; }
     <p class="section-subtitle">定例会・イベント・重要なご連絡などをお伝えします</p>
 
     <!-- ★ お知らせ追加はここに貼り付けるだけです ★ -->
+
+    <!-- 2026年11月25日：埼家連 家族研修会 参加報告 -->
+    <div class="news-page-item" id="news-2026-11-saikaren">
+      <div class="news-header" onclick="toggleNews(this)">
+        <div>
+          <div class="meta">
+            <span class="date">2026年11月25日</span>
+            <span class="news-badge" style="background:var(--green-dark); color:#fff; border-radius:4px; padding:1px 7px; font-size:0.75rem; font-weight:700;">活動報告</span>
+          </div>
+          <h3>✅ 埼家連の研修会に参加しました ～本人と家族に寄り添う精神科訪問看護～</h3>
+        </div>
+        <span class="news-toggle-icon">▲</span>
+      </div>
+      <div class="news-detail">
+        <div class="news-section">
+          <p>2026年11月25日（水）、埼玉県障害者交流センターで開催された埼玉県精神障害者家族会連合会（埼家連）の家族研修会に参加しました。</p>
+        </div>
+
+        <div class="news-section">
+          <div class="news-section-head">■ 演題：「精神障害者が地域で安心して暮らすには 〜訪問看護の可能性〜」</div>
+          <p>講師は訪問看護ステーションみのりの小瀬古伸幸先生（精神科認定看護師）。精神科訪問看護の実践事例や、メリデン版訪問家族支援、オープンダイアローグについて学び、訪問看護ステーションの探し方についても質問させていただきました。</p>
+        </div>
+
+        <div class="news-detail-box" style="text-align:center;">
+          <a href="#" onclick="showReportAndOpenSaikaren2026(); return false;" style="display:inline-block; padding:10px 22px; background:var(--green-dark); color:#fff; border-radius:20px; font-size:0.9rem; font-weight:700; text-decoration:none;">📖 研修会の様子・学んだことはこちら</a>
+        </div>
+      </div>
+    </div>
 
     <!-- 2026年11月20日〜21日：みんなねっと全国大会 in 長崎 参加報告 -->
     <div class="news-page-item" id="news-2026-11-nagasaki">
@@ -3340,6 +3378,9 @@ function toggleReport(headerEl) {
 }
 
 // 活動報告ページへ遷移し、第2回勉強会記事を開く
+function showReportAndOpenSaikaren2026() {
+  showReportAndOpenStudy2(['埼家連']);
+}
 function showReportAndOpenNagasaki2026() {
   showReportAndOpenStudy2(['in 長崎', '全国精神保健福祉家族大会']);
 }
